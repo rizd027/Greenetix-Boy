@@ -18,10 +18,11 @@ export default function VideoShowcase() {
                                 <div className="absolute -inset-4 bg-gradient-to-br from-primary-600 to-primary-400 rounded-[3rem] opacity-20 blur-2xl transition-all group-hover:opacity-30"></div>
                                 <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl h-[300px] md:h-[450px]">
                                     <Image
-                                        src="/team-bersama.png"
-                                        alt="Documentary Preview"
+                                        src={video.thumbnail}
+                                        alt={video.title}
                                         fill
-                                        className="object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-75"
+                                        sizes="(max-width: 768px) 100vw, 33vw"
+                                        className="object-cover transition-transform duration-500 group-hover:scale-110"
                                     />
 
                                     {/* Play Button */}

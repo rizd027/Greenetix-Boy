@@ -60,8 +60,9 @@ export default function Navbar() {
                                 src="/logo.png"
                                 alt="Greenetix Boy Logo"
                                 width={140}
-                                height={50}
+                                height={40}
                                 className="object-contain w-full h-auto"
+                                priority
                             />
                         </div>
                     </button>

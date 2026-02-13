@@ -87,6 +87,7 @@ export default function Products() {
                                     src={product.image}
                                     alt={product.name}
                                     fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                                 />
                                 <div className={`absolute inset-0 bg-gradient-to-br ${product.color} opacity-20 transition-opacity duration-500 group-hover:opacity-40`}></div>

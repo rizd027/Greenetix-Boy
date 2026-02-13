@@ -58,10 +58,12 @@ export default function Hero() {
           >
             <Image
               src={src}
-              alt={`Slide ${index + 1}`}
+              alt={`Greenetix Boy Slide ${index + 1}`}
               fill
-              className="object-cover"
+              sizes="100vw"
               priority={index === 0}
+              className={`object-cover transition-transform duration-[10000ms] ${index === currentImageIndex ? "scale-110" : "scale-100"
+                }`}
             />
             {/* Dark/Gradient Overlay for Readability */}
             <div className="absolute inset-0 bg-black/40 bg-gradient-to-b from-black/20 via-transparent to-black/60"></div>
