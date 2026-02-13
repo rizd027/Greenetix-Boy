@@ -49,12 +49,12 @@ export default function Navbar() {
                         onClick={() => scrollToSection("home")}
                         className="flex items-center gap-3 group cursor-pointer"
                     >
-                        <div className="relative w-32 md:w-40 transform group-hover:scale-110 transition-transform duration-300">
+                        <div className="relative w-28 md:w-40 transform group-hover:scale-110 transition-transform duration-300">
                             <Image
                                 src="/logo.png"
                                 alt="Greenetix Boy Logo"
-                                width={160}
-                                height={60}
+                                width={140}
+                                height={50}
                                 className="object-contain w-full h-auto"
                             />
                         </div>

@@ -54,9 +54,9 @@ export default function ImpactCalculator() {
                                         value={diapers || ''}
                                         onChange={(e) => setDiapers(Number(e.target.value))}
                                         placeholder="Contoh: 50"
-                                        className="w-full bg-white/5 border-2 border-white/10 rounded-2xl py-6 px-8 text-4xl font-black focus:outline-none focus:border-primary-400/50 focus:ring-4 focus:ring-primary-500/20 transition-all placeholder:text-white/10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                                        className="w-full bg-white/5 border-2 border-white/10 rounded-2xl py-4 px-6 text-2xl md:text-4xl font-black focus:outline-none focus:border-primary-400/50 focus:ring-4 focus:ring-primary-500/20 transition-all placeholder:text-white/10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                                     />
-                                    <div className="absolute right-8 top-1/2 -translate-y-1/2 text-primary-400 font-black text-xl">
+                                    <div className="absolute right-6 top-1/2 -translate-y-1/2 text-primary-400 font-black text-lg md:text-xl">
                                         PCS
                                     </div>
                                 </div>
@@ -92,10 +92,10 @@ export default function ImpactCalculator() {
                     {/* Right Side: Results */}
                     <div className="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                         <div className="bg-white p-8 rounded-[2.5rem] shadow-xl transform hover:-translate-y-2 transition-all duration-500 group text-center lg:text-left">
-                            <div className="w-14 h-14 bg-primary-50 rounded-2xl flex items-center justify-center text-primary-600 mb-6 mx-auto lg:mx-0 group-hover:scale-110 group-hover:bg-primary-600 group-hover:text-white transition-all duration-300">
-                                <Leaf size={28} />
+                            <div className="w-12 h-12 md:w-14 md:h-14 bg-primary-50 rounded-2xl flex items-center justify-center text-primary-600 mb-4 md:mb-6 mx-auto lg:mx-0 group-hover:scale-110 group-hover:bg-primary-600 group-hover:text-white transition-all duration-300">
+                                <Leaf size={24} className="md:w-7 md:h-7" />
                             </div>
-                            <div className="text-4xl md:text-5xl font-black text-primary-900 mb-1 tabular-nums">
+                            <div className="text-3xl md:text-5xl font-black text-primary-900 mb-1 tabular-nums">
                                 {results.waste}
                             </div>
                             <div className="text-[10px] md:text-xs font-bold text-primary-600 uppercase tracking-widest">Kg Limbah Terkelola</div>
@@ -103,10 +103,10 @@ export default function ImpactCalculator() {
                         </div>
 
                         <div className="mt-8 bg-white p-8 rounded-[2.5rem] shadow-xl transform hover:-translate-y-2 transition-all duration-500 group text-center lg:text-left">
-                            <div className="w-14 h-14 bg-primary-50 rounded-2xl flex items-center justify-center text-primary-600 mb-6 mx-auto lg:mx-0 group-hover:scale-110 group-hover:bg-primary-600 group-hover:text-white transition-all duration-300">
-                                <Globe size={28} />
+                            <div className="w-12 h-12 md:w-14 md:h-14 bg-primary-50 rounded-2xl flex items-center justify-center text-primary-600 mb-4 md:mb-6 mx-auto lg:mx-0 group-hover:scale-110 group-hover:bg-primary-600 group-hover:text-white transition-all duration-300">
+                                <Globe size={24} className="md:w-7 md:h-7" />
                             </div>
-                            <div className="text-4xl md:text-5xl font-black text-primary-900 mb-1 tabular-nums">
+                            <div className="text-3xl md:text-5xl font-black text-primary-900 mb-1 tabular-nums">
                                 {results.co2}
                             </div>
                             <div className="text-[10px] md:text-xs font-bold text-primary-600 uppercase tracking-widest">Kg Emisi CO2 Berkurang</div>
@@ -114,10 +114,10 @@ export default function ImpactCalculator() {
                         </div>
 
                         <div className="bg-white p-8 rounded-[2.5rem] shadow-xl transform hover:-translate-y-2 transition-all duration-500 group text-center lg:text-left">
-                            <div className="w-14 h-14 bg-primary-50 rounded-2xl flex items-center justify-center text-primary-600 mb-6 mx-auto lg:mx-0 group-hover:scale-110 group-hover:bg-primary-600 group-hover:text-white transition-all duration-300">
-                                <Zap size={28} />
+                            <div className="w-12 h-12 md:w-14 md:h-14 bg-primary-50 rounded-2xl flex items-center justify-center text-primary-600 mb-4 md:mb-6 mx-auto lg:mx-0 group-hover:scale-110 group-hover:bg-primary-600 group-hover:text-white transition-all duration-300">
+                                <Zap size={24} className="md:w-7 md:h-7" />
                             </div>
-                            <div className="text-4xl md:text-5xl font-black text-primary-900 mb-1 tabular-nums">
+                            <div className="text-3xl md:text-5xl font-black text-primary-900 mb-1 tabular-nums">
                                 {results.energy}
                             </div>
                             <div className="text-[10px] md:text-xs font-bold text-primary-600 uppercase tracking-widest">Potensi Energi (kWh)</div>
@@ -125,10 +125,10 @@ export default function ImpactCalculator() {
                         </div>
 
                         <div className="mt-8 bg-white p-8 rounded-[2.5rem] shadow-xl transform hover:-translate-y-2 transition-all duration-500 group text-center lg:text-left">
-                            <div className="w-14 h-14 bg-primary-50 rounded-2xl flex items-center justify-center text-primary-600 mb-6 mx-auto lg:mx-0 group-hover:scale-110 group-hover:bg-primary-600 group-hover:text-white transition-all duration-300">
-                                <Droplets size={28} />
+                            <div className="w-12 h-12 md:w-14 md:h-14 bg-primary-50 rounded-2xl flex items-center justify-center text-primary-600 mb-4 md:mb-6 mx-auto lg:mx-0 group-hover:scale-110 group-hover:bg-primary-600 group-hover:text-white transition-all duration-300">
+                                <Droplets size={24} className="md:w-7 md:h-7" />
                             </div>
-                            <div className="text-4xl md:text-5xl font-black text-primary-900 mb-1 tabular-nums">
+                            <div className="text-3xl md:text-5xl font-black text-primary-900 mb-1 tabular-nums">
                                 {results.water}
                             </div>
                             <div className="text-[10px] md:text-xs font-bold text-primary-600 uppercase tracking-widest">Liter Air Bersih Terjaga</div>

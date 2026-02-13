@@ -129,7 +129,7 @@ export default function Stats() {
                                         <stat.icon size={48} className="text-white hidden md:block" />
                                     </div>
                                 </div>
-                                <div className="text-4xl md:text-5xl font-bold mb-2">
+                                <div className="text-3xl md:text-5xl font-bold mb-2">
                                     {counts[index].toLocaleString()}
                                     {stat.suffix}
                                 </div>

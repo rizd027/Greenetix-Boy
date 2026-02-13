@@ -37,17 +37,17 @@ export default function BlogSection() {
     return (
         <section id="blog" className="py-24 bg-white">
             <div className="container mx-auto px-4">
-                <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-4">
-                    <div className="max-w-2xl">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-50 rounded-full text-primary-700 text-xs font-bold mb-4 uppercase tracking-widest">
-                            <Tag size={14} />
+                <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 md:mb-16 gap-6">
+                    <div className="max-w-2xl px-2 md:px-0">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-50 rounded-full text-primary-700 text-[10px] md:text-xs font-bold mb-3 md:mb-4 uppercase tracking-widest">
+                            <Tag size={12} />
                             BERITA TERBARU
                         </div>
-                        <h2 className="text-4xl md:text-5xl font-bold text-primary-900 mb-0">Wawasan & Inovasi</h2>
+                        <h2 className="text-3xl md:text-5xl font-bold text-primary-900 mb-0">Wawasan & Inovasi</h2>
                     </div>
-                    <button className="flex items-center gap-2 text-primary-600 font-bold hover:text-primary-800 transition-all border-b-2 border-primary-200 pb-1">
+                    <button className="flex items-center gap-2 text-primary-600 font-bold hover:text-primary-800 transition-all border-b-2 border-primary-200 pb-1 text-sm md:text-base">
                         Lihat Semua Artikel
-                        <ChevronRight size={20} />
+                        <ChevronRight size={18} />
                     </button>
                 </div>
 
@@ -83,10 +83,10 @@ export default function BlogSection() {
                             </div>
 
                             {/* Content */}
-                            <h3 className="text-2xl font-bold text-primary-900 mb-4 group-hover:text-primary-600 transition-colors line-clamp-2 leading-tight">
+                            <h3 className="text-xl md:text-2xl font-bold text-primary-900 mb-3 md:mb-4 group-hover:text-primary-600 transition-colors line-clamp-2 leading-tight">
                                 {post.title}
                             </h3>
-                            <p className="text-gray-600 leading-relaxed mb-8 line-clamp-3 text-sm md:text-base">
+                            <p className="text-gray-600 leading-relaxed mb-6 md:mb-8 line-clamp-3 text-sm md:text-base">
                                 {post.excerpt}
                             </p>
 

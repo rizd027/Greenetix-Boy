@@ -124,11 +124,11 @@ export default function CircularEconomy() {
                                             '--radius': '130px'
                                         } as any}
                                     >
-                                        <div className={`w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-3xl md:text-4xl transition-all duration-500 shadow-lg md:[--radius:180px] ${isActive || isHovered
+                                        <div className={`w-14 h-14 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-3xl md:text-4xl transition-all duration-500 shadow-lg md:[--radius:180px] ${isActive || isHovered
                                             ? 'bg-primary-600 text-white scale-125 -translate-y-2'
                                             : 'bg-white text-primary-600 hover:bg-primary-50'
                                             }`}>
-                                            <step.icon className={`w-8 h-8 md:w-10 md:h-10 transition-all duration-500 ${isActive || isHovered ? 'text-white' : 'text-primary-600'}`} />
+                                            <step.icon className={`w-6 h-6 md:w-10 md:h-10 transition-all duration-500 ${isActive || isHovered ? 'text-white' : 'text-primary-600'}`} />
 
                                             {/* Label on desktop */}
                                             <span className={`absolute -bottom-8 whitespace-nowrap text-[10px] font-bold tracking-widest uppercase transition-opacity duration-300 px-2 ${isActive || isHovered ? 'text-primary-800 opacity-100' : 'text-gray-400 opacity-0 md:group-hover:opacity-100'
@@ -141,13 +141,13 @@ export default function CircularEconomy() {
                             })}
 
                             {/* Central Core */}
-                            <div className="relative w-32 h-32 md:w-56 md:h-56 rounded-full bg-white shadow-2xl flex flex-col items-center justify-center text-center p-4 md:p-6 border-4 md:border-8 border-primary-50">
+                            <div className="relative w-28 h-28 md:w-56 md:h-56 rounded-full bg-white shadow-2xl flex flex-col items-center justify-center text-center p-4 md:p-6 border-4 md:border-8 border-primary-50">
                                 <div className="absolute inset-0 rounded-full bg-primary-500/5 animate-ping"></div>
-                                <h4 className="text-primary-800 font-black text-xs md:text-xl leading-tight">
+                                <h4 className="text-primary-800 font-black text-[10px] md:text-xl leading-tight">
                                     SIRKULAR<br />EKONOMI
                                 </h4>
-                                <div className="w-8 md:w-12 h-0.5 md:h-1 bg-primary-200 my-2 md:my-3 rounded-full"></div>
-                                <p className="text-[8px] md:text-[10px] text-primary-600 font-bold tracking-widest">GREENETIX BOY</p>
+                                <div className="w-6 md:w-12 h-0.5 md:h-1 bg-primary-200 my-1.5 md:my-3 rounded-full"></div>
+                                <p className="text-[7px] md:text-[10px] text-primary-600 font-bold tracking-widest">GREENETIX BOY</p>
                             </div>
                         </div>
 

@@ -43,8 +43,8 @@ export default function FAQ() {
                             <HelpCircle size={14} />
                             FREQUENTLY ASKED QUESTIONS
                         </div>
-                        <h2 className="text-4xl md:text-5xl font-bold text-primary-900 mb-6">Informasi Penting</h2>
-                        <p className="text-lg text-primary-700">Punya pertanyaan seputar proses dan produk kami? Temukan jawabannya di sini.</p>
+                        <h2 className="text-3xl md:text-5xl font-bold text-primary-900 mb-4 md:mb-6">Informasi Penting</h2>
+                        <p className="text-base md:text-lg text-primary-700 px-4">Punya pertanyaan seputar proses dan produk kami? Temukan jawabannya di sini.</p>
                     </div>
 
                     <div className="space-y-4">
@@ -58,7 +58,7 @@ export default function FAQ() {
                                     onClick={() => setOpenIndex(openIndex === index ? null : index)}
                                     className="w-full text-left p-6 md:p-8 flex items-center justify-between"
                                 >
-                                    <span className={`text-lg md:text-xl font-bold transition-colors ${openIndex === index ? 'text-primary-700' : 'text-gray-800'
+                                    <span className={`text-base md:text-xl font-bold transition-colors ${openIndex === index ? 'text-primary-700' : 'text-gray-800'
                                         }`}>
                                         {faq.question}
                                     </span>
@@ -72,7 +72,7 @@ export default function FAQ() {
                                     className={`overflow-hidden transition-all duration-500 ${openIndex === index ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'
                                         }`}
                                 >
-                                    <div className="p-6 md:p-8 pt-0 border-t border-gray-50 text-gray-600 leading-relaxed text-base md:text-lg">
+                                    <div className="p-6 md:p-8 pt-0 border-t border-gray-50 text-gray-600 leading-relaxed text-sm md:text-lg">
                                         {faq.answer}
                                     </div>
                                 </div>
@@ -80,14 +80,14 @@ export default function FAQ() {
                         ))}
                     </div>
 
-                    <div className="mt-16 bg-gradient-to-r from-primary-600 to-primary-800 p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden group">
+                    <div className="mt-12 md:mt-16 bg-gradient-to-r from-primary-600 to-primary-800 p-8 md:p-10 rounded-[2rem] md:rounded-[2.5rem] shadow-2xl relative overflow-hidden group">
                         <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-125 transition-transform"></div>
-                        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
                             <div className="text-center md:text-left">
-                                <h3 className="text-2xl font-bold text-white mb-2">Masih punya pertanyaan lain?</h3>
-                                <p className="text-white/80">Tim kami siap membantu menjelaskan secara mendalam.</p>
+                                <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Masih punya pertanyaan lain?</h3>
+                                <p className="text-white/80 text-sm md:text-base">Tim kami siap membantu menjelaskan secara mendalam.</p>
                             </div>
-                            <button className="px-8 py-4 bg-white text-primary-700 font-bold rounded-full hover:bg-cream-50 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95">
+                            <button className="w-full md:w-auto px-8 py-3.5 bg-white text-primary-700 font-bold rounded-full hover:bg-cream-50 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95">
                                 Tanya Admin
                             </button>
                         </div>

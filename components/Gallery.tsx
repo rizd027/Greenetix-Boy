@@ -6,11 +6,11 @@ export default function Gallery() {
     return (
         <section className="py-20 bg-gradient-to-b from-white to-cream-50">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold text-primary-800 mb-4">
+                <div className="text-center mb-12 md:mb-16">
+                    <h2 className="text-3xl md:text-5xl font-bold text-primary-800 mb-3 md:mb-4">
                         Galeri Produk
                     </h2>
-                    <p className="text-xl text-primary-600 max-w-2xl mx-auto">
+                    <p className="text-lg md:text-xl text-primary-600 max-w-2xl mx-auto px-4">
                         Lihat hasil transformasi limbah popok menjadi produk berkualitas
                     </p>
                 </div>

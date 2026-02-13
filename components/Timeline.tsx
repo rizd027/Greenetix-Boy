@@ -44,9 +44,9 @@ export default function Timeline() {
     return (
         <section id="journey" className="py-24 bg-white overflow-hidden">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-20">
-                    <h2 className="text-4xl md:text-5xl font-bold text-primary-800 mb-4">Perjalanan Kami</h2>
-                    <p className="text-xl text-primary-600 max-w-2xl mx-auto">
+                <div className="text-center mb-12 md:mb-20">
+                    <h2 className="text-3xl md:text-5xl font-bold text-primary-800 mb-3">Perjalanan Kami</h2>
+                    <p className="text-lg md:text-xl text-primary-600 max-w-2xl mx-auto px-4">
                         Dari keresahan menjadi solusi nyata untuk bumi yang lebih hijau.
                     </p>
                 </div>
@@ -60,13 +60,13 @@ export default function Timeline() {
                             <div key={index} className={`relative flex flex-col md:flex-row items-center gap-8 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
                                 {/* Content Card */}
                                 <div className="w-full md:w-5/12">
-                                    <div className={`p-8 rounded-3xl shadow-xl transition-all duration-500 border-2 ${item.status === 'current'
+                                    <div className={`p-6 md:p-8 rounded-3xl shadow-xl transition-all duration-500 border-2 ${item.status === 'current'
                                         ? 'bg-primary-50 border-primary-300 scale-105 shadow-primary-100'
                                         : item.status === 'completed'
                                             ? 'bg-white border-transparent'
                                             : 'bg-gray-50 border-gray-100 opacity-70'
                                         }`}>
-                                        <div className="flex items-center gap-3 mb-4">
+                                        <div className="flex items-center gap-3 mb-3 md:mb-4">
                                             <span className={`px-3 py-1 rounded-full text-xs font-bold ${item.status === 'current'
                                                 ? 'bg-primary-600 text-white animate-pulse'
                                                 : item.status === 'completed'
@@ -76,8 +76,8 @@ export default function Timeline() {
                                                 {item.year}
                                             </span>
                                         </div>
-                                        <h3 className="text-2xl font-bold text-primary-900 mb-3">{item.title}</h3>
-                                        <p className="text-gray-600 leading-relaxed text-sm md:text-base">
+                                        <h3 className="text-lg md:text-2xl font-bold text-primary-900 mb-2 md:mb-3">{item.title}</h3>
+                                        <p className="text-gray-600 leading-relaxed text-xs md:text-base">
                                             {item.description}
                                         </p>
                                     </div>

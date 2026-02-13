@@ -99,7 +99,7 @@ export default function Hero() {
         <div className="text-center relative">
           <h1
             ref={textRef}
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[1.1] mb-8 tracking-tight drop-shadow-2xl"
+            className="text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[1.1] mb-6 tracking-tight drop-shadow-2xl"
           >
             Ubah Limbah Jadi <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 to-primary-100">
@@ -107,16 +107,16 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p className="text-lg md:text-2xl text-white max-w-2xl mx-auto font-medium leading-relaxed opacity-0 animate-fade-in-delay-1 drop-shadow-lg px-4">
+          <p className="text-base md:text-2xl text-white max-w-2xl mx-auto font-medium leading-relaxed opacity-0 animate-fade-in-delay-1 drop-shadow-lg px-4">
             Inovasi ekonomi sirkular pertama di dunia yang mengubah limbah popok bayi menjadi produk bernilai tinggi.
           </p>
 
-          <div className="mt-16 flex flex-col md:flex-row gap-6 justify-center items-center animate-fade-in-delay-2 opacity-0">
+          <div className="mt-10 md:mt-16 flex flex-col md:flex-row gap-4 md:gap-6 justify-center items-center animate-fade-in-delay-2 opacity-0">
             <button
               onClick={() => scrollToSection("products")}
-              className="group relative px-10 py-5 bg-primary-600 text-white font-bold rounded-full overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-2xl active:scale-95"
+              className="group relative px-8 py-4 md:px-10 md:py-5 bg-primary-600 text-white font-bold rounded-full overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-2xl active:scale-95 w-full md:w-auto"
             >
-              <span className="relative z-10 flex items-center gap-2">
+              <span className="relative z-10 flex items-center justify-center gap-2">
                 Pelajari Lebih Lanjut
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </span>
@@ -125,7 +125,7 @@ export default function Hero() {
 
             <button
               onClick={() => scrollToSection("contact")}
-              className="px-10 py-5 bg-white/10 backdrop-blur-md text-white font-bold rounded-full border-2 border-white/30 hover:border-white hover:bg-white/20 transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg"
+              className="px-8 py-4 md:px-10 md:py-5 bg-white/10 backdrop-blur-md text-white font-bold rounded-full border-2 border-white/30 hover:border-white hover:bg-white/20 transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg w-full md:w-auto"
             >
               Hubungi Kami
             </button>

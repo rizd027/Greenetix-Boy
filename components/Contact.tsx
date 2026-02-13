@@ -55,10 +55,10 @@ export default function Contact() {
 
                         {/* Left Side: Info & Map Placeholder */}
                         <div>
-                            <h2 className="text-4xl md:text-5xl font-bold text-primary-800 mb-6">
+                            <h2 className="text-3xl md:text-5xl font-bold text-primary-800 mb-4 md:mb-6">
                                 Hubungi Kami
                             </h2>
-                            <p className="text-xl text-primary-600 mb-12">
+                            <p className="text-base md:text-xl text-primary-600 mb-8 md:mb-12">
                                 Punya pertanyaan tentang produk kami atau ingin berkolaborasi?
                                 Kami siap membantu Anda mewujudkan lingkungan yang lebih hijau.
                             </p>
@@ -66,8 +66,8 @@ export default function Contact() {
                             <div className="grid gap-8 mb-12">
                                 {contactInfo.map((info, index) => (
                                     <div key={index} className="flex gap-6 group">
-                                        <div className="w-14 h-14 bg-white rounded-2xl shadow-md flex items-center justify-center text-primary-600 group-hover:scale-110 transition-transform duration-300 transform group-hover:rotate-6">
-                                            <info.icon size={28} />
+                                        <div className="w-12 h-12 md:w-14 md:h-14 bg-white rounded-2xl shadow-md flex items-center justify-center text-primary-600 group-hover:scale-110 transition-transform duration-300 transform group-hover:rotate-6">
+                                            <info.icon size={24} className="md:w-7 md:h-7" />
                                         </div>
                                         <div>
                                             <h4 className="font-bold text-gray-800 text-lg mb-1">{info.title}</h4>
@@ -100,9 +100,9 @@ export default function Contact() {
                         </div>
 
                         {/* Right Side: Contact Form */}
-                        <div className="bg-white p-10 md:p-12 rounded-[2.5rem] shadow-2xl relative">
-                            <div className="absolute -top-6 -right-6 w-24 h-24 bg-primary-600 rounded-full flex items-center justify-center text-white shadow-xl transform rotate-12">
-                                <Mail size={40} />
+                        <div className="bg-white p-6 sm:p-10 md:p-12 rounded-[2rem] md:rounded-[2.5rem] shadow-2xl relative">
+                            <div className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 w-16 h-16 sm:w-24 sm:h-24 bg-primary-600 rounded-full flex items-center justify-center text-white shadow-xl transform rotate-12">
+                                <Mail className="w-8 h-8 sm:w-10 sm:h-10" />
                             </div>
 
                             <form onSubmit={handleSubmit} className="space-y-6">
@@ -156,7 +156,7 @@ export default function Contact() {
                                 <button
                                     type="submit"
                                     disabled={isSubmitting || submitStatus === "success"}
-                                    className={`w-full py-5 rounded-2xl font-bold text-lg transition-all transform hover:scale-[1.02] shadow-xl flex items-center justify-center gap-3 ${submitStatus === "success"
+                                    className={`w-full py-4 md:py-5 rounded-2xl font-bold text-base md:text-lg transition-all transform hover:scale-[1.02] shadow-xl flex items-center justify-center gap-3 ${submitStatus === "success"
                                         ? "bg-green-500 text-white"
                                         : "bg-primary-600 text-white hover:bg-primary-700"
                                         } disabled:opacity-70 disabled:transform-none`}
