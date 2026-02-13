@@ -122,10 +122,11 @@ export default function Stats() {
                             key={stat.id}
                             className="text-center transform hover:scale-105 transition-transform duration-300"
                         >
-                            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-3xl border border-white/20 hover:bg-white/20 transition-all duration-300">
-                                <div className="flex justify-center mb-6">
-                                    <div className="p-4 bg-white/10 rounded-2xl">
-                                        <stat.icon size={48} className="text-white" />
+                            <div className="bg-white/10 backdrop-blur-sm p-5 md:p-8 rounded-3xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+                                <div className="flex justify-center mb-4 md:mb-6">
+                                    <div className="p-3 md:p-4 bg-white/10 rounded-2xl">
+                                        <stat.icon size={32} className="text-white md:hidden" />
+                                        <stat.icon size={48} className="text-white hidden md:block" />
                                     </div>
                                 </div>
                                 <div className="text-4xl md:text-5xl font-bold mb-2">

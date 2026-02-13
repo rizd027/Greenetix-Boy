@@ -49,13 +49,13 @@ export default function Navbar() {
                         onClick={() => scrollToSection("home")}
                         className="flex items-center gap-3 group cursor-pointer"
                     >
-                        <div className="relative w-100 h-100 transform group-hover:scale-125 transition-transform duration-300">
+                        <div className="relative w-32 md:w-40 transform group-hover:scale-110 transition-transform duration-300">
                             <Image
                                 src="/logo.png"
                                 alt="Greenetix Boy Logo"
-                                width={150}
-                                height={150}
-                                className="object-contain"
+                                width={160}
+                                height={60}
+                                className="object-contain w-full h-auto"
                             />
                         </div>
                     </button>
@@ -140,9 +140,21 @@ export default function Navbar() {
                                 {link.label}
                             </button>
                         ))}
+                        <div className="px-4 py-3 flex items-center justify-between border-t border-gray-100 mt-2">
+                            <span className="text-sm font-medium text-gray-500 flex items-center gap-2">
+                                <Languages size={18} />
+                                Bahasa
+                            </span>
+                            <button
+                                onClick={() => setLanguage(language === "ID" ? "EN" : "ID")}
+                                className="px-4 py-2 bg-primary-50 text-primary-700 rounded-full font-bold text-sm"
+                            >
+                                {language}
+                            </button>
+                        </div>
                         <button
                             onClick={() => scrollToSection("contact")}
-                            className="mt-2 px-4 py-3 rounded-xl font-semibold bg-primary-600 text-white hover:bg-primary-700 transition-all duration-300"
+                            className="mt-2 px-4 py-4 rounded-xl font-bold bg-primary-600 text-white hover:bg-primary-700 transition-all duration-300"
                         >
                             Hubungi Kami
                         </button>

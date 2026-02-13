@@ -99,7 +99,7 @@ export default function Hero() {
         <div className="text-center relative">
           <h1
             ref={textRef}
-            className="text-5xl md:text-8xl font-black text-white leading-[1.1] mb-8 tracking-tight drop-shadow-2xl"
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[1.1] mb-8 tracking-tight drop-shadow-2xl"
           >
             Ubah Limbah Jadi <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 to-primary-100">
@@ -107,7 +107,7 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-white max-w-2xl mx-auto font-medium leading-relaxed opacity-0 animate-fade-in-delay-1 drop-shadow-lg">
+          <p className="text-lg md:text-2xl text-white max-w-2xl mx-auto font-medium leading-relaxed opacity-0 animate-fade-in-delay-1 drop-shadow-lg px-4">
             Inovasi ekonomi sirkular pertama di dunia yang mengubah limbah popok bayi menjadi produk bernilai tinggi.
           </p>
 

@@ -90,7 +90,7 @@ export default function ImpactCalculator() {
                     </div>
 
                     {/* Right Side: Results */}
-                    <div className="w-full lg:w-1/2 grid grid-cols-2 gap-4 md:gap-6">
+                    <div className="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                         <div className="bg-white p-8 rounded-[2.5rem] shadow-xl transform hover:-translate-y-2 transition-all duration-500 group text-center lg:text-left">
                             <div className="w-14 h-14 bg-primary-50 rounded-2xl flex items-center justify-center text-primary-600 mb-6 mx-auto lg:mx-0 group-hover:scale-110 group-hover:bg-primary-600 group-hover:text-white transition-all duration-300">
                                 <Leaf size={28} />

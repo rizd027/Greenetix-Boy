@@ -40,12 +40,12 @@ export default function Team() {
 
                 {/* Group Photo */}
                 <div className="max-w-4xl mx-auto mb-16 rounded-3xl overflow-hidden shadow-2xl">
-                    <div className="relative w-full h-[500px] md:h-[600px]">
+                    <div className="relative w-full aspect-[4/3] md:h-[600px]">
                         <Image
                             src="/team-bersama.png"
                             alt="Tim Greenetix Boy"
                             fill
-                            className="object-contain bg-white"
+                            className="object-contain md:object-cover bg-white"
                             priority
                         />
                     </div>
