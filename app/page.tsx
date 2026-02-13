@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Partners from "@/components/Partners";
+import Hero from "@/components/Hero";
 import CircularEconomy from "@/components/CircularEconomy";
 import ImpactCalculator from "@/components/ImpactCalculator";
 import Products from "@/components/Products";
@@ -23,7 +23,6 @@ export default function Home() {
             <Navbar />
             <main className="min-h-screen bg-gradient-to-b from-cream-50 via-white to-cream-100">
                 <Hero />
-                <Partners />
                 <CircularEconomy />
                 <ImpactCalculator />
                 <Products />
