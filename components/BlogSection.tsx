@@ -35,7 +35,7 @@ const posts = [
 
 export default function BlogSection() {
     return (
-        <section id="blog" className="py-24 bg-white">
+        <section id="blog" className="py-12 md:py-24 bg-white">
             <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 md:mb-16 gap-6">
                     <div className="max-w-2xl px-2 md:px-0">
@@ -51,7 +51,7 @@ export default function BlogSection() {
                     </button>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
                     {posts.map((post, index) => (
                         <div key={index} className="group cursor-pointer">
                             {/* Image Container */}

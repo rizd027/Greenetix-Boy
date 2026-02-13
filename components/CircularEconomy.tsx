@@ -62,22 +62,22 @@ export default function CircularEconomy() {
     const displayStep = hoveredStep || activeStep;
 
     return (
-        <section id="circular-economy" className="py-24 bg-white relative overflow-hidden">
+        <section id="solution" className="py-12 md:py-24 bg-white relative overflow-hidden">
             {/* Background patterns */}
             <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-cream-50 to-transparent"></div>
 
             <div className="container mx-auto px-4 relative z-10">
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold text-primary-800 mb-4">
-                        Ekonomi Sirkular
+                <div className="text-center mb-10 md:mb-20">
+                    <h2 className="text-3xl md:text-5xl font-bold text-primary-800 mb-3 md:mb-4">
+                        Siklus Keberlanjutan
                     </h2>
-                    <p className="text-xl text-primary-600 max-w-2xl mx-auto">
+                    <p className="text-lg md:text-xl text-primary-600 max-w-2xl mx-auto px-4">
                         Siklus tertutup yang mengubah masalah limbah menjadi solusi keberlanjutan
                     </p>
                 </div>
 
                 <div className="max-w-6xl mx-auto">
-                    <div className="flex flex-col lg:flex-row items-center gap-16">
+                    <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-24">
 
                         {/* Interactive Diagram Side */}
                         <div className="relative w-full max-w-[500px] aspect-square flex items-center justify-center">

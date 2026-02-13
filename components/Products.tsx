@@ -63,7 +63,7 @@ export default function Products() {
     const [expandedId, setExpandedId] = useState<string | null>(null);
 
     return (
-        <section id="products" className="py-24 bg-white relative overflow-hidden">
+        <section id="products" className="py-12 md:py-24 bg-cream-50 overflow-hidden">
             <div className="container mx-auto px-4 relative z-10">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-bold text-primary-800 mb-4">

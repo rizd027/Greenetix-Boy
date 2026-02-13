@@ -98,7 +98,7 @@ export default function Stats() {
         <section
             id="impact"
             ref={sectionRef}
-            className="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white relative overflow-hidden"
+            className="py-12 md:py-24 bg-primary-600 text-white relative overflow-hidden"
         >
             {/* Decorative background */}
             <div className="absolute inset-0 opacity-10">
@@ -116,7 +116,7 @@ export default function Stats() {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-10">
                     {stats.map((stat, index) => (
                         <div
                             key={stat.id}

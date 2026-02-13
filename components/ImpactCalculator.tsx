@@ -22,15 +22,15 @@ export default function ImpactCalculator() {
     };
 
     return (
-        <section className="py-24 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white overflow-hidden relative">
+        <section id="impact" className="py-12 md:py-24 bg-primary-900 relative overflow-hidden">
             {/* Background Decorations */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-600/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
             <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary-400/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2"></div>
 
             <div className="container mx-auto px-4 relative z-10">
-                <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16">
-                    {/* Left Side: Input */}
-                    <div className="w-full lg:w-1/2">
+                <div className="flex flex-col lg:flex-row items-center gap-10 md:gap-20">
+                    {/* Left Side: Input Card */}
+                    <div className="w-full lg:w-1/2 bg-white/10 backdrop-blur-xl p-8 md:p-12 rounded-[2.5rem] border border-white/20 shadow-2xl">
                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-primary-200 text-sm font-bold mb-6 border border-white/10">
                             <Calculator size={16} />
                             KALKULATOR DAMPAK

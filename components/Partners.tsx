@@ -13,9 +13,9 @@ const partners = [
 
 export default function Partners() {
     return (
-        <section className="py-16 bg-cream-50/50 border-y border-cream-100">
+        <section className="py-12 md:py-24 bg-white relative overflow-hidden">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-10">
+                <div className="text-center mb-8 md:mb-16">
                     <p className="text-primary-600 font-bold tracking-widest uppercase text-sm mb-2">Didukung & Dipercaya Oleh</p>
                 </div>
 

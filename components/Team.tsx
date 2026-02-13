@@ -29,7 +29,7 @@ const teamMembers: TeamMember[] = [
 
 export default function Team() {
     return (
-        <section id="team" className="py-20 bg-white">
+        <section id="team" className="py-12 md:py-24 bg-white relative">
             <div className="container mx-auto px-4">
                 <h2 className="text-4xl md:text-5xl font-bold text-center text-primary-800 mb-4">
                     Tim Kami
@@ -70,14 +70,14 @@ export default function Team() {
                 </div>
 
                 {/* Team Members */}
-                <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
                     {teamMembers.map((member, index) => (
                         <div
                             key={index}
-                            className="group relative bg-gradient-to-br from-primary-50 to-cream-100 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-3"
+                            className="group relative bg-gradient-to-br from-primary-50 to-cream-100 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2"
                         >
-                            <div className="p-8">
-                                <div className="relative w-full h-80 mx-auto mb-6 rounded-2xl overflow-hidden bg-white group-hover:scale-105 transition-transform duration-500">
+                            <div className="p-6 md:p-8">
+                                <div className="relative w-full h-64 md:h-80 mx-auto mb-4 md:mb-6 rounded-2xl overflow-hidden bg-white group-hover:scale-105 transition-transform duration-500">
                                     <Image
                                         src={member.image}
                                         alt={member.name}
@@ -85,25 +85,23 @@ export default function Team() {
                                         className="object-contain"
                                     />
                                 </div>
-                                <h3 className="text-2xl font-bold text-primary-800 text-center mb-2">
+                                <h3 className="text-xl md:text-2xl font-bold text-primary-800 text-center mb-1 md:mb-2">
                                     {member.name}
                                 </h3>
-                                <p className="text-primary-600 text-center font-medium">
+                                <p className="text-primary-600 text-center font-medium text-sm md:text-base">
                                     {member.role}
                                 </p>
                             </div>
-
-                            {/* Decorative element */}
-                            <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-primary-500 to-primary-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                            <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary-500 to-primary-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
                         </div>
                     ))}
                 </div>
 
                 {/* Achievement Badge */}
-                <div className="mt-16 text-center">
-                    <div className="inline-flex items-center gap-3 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white px-8 py-4 rounded-full shadow-xl transform hover:scale-105 transition-transform duration-300">
-                        <Trophy size={24} />
-                        <p className="font-bold text-lg">Shell LiveWire Bootcamp 2 Participants 2025</p>
+                <div className="mt-10 md:mt-16 text-center px-4">
+                    <div className="inline-flex items-center gap-3 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-full shadow-xl transform hover:scale-105 transition-transform duration-300">
+                        <Trophy size={20} className="md:w-6 md:h-6" />
+                        <p className="font-bold text-sm md:text-lg uppercase md:normal-case tracking-wide md:tracking-normal">Shell LiveWire Bootcamp 2 Participants 2025</p>
                     </div>
                 </div>
             </div>

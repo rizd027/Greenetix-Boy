@@ -42,10 +42,10 @@ const milestones = [
 
 export default function Timeline() {
     return (
-        <section id="journey" className="py-24 bg-white overflow-hidden">
+        <section id="journey" className="py-12 md:py-24 bg-white overflow-hidden">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-12 md:mb-20">
-                    <h2 className="text-3xl md:text-5xl font-bold text-primary-800 mb-3">Perjalanan Kami</h2>
+                <div className="text-center mb-10 md:mb-20">
+                    <h2 className="text-3xl md:text-5xl font-bold text-primary-800 mb-3 md:mb-4">Perjalanan Kami</h2>
                     <p className="text-lg md:text-xl text-primary-600 max-w-2xl mx-auto px-4">
                         Dari keresahan menjadi solusi nyata untuk bumi yang lebih hijau.
                     </p>
@@ -55,7 +55,7 @@ export default function Timeline() {
                     {/* Vertical Line - Left on mobile, Center on desktop */}
                     <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-primary-600/20 via-primary-600 to-primary-600/20"></div>
 
-                    <div className="space-y-12">
+                    <div className="space-y-8 md:space-y-12">
                         {milestones.map((item, index) => (
                             <div key={index} className={`relative flex flex-col md:flex-row items-center gap-8 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
                                 {/* Content Card */}
