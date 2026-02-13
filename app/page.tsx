@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Hero from "@/components/Hero";
 import CircularEconomy from "@/components/CircularEconomy";
 import ImpactCalculator from "@/components/ImpactCalculator";
 import Products from "@/components/Products";
