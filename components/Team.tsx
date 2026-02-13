@@ -31,10 +31,10 @@ export default function Team() {
     return (
         <section id="team" className="py-12 md:py-24 bg-white relative">
             <div className="container mx-auto px-4">
-                <h2 className="text-4xl md:text-5xl font-bold text-center text-primary-800 mb-4">
+                <h2 className="text-2xl md:text-5xl font-bold text-center text-primary-800 mb-2 md:mb-4">
                     Tim Kami
                 </h2>
-                <p className="text-center text-primary-600 text-xl mb-16 max-w-3xl mx-auto">
+                <p className="text-center text-primary-600 text-sm md:text-xl mb-10 md:mb-16 max-w-3xl mx-auto">
                     Bersama membangun masa depan berkelanjutan
                 </p>
 
@@ -85,10 +85,10 @@ export default function Team() {
                                         className="object-contain"
                                     />
                                 </div>
-                                <h3 className="text-xl md:text-2xl font-bold text-primary-800 text-center mb-1 md:mb-2">
+                                <h3 className="text-lg md:text-2xl font-bold text-primary-800 text-center mb-0.5 md:mb-2 text-clip">
                                     {member.name}
                                 </h3>
-                                <p className="text-primary-600 text-center font-medium text-sm md:text-base">
+                                <p className="text-primary-600 text-center font-medium text-[10px] md:text-base">
                                     {member.role}
                                 </p>
                             </div>

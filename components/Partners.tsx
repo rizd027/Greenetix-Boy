@@ -26,8 +26,12 @@ export default function Partners() {
                             className="flex flex-col items-center group cursor-default"
                         >
                             <div className="flex items-center gap-3 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110 filter grayscale group-hover:grayscale-0">
-                                <partner.icon size={24} className="text-primary-700 md:w-8 md:h-8" />
-                                <span className="text-lg md:text-xl font-bold text-primary-900 tracking-tight">{partner.name}</span>
+                                <div className="text-gray-400 group-hover:text-primary-600 transition-colors">
+                                    <partner.icon size={24} className="md:w-8 md:h-8" />
+                                </div>
+                                <span className="text-sm md:text-xl font-bold text-gray-400 group-hover:text-primary-800 transition-colors">
+                                    {partner.name}
+                                </span>
                             </div>
                             <p className="text-[10px] font-medium text-primary-600 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                 {partner.label}
