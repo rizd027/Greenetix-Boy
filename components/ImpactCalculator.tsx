@@ -22,28 +22,28 @@ export default function ImpactCalculator() {
     };
 
     return (
-        <section id="impact" className="py-12 md:py-24 bg-primary-900 relative overflow-hidden">
+        <section className="py-24 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white overflow-hidden relative">
             {/* Background Decorations */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-600/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
             <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary-400/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2"></div>
 
             <div className="container mx-auto px-4 relative z-10">
-                <div className="flex flex-col lg:flex-row items-center gap-10 md:gap-20">
-                    {/* Left Side: Input Card */}
-                    <div className="w-full lg:w-1/2 bg-white/10 backdrop-blur-xl p-8 md:p-12 rounded-[2.5rem] border border-white/20 shadow-2xl">
+                <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+                    {/* Left Side: Input */}
+                    <div className="w-full lg:w-1/2">
                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-primary-200 text-sm font-bold mb-6 border border-white/10">
                             <Calculator size={16} />
                             KALKULATOR DAMPAK
                         </div>
-                        <h2 className="text-2xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight">
+                        <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
                             Lihat Seberapa Besar Perubahan Yang Anda Buat
                         </h2>
-                        <p className="text-primary-100/80 text-sm md:text-lg mb-6 md:mb-10 leading-relaxed">
+                        <p className="text-primary-100/80 text-lg mb-10 leading-relaxed">
                             Setiap popok yang dikelola melalui Greenetix Boy berarti satu langkah menjauh dari pencemaran lingkungan. Hitung kontribusi potensial Anda di bawah ini.
                         </p>
 
                         <div className="bg-white/10 backdrop-blur-xl p-8 rounded-[2rem] border border-white/20 shadow-2xl">
-                            <label className="block text-[10px] md:text-sm font-bold tracking-widest uppercase mb-3 md:mb-4 text-primary-200">
+                            <label className="block text-sm font-bold tracking-widest uppercase mb-4 text-primary-200">
                                 Jumlah Popok (Per Bulan)
                             </label>
                             <div className="space-y-6">
@@ -54,9 +54,9 @@ export default function ImpactCalculator() {
                                         value={diapers || ''}
                                         onChange={(e) => setDiapers(Number(e.target.value))}
                                         placeholder="Contoh: 50"
-                                        className="w-full bg-white/5 border-2 border-white/10 rounded-2xl py-3 md:py-4 px-5 md:px-6 text-xl md:text-4xl font-black focus:outline-none focus:border-primary-400/50 focus:ring-4 focus:ring-primary-500/20 transition-all placeholder:text-white/10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                                        className="w-full bg-white/5 border-2 border-white/10 rounded-2xl py-4 px-6 text-2xl md:text-4xl font-black focus:outline-none focus:border-primary-400/50 focus:ring-4 focus:ring-primary-500/20 transition-all placeholder:text-white/10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                                     />
-                                    <div className="absolute right-5 md:right-6 top-1/2 -translate-y-1/2 text-primary-400 font-black text-base md:text-xl">
+                                    <div className="absolute right-6 top-1/2 -translate-y-1/2 text-primary-400 font-black text-lg md:text-xl">
                                         PCS
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@ export default function ImpactCalculator() {
                             <div className="w-12 h-12 md:w-14 md:h-14 bg-primary-50 rounded-2xl flex items-center justify-center text-primary-600 mb-4 md:mb-6 mx-auto lg:mx-0 group-hover:scale-110 group-hover:bg-primary-600 group-hover:text-white transition-all duration-300">
                                 <Leaf size={24} className="md:w-7 md:h-7" />
                             </div>
-                            <div className="text-2xl md:text-5xl font-black text-primary-900 mb-1 tabular-nums">
+                            <div className="text-3xl md:text-5xl font-black text-primary-900 mb-1 tabular-nums">
                                 {results.waste}
                             </div>
                             <div className="text-[10px] md:text-xs font-bold text-primary-600 uppercase tracking-widest">Kg Limbah Terkelola</div>
@@ -106,7 +106,7 @@ export default function ImpactCalculator() {
                             <div className="w-12 h-12 md:w-14 md:h-14 bg-primary-50 rounded-2xl flex items-center justify-center text-primary-600 mb-4 md:mb-6 mx-auto lg:mx-0 group-hover:scale-110 group-hover:bg-primary-600 group-hover:text-white transition-all duration-300">
                                 <Globe size={24} className="md:w-7 md:h-7" />
                             </div>
-                            <div className="text-2xl md:text-5xl font-black text-primary-900 mb-1 tabular-nums">
+                            <div className="text-3xl md:text-5xl font-black text-primary-900 mb-1 tabular-nums">
                                 {results.co2}
                             </div>
                             <div className="text-[10px] md:text-xs font-bold text-primary-600 uppercase tracking-widest">Kg Emisi CO2 Berkurang</div>
@@ -117,7 +117,7 @@ export default function ImpactCalculator() {
                             <div className="w-12 h-12 md:w-14 md:h-14 bg-primary-50 rounded-2xl flex items-center justify-center text-primary-600 mb-4 md:mb-6 mx-auto lg:mx-0 group-hover:scale-110 group-hover:bg-primary-600 group-hover:text-white transition-all duration-300">
                                 <Zap size={24} className="md:w-7 md:h-7" />
                             </div>
-                            <div className="text-2xl md:text-5xl font-black text-primary-900 mb-1 tabular-nums">
+                            <div className="text-3xl md:text-5xl font-black text-primary-900 mb-1 tabular-nums">
                                 {results.energy}
                             </div>
                             <div className="text-[10px] md:text-xs font-bold text-primary-600 uppercase tracking-widest">Potensi Energi (kWh)</div>
@@ -128,7 +128,7 @@ export default function ImpactCalculator() {
                             <div className="w-12 h-12 md:w-14 md:h-14 bg-primary-50 rounded-2xl flex items-center justify-center text-primary-600 mb-4 md:mb-6 mx-auto lg:mx-0 group-hover:scale-110 group-hover:bg-primary-600 group-hover:text-white transition-all duration-300">
                                 <Droplets size={24} className="md:w-7 md:h-7" />
                             </div>
-                            <div className="text-2xl md:text-5xl font-black text-primary-900 mb-1 tabular-nums">
+                            <div className="text-3xl md:text-5xl font-black text-primary-900 mb-1 tabular-nums">
                                 {results.water}
                             </div>
                             <div className="text-[10px] md:text-xs font-bold text-primary-600 uppercase tracking-widest">Liter Air Bersih Terjaga</div>

@@ -2,27 +2,21 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { Languages, ChevronDown, ArrowUp } from "lucide-react";
+import { Languages, ChevronDown } from "lucide-react";
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [showScrollToTop, setShowScrollToTop] = useState(false);
     const [language, setLanguage] = useState<"ID" | "EN">("ID");
 
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
-            setShowScrollToTop(window.scrollY > 500);
         };
 
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
-
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    };
 
     const scrollToSection = (id: string) => {
         const element = document.getElementById(id);
@@ -49,7 +43,7 @@ export default function Navbar() {
                 }`}
         >
             <div className="container mx-auto px-4">
-                <div className="flex items-center justify-between h-16 md:h-20">
+                <div className="flex items-center justify-between h-20">
                     {/* Logo */}
                     <button
                         onClick={() => scrollToSection("home")}
@@ -60,9 +54,8 @@ export default function Navbar() {
                                 src="/logo.png"
                                 alt="Greenetix Boy Logo"
                                 width={140}
-                                height={40}
+                                height={50}
                                 className="object-contain w-full h-auto"
-                                priority
                             />
                         </div>
                     </button>
@@ -168,17 +161,6 @@ export default function Navbar() {
                     </div>
                 </div>
             </div>
-
-            {/* Scroll to Top Button */}
-            {showScrollToTop && (
-                <button
-                    onClick={scrollToTop} // Changed to scrollToTop
-                    className="fixed bottom-6 right-6 z-40 p-2 md:p-4 bg-primary-600 text-white rounded-full shadow-2xl hover:bg-primary-700 transition-all duration-300 transform hover:scale-110 active:scale-95 group border-2 border-white/20 backdrop-blur-sm"
-                    aria-label="Scroll to top"
-                >
-                    <ArrowUp size={20} className="md:w-6 md:h-6 group-hover:-translate-y-1 transition-transform" />
-                </button>
-            )}
         </nav>
     );
 }

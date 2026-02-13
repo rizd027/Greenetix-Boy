@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Gallery() {
     return (
-        <section className="py-12 md:py-20 bg-gradient-to-b from-white to-cream-50">
+        <section className="py-20 bg-gradient-to-b from-white to-cream-50">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12 md:mb-16">
                     <h2 className="text-3xl md:text-5xl font-bold text-primary-800 mb-3 md:mb-4">
@@ -38,8 +38,7 @@ export default function Gallery() {
                                 src="/products-1.jpg"
                                 alt="Transformasi Limbah Popok"
                                 fill
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                                className="object-cover group-hover:scale-110 transition-transform duration-700"
+                                className="object-cover group-hover:scale-110 transition-transform duration-500"
                             />
                         </div>
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">

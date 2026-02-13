@@ -45,7 +45,7 @@ export default function Contact() {
     ];
 
     return (
-        <section id="contact" className="py-12 md:py-24 bg-cream-50 relative overflow-hidden">
+        <section id="contact" className="py-24 bg-cream-50 relative overflow-hidden">
             {/* Background decoration */}
             <div className="absolute top-0 right-0 w-1/3 h-full bg-primary-100/50 skew-x-12 translate-x-1/2 -z-10"></div>
 
@@ -58,7 +58,7 @@ export default function Contact() {
                             <h2 className="text-3xl md:text-5xl font-bold text-primary-800 mb-4 md:mb-6">
                                 Hubungi Kami
                             </h2>
-                            <p className="text-base md:text-xl text-primary-600 mb-6 md:mb-12">
+                            <p className="text-base md:text-xl text-primary-600 mb-8 md:mb-12">
                                 Punya pertanyaan tentang produk kami atau ingin berkolaborasi?
                                 Kami siap membantu Anda mewujudkan lingkungan yang lebih hijau.
                             </p>
@@ -100,7 +100,7 @@ export default function Contact() {
                         </div>
 
                         {/* Right Side: Contact Form */}
-                        <div className="bg-white p-6 sm:p-10 md:p-12 rounded-[2rem] md:rounded-[2.5rem] shadow-2xl relative mt-10 lg:mt-0">
+                        <div className="bg-white p-6 sm:p-10 md:p-12 rounded-[2rem] md:rounded-[2.5rem] shadow-2xl relative">
                             <div className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 w-16 h-16 sm:w-24 sm:h-24 bg-primary-600 rounded-full flex items-center justify-center text-white shadow-xl transform rotate-12">
                                 <Mail className="w-8 h-8 sm:w-10 sm:h-10" />
                             </div>

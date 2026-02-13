@@ -21,7 +21,6 @@ export default function VideoShowcase() {
                                         src="/team-bersama.png"
                                         alt="Documentary Preview"
                                         fill
-                                        sizes="(max-width: 768px) 100vw, 60vw"
                                         className="object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-75"
                                     />
 

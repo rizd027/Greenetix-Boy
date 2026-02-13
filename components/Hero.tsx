@@ -47,7 +47,7 @@ export default function Hero() {
   }, [images.length]);
 
   return (
-    <section id="home" className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-12 md:py-0">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Slideshow Background */}
       <div className="absolute inset-0 z-0">
         {images.map((src, index) => (
@@ -58,12 +58,10 @@ export default function Hero() {
           >
             <Image
               src={src}
-              alt={`Greenetix Boy Slide ${index + 1}`}
+              alt={`Slide ${index + 1}`}
               fill
-              sizes="100vw"
+              className="object-cover"
               priority={index === 0}
-              className={`object-cover transition-transform duration-[10000ms] ${index === currentImageIndex ? "scale-110" : "scale-100"
-                }`}
             />
             {/* Dark/Gradient Overlay for Readability */}
             <div className="absolute inset-0 bg-black/40 bg-gradient-to-b from-black/20 via-transparent to-black/60"></div>
@@ -101,7 +99,7 @@ export default function Hero() {
         <div className="text-center relative">
           <h1
             ref={textRef}
-            className="text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[1.1] mb-4 md:mb-6 tracking-tight drop-shadow-2xl"
+            className="text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[1.1] mb-6 tracking-tight drop-shadow-2xl"
           >
             Ubah Limbah Jadi <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 to-primary-100">
@@ -113,7 +111,7 @@ export default function Hero() {
             Inovasi ekonomi sirkular pertama di dunia yang mengubah limbah popok bayi menjadi produk bernilai tinggi.
           </p>
 
-          <div className="mt-8 md:mt-16 flex flex-col md:flex-row gap-4 md:gap-6 justify-center items-center animate-fade-in-delay-2 opacity-0 px-4">
+          <div className="mt-10 md:mt-16 flex flex-col md:flex-row gap-4 md:gap-6 justify-center items-center animate-fade-in-delay-2 opacity-0">
             <button
               onClick={() => scrollToSection("products")}
               className="group relative px-8 py-4 md:px-10 md:py-5 bg-primary-600 text-white font-bold rounded-full overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-2xl active:scale-95 w-full md:w-auto"

@@ -63,7 +63,7 @@ export default function Products() {
     const [expandedId, setExpandedId] = useState<string | null>(null);
 
     return (
-        <section id="products" className="py-12 md:py-24 bg-cream-50 overflow-hidden">
+        <section id="products" className="py-24 bg-white relative overflow-hidden">
             <div className="container mx-auto px-4 relative z-10">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-bold text-primary-800 mb-4">
@@ -87,7 +87,6 @@ export default function Products() {
                                     src={product.image}
                                     alt={product.name}
                                     fill
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                                 />
                                 <div className={`absolute inset-0 bg-gradient-to-br ${product.color} opacity-20 transition-opacity duration-500 group-hover:opacity-40`}></div>

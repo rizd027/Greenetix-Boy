@@ -35,10 +35,10 @@ export default function FAQ() {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
     return (
-        <section id="faq" className="py-12 md:py-24 bg-cream-50">
+        <section id="faq" className="py-24 bg-cream-50">
             <div className="container mx-auto px-4">
                 <div className="max-w-3xl mx-auto">
-                    <div className="text-center mb-10 md:mb-16">
+                    <div className="text-center mb-16">
                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-100 rounded-full text-primary-700 text-xs font-bold mb-4">
                             <HelpCircle size={14} />
                             FREQUENTLY ASKED QUESTIONS
