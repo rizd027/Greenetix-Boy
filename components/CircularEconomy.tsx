@@ -83,7 +83,7 @@ export default function CircularEconomy() {
                         <div className="relative w-full max-w-[500px] aspect-square flex items-center justify-center">
                             {/* Central Rotating Border */}
                             <div
-                                className="absolute inset-10 md:inset-4 rounded-full border-[3px] border-dashed border-primary-200 animate-spin-slow pointer-events-none"
+                                className="absolute inset-4 md:inset-10 rounded-full border-[3px] border-dashed border-primary-200 animate-spin-slow pointer-events-none"
                                 style={{ animationDuration: '30s' }}
                             ></div>
 
@@ -135,9 +135,9 @@ export default function CircularEconomy() {
                                         className="absolute z-20 transition-all duration-500 group"
                                         style={{
                                             transform: `rotate(${step.angle - 90}deg) translate(var(--radius, 220px)) rotate(${-(step.angle - 90)}deg)`,
-                                            left: 'calc(50% - 28px)',
-                                            top: 'calc(50% - 28px)',
-                                            '--radius': '78px'
+                                            left: 'calc(50% - 32px)',
+                                            top: 'calc(50% - 32px)',
+                                            '--radius': '100px'
                                         } as any}
                                     >
                                         <div className={`w-14 h-14 md:w-20 md:h-20 rounded-[1.2rem] md:rounded-[2rem] flex items-center justify-center text-3xl md:text-4xl transition-all duration-500 shadow-xl md:[--radius:220px] ${isActive || isHovered
@@ -153,8 +153,8 @@ export default function CircularEconomy() {
                             {/* Central Core */}
                             <div className="relative w-24 h-24 md:w-64 md:h-64 rounded-full bg-white shadow-2xl flex flex-col items-center justify-center text-center p-3 md:p-10 border-[3px] md:border-8 border-primary-50">
                                 {/* Floating Active Label */}
-                                <div className="absolute -top-10 md:-top-36 animate-bounce-slow z-30">
-                                    <span className="text-[7px] md:text-xs font-black text-primary-600 tracking-[0.1em] md:tracking-[0.3em] uppercase bg-white px-2.5 py-1 md:px-5 md:py-2.5 rounded-full shadow-lg border border-primary-100 whitespace-nowrap">
+                                <div className="absolute -top-32 md:-top-36 animate-bounce-slow z-30">
+                                    <span className="text-[12px] md:text-xs font-black text-primary-600 tracking-[0.1em] md:tracking-[0.3em] uppercase bg-white px-2.5 py-1 md:px-5 md:py-2.5 rounded-full shadow-lg border border-primary-100 whitespace-nowrap">
                                         {displayStep.name}
                                     </span>
                                 </div>
