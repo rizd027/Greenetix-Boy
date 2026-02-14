@@ -20,29 +20,29 @@ export default function Newsletter() {
     };
 
     return (
-        <section className="py-20 bg-gradient-to-br from-primary-600 to-primary-800 text-white relative overflow-hidden">
+        <section className="py-12 md:py-20 bg-gradient-to-br from-primary-600 to-primary-800 text-white relative overflow-hidden">
             {/* Decorative elements */}
             <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
             <div className="absolute bottom-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
 
             <div className="container mx-auto px-4 relative z-10">
                 <div className="max-w-3xl mx-auto text-center">
-                    <div className="mb-8">
-                        <div className="inline-block p-4 bg-white/10 backdrop-blur-sm rounded-full mb-6 text-white">
-                            <Mail size={48} />
+                    <div className="mb-6 md:mb-8">
+                        <div className="inline-block p-3 md:p-4 bg-white/10 backdrop-blur-sm rounded-full mb-4 md:mb-6 text-white">
+                            <Mail className="w-8 h-8 md:w-12 md:h-12" />
                         </div>
                     </div>
 
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                    <h2 className="text-2xl md:text-5xl font-black mb-3 md:mb-4 uppercase tracking-tight">
                         Bergabung dengan Gerakan Hijau Kami
                     </h2>
-                    <p className="text-xl text-white/90 mb-8">
+                    <p className="text-xs md:text-xl text-white/90 mb-6 md:mb-8 font-medium leading-relaxed">
                         Dapatkan update terbaru tentang inovasi, tips lingkungan, dan berita
                         seputar Greenetix Boy langsung ke email Anda
                     </p>
 
                     <form onSubmit={handleSubmit} className="max-w-xl mx-auto">
-                        <div className="flex flex-col sm:flex-row gap-4">
+                        <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
                             <input
                                 type="email"
                                 value={email}
@@ -50,15 +50,15 @@ export default function Newsletter() {
                                 placeholder="Masukkan email Anda"
                                 required
                                 disabled={status === "loading" || status === "success"}
-                                className="flex-1 px-6 py-4 rounded-full text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-white/30 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="flex-1 px-5 py-3.5 md:px-6 md:py-4 rounded-full text-gray-800 placeholder:text-gray-400 text-sm md:text-base focus:outline-none focus:ring-4 focus:ring-white/30 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
                             />
                             <button
                                 type="submit"
                                 disabled={status === "loading" || status === "success"}
-                                className="px-8 py-4 bg-white text-primary-700 font-bold rounded-full hover:bg-primary-50 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 whitespace-nowrap"
+                                className="px-6 py-3.5 md:px-8 md:py-4 bg-white text-primary-700 font-black text-sm md:text-base rounded-full hover:bg-primary-50 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 whitespace-nowrap uppercase tracking-wider"
                             >
-                                {status === "loading" && <Loader2 size={20} className="animate-spin" />}
-                                {status === "success" && <Check size={20} />}
+                                {status === "loading" && <Loader2 size={18} className="animate-spin" />}
+                                {status === "success" && <Check size={18} />}
                                 {status === "idle" && "Berlangganan"}
                                 {status === "loading" && "Memproses..."}
                                 {status === "success" && "Berhasil!"}
@@ -66,13 +66,13 @@ export default function Newsletter() {
                         </div>
 
                         {status === "success" && (
-                            <p className="mt-4 text-white/90 animate-fade-in">
+                            <p className="mt-4 text-white/90 animate-fade-in text-[10px] md:text-sm font-black uppercase tracking-tight">
                                 ✅ Terima kasih! Anda telah berlangganan newsletter kami.
                             </p>
                         )}
                     </form>
 
-                    <p className="mt-6 text-sm text-white/70">
+                    <p className="mt-4 md:mt-6 text-[10px] md:text-sm text-white/70 font-medium uppercase tracking-tight">
                         Kami menghargai privasi Anda. Unsubscribe kapan saja.
                     </p>
                 </div>

@@ -98,7 +98,7 @@ export default function Stats() {
         <section
             id="impact"
             ref={sectionRef}
-            className="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white relative overflow-hidden"
+            className="py-10 md:py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white relative overflow-hidden"
         >
             {/* Decorative background */}
             <div className="absolute inset-0 opacity-10">
@@ -107,33 +107,33 @@ export default function Stats() {
             </div>
 
             <div className="container mx-auto px-4 relative z-10">
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                <div className="text-center mb-8 md:mb-16">
+                    <h2 className="text-2xl md:text-5xl font-black mb-2 md:mb-4 uppercase tracking-tight">
                         Dampak Kami
                     </h2>
-                    <p className="text-xl text-white/90 max-w-2xl mx-auto">
+                    <p className="text-xs md:text-xl text-white/90 max-w-2xl mx-auto font-medium lowercase first-letter:uppercase">
                         Kontribusi nyata untuk lingkungan dan masyarakat
                     </p>
                 </div>
 
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
                     {stats.map((stat, index) => (
                         <div
                             key={stat.id}
-                            className="text-center transform hover:scale-105 transition-transform duration-300"
+                            className="text-center transform hover:scale-102 md:hover:scale-105 transition-all duration-300"
                         >
-                            <div className="bg-white/10 backdrop-blur-sm p-5 md:p-8 rounded-3xl border border-white/20 hover:bg-white/20 transition-all duration-300">
-                                <div className="flex justify-center mb-4 md:mb-6">
-                                    <div className="p-3 md:p-4 bg-white/10 rounded-2xl">
-                                        <stat.icon size={32} className="text-white md:hidden" />
+                            <div className="bg-white/10 backdrop-blur-sm p-3 md:p-8 rounded-xl md:rounded-3xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+                                <div className="flex justify-center mb-2 md:mb-6">
+                                    <div className="p-1.5 md:p-4 bg-white/10 rounded-lg md:rounded-2xl">
+                                        <stat.icon className="w-4 h-4 text-white md:hidden" />
                                         <stat.icon size={48} className="text-white hidden md:block" />
                                     </div>
                                 </div>
-                                <div className="text-3xl md:text-5xl font-bold mb-2">
+                                <div className="text-base md:text-5xl font-black mb-0.5 md:mb-2 tabular-nums uppercase">
                                     {counts[index].toLocaleString()}
                                     {stat.suffix}
                                 </div>
-                                <p className="text-white/90 text-sm md:text-base">
+                                <p className="text-white/90 text-[8px] md:text-base font-black uppercase tracking-tighter md:tracking-tight">
                                     {stat.label}
                                 </p>
                             </div>
