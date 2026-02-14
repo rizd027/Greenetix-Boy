@@ -27,7 +27,7 @@ const products: Product[] = [
             "Bebas patogen berbahaya"
         ],
         color: "from-green-500 to-emerald-700",
-        image: "product-display.jpg"
+        image: "/product-display.jpg"
     },
     {
         id: "lipobay",

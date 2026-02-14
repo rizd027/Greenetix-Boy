@@ -18,7 +18,7 @@ export default function VideoShowcase() {
                                 <div className="absolute -inset-2 md:-inset-4 bg-gradient-to-br from-primary-600 to-primary-400 rounded-2xl md:rounded-[3rem] opacity-20 blur-2xl transition-all group-hover:opacity-30"></div>
                                 <div className="relative rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-2xl h-[220px] md:h-[450px]">
                                     <Image
-                                        src="team-bersama.png"
+                                        src="/team-bersama.png"
                                         alt="Documentary Preview"
                                         fill
                                         className="object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-75"
