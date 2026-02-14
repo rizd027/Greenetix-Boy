@@ -13,17 +13,17 @@ const teamMembers: TeamMember[] = [
     {
         name: "Yafet",
         role: "Co-Founder",
-        image: "/yafet.png"
+        image: "yafet.png"
     },
     {
         name: "Rohman",
         role: "Co-Founder",
-        image: "/rohman.png"
+        image: "rohman.png"
     },
     {
         name: "Arief F",
         role: "Co-Founder",
-        image: "/arief.png"
+        image: "arief.png"
     }
 ];
 
@@ -42,7 +42,7 @@ export default function Team() {
                 <div className="max-w-4xl mx-auto mb-16 rounded-3xl overflow-hidden shadow-2xl">
                     <div className="relative w-full aspect-[4/3] md:h-[600px]">
                         <Image
-                            src="/team-bersama.png"
+                            src="team-bersama.png"
                             alt="Tim Greenetix Boy"
                             fill
                             className="object-contain md:object-cover bg-white"

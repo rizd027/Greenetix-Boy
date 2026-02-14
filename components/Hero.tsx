@@ -8,10 +8,10 @@ export default function Hero() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const images = [
-    "/product-display.jpg",
-    "/products-1.jpg",
-    "/products-2.jpg",
-    "/team-bersama.png"
+    "product-display.jpg",
+    "products-1.jpg",
+    "products-2.jpg",
+    "team-bersama.png"
   ];
 
   const scrollToSection = (id: string) => {
