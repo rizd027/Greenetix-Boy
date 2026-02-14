@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { getAssetPath } from "@/lib/utils";
-import { Play, X } from "lucide-react";
+import { Play, X, PlayCircle, Eye } from "lucide-react";
 
 export default function VideoShowcase() {
     const [isOpen, setIsOpen] = useState(false);
