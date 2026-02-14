@@ -6,7 +6,6 @@ const repo = 'Greenetix-Boy';
 const nextConfig: NextConfig = {
     output: 'export',
     basePath: isProd ? `/${repo}` : '',
-    assetPrefix: isProd ? `/${repo}/` : '',
     trailingSlash: true,
     images: {
         unoptimized: true,
