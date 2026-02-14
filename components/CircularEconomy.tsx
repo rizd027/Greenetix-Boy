@@ -83,7 +83,7 @@ export default function CircularEconomy() {
                         <div className="relative w-full max-w-[500px] aspect-square flex items-center justify-center">
                             {/* Central Rotating Border */}
                             <div
-                                className="absolute inset-4 rounded-full border-[3px] border-dashed border-primary-200 animate-spin-slow pointer-events-none"
+                                className="absolute inset-10 md:inset-4 rounded-full border-[3px] border-dashed border-primary-200 animate-spin-slow pointer-events-none"
                                 style={{ animationDuration: '30s' }}
                             ></div>
 
@@ -135,16 +135,16 @@ export default function CircularEconomy() {
                                         className="absolute z-20 transition-all duration-500 group"
                                         style={{
                                             transform: `rotate(${step.angle - 90}deg) translate(var(--radius, 220px)) rotate(${-(step.angle - 90)}deg)`,
-                                            left: 'calc(50% - 20px)',
-                                            top: 'calc(50% - 20px)',
-                                            '--radius': '90px'
+                                            left: 'calc(50% - 28px)',
+                                            top: 'calc(50% - 28px)',
+                                            '--radius': '78px'
                                         } as any}
                                     >
-                                        <div className={`w-10 h-10 md:w-20 md:h-20 rounded-[1.2rem] md:rounded-[2rem] flex items-center justify-center text-3xl md:text-4xl transition-all duration-500 shadow-xl md:[--radius:220px] ${isActive || isHovered
+                                        <div className={`w-14 h-14 md:w-20 md:h-20 rounded-[1.2rem] md:rounded-[2rem] flex items-center justify-center text-3xl md:text-4xl transition-all duration-500 shadow-xl md:[--radius:220px] ${isActive || isHovered
                                             ? 'bg-primary-600 text-white scale-110 -translate-y-1'
                                             : 'bg-white text-primary-600 hover:bg-primary-50 ring-1 ring-primary-100'
                                             }`}>
-                                            <step.icon className={`w-4 h-4 md:w-10 md:h-10 transition-all duration-500 ${isActive || isHovered ? 'text-white' : 'text-primary-600'}`} />
+                                            <step.icon className={`w-7 h-7 md:w-10 md:h-10 transition-all duration-500 ${isActive || isHovered ? 'text-white' : 'text-primary-600'}`} />
                                         </div>
                                     </button>
                                 );
