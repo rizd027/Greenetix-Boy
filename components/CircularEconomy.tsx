@@ -80,7 +80,7 @@ export default function CircularEconomy() {
                     <div className="flex flex-col lg:flex-row items-center gap-16">
 
                         {/* Interactive Diagram Side */}
-                        <div className="relative w-full max-w-[500px] aspect-square flex items-center justify-center">
+                        <div className="relative w-full max-w-[500px] md:max-w-[420px] aspect-square flex items-center justify-center">
                             {/* Central Rotating Border */}
                             <div
                                 className="absolute inset-4 md:inset-10 rounded-full border-[3px] border-dashed border-primary-200 animate-spin-slow pointer-events-none"
@@ -132,14 +132,14 @@ export default function CircularEconomy() {
                                         onMouseEnter={() => setHoveredStep(step)}
                                         onMouseLeave={() => setHoveredStep(null)}
                                         onClick={() => setActiveStep(step)}
-                                        className="absolute z-20 transition-all duration-500 group [--radius:100px] md:[--radius:220px]"
+                                        className="absolute z-20 transition-all duration-500 group [--radius:100px] md:[--radius:172px]"
                                         style={{
                                             transform: `rotate(${step.angle - 90}deg) translate(var(--radius)) rotate(${-(step.angle - 90)}deg)`,
                                             left: 'calc(50% - var(--icon-offset))',
                                             top: 'calc(50% - var(--icon-offset))',
                                         } as any}
                                     >
-                                        <div className={`w-14 h-14 md:w-20 md:h-20 rounded-[1.2rem] md:rounded-[2rem] flex items-center justify-center text-3xl md:text-4xl transition-all duration-500 shadow-xl [--icon-offset:28px] md:[--icon-offset:40px] ${isActive || isHovered
+                                        <div className={`w-14 h-14 md:w-16 md:h-16 rounded-[1.2rem] md:rounded-[1.8rem] flex items-center justify-center text-3xl md:text-4xl transition-all duration-500 shadow-xl [--icon-offset:28px] md:[--icon-offset:32px] ${isActive || isHovered
                                             ? 'bg-primary-600 text-white scale-110 -translate-y-1'
                                             : 'bg-white text-primary-600 hover:bg-primary-50 ring-1 ring-primary-100'
                                             }`}>
@@ -150,24 +150,24 @@ export default function CircularEconomy() {
                             })}
 
                             {/* Central Core */}
-                            <div className="relative w-24 h-24 md:w-64 md:h-64 rounded-full bg-white shadow-2xl flex flex-col items-center justify-center text-center p-3 md:p-10 border-[3px] md:border-8 border-primary-50">
+                            <div className="relative w-24 h-24 md:w-52 md:h-52 rounded-full bg-white shadow-2xl flex flex-col items-center justify-center text-center p-3 md:p-8 border-[3px] md:border-[6px] border-primary-50">
                                 {/* Floating Active Label */}
-                                <div className="absolute -top-32 md:-top-44 animate-bounce-slow z-30">
-                                    <span className="text-[12px] md:text-xs font-black text-primary-600 tracking-[0.1em] md:tracking-[0.3em] uppercase bg-white px-2.5 py-1 md:px-5 md:py-2.5 rounded-full shadow-lg border border-primary-100 whitespace-nowrap">
+                                <div className="absolute -top-32 md:-top-40 animate-bounce-slow z-30">
+                                    <span className="text-[12px] md:text-[10px] font-black text-primary-600 tracking-[0.1em] md:tracking-[0.2em] uppercase bg-white px-2.5 py-1 md:px-4 md:py-2 rounded-full shadow-lg border border-primary-100 whitespace-nowrap">
                                         {displayStep.name}
                                     </span>
                                 </div>
 
                                 <div className="absolute inset-0 rounded-full bg-primary-500/5 animate-ping"></div>
 
-                                <div className={`w-12 h-12 md:w-36 md:h-36 rounded-full bg-primary-700 flex items-center justify-center text-white mb-1 md:mb-4 shadow-2xl transform transition-all duration-500 ${hoveredStep ? 'scale-110' : 'scale-100'}`}>
-                                    <displayStep.icon className="w-6 h-6 md:w-18 md:h-18" />
+                                <div className={`w-12 h-12 md:w-28 md:h-28 rounded-full bg-primary-700 flex items-center justify-center text-white mb-1 md:mb-3 shadow-2xl transform transition-all duration-500 ${hoveredStep ? 'scale-110' : 'scale-100'}`}>
+                                    <displayStep.icon className="w-6 h-6 md:w-14 md:h-14" />
                                 </div>
 
-                                <h4 className="text-primary-800 font-black text-[9px] md:text-2xl leading-tight tracking-[0.05em] md:tracking-widest">
+                                <h4 className="text-primary-800 font-black text-[9px] md:text-xl leading-tight tracking-[0.05em] md:tracking-widest">
                                     SIRKULAR
                                 </h4>
-                                <p className="text-[5px] md:text-[12px] text-primary-500 font-bold tracking-[0.1em] md:tracking-[0.3em] uppercase">EKONOMI</p>
+                                <p className="text-[5px] md:text-[10px] text-primary-500 font-bold tracking-[0.1em] md:tracking-[0.2em] uppercase">EKONOMI</p>
                             </div>
                         </div>
 
