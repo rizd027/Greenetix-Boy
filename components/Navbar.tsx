@@ -37,19 +37,19 @@ export default function Navbar() {
 
     return (
         <nav
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                ? "bg-white/95 backdrop-blur-md shadow-lg"
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || isMobileMenuOpen
+                ? "bg-white shadow-lg"
                 : "bg-transparent"
                 }`}
         >
             <div className="container mx-auto px-4">
-                <div className="flex items-center justify-between h-20">
+                <div className="flex items-center justify-between h-16 md:h-20">
                     {/* Logo */}
                     <button
                         onClick={() => scrollToSection("home")}
-                        className="flex items-center gap-3 group cursor-pointer"
+                        className="flex items-center gap-2 md:gap-3 group cursor-pointer"
                     >
-                        <div className="relative w-28 md:w-40 transform group-hover:scale-110 transition-transform duration-300">
+                        <div className="relative w-24 md:w-40 transform group-hover:scale-110 transition-transform duration-300">
                             <Image
                                 src="/logo.png"
                                 alt="Greenetix Boy Logo"
@@ -66,8 +66,8 @@ export default function Navbar() {
                             <button
                                 key={link.id}
                                 onClick={() => scrollToSection(link.id)}
-                                className={`px-4 py-2 rounded-full font-medium transition-all duration-300 ${isScrolled
-                                    ? "text-primary-700 hover:bg-primary-100 hover:text-primary-800"
+                                className={`px-4 py-2 rounded-full font-black text-sm uppercase tracking-tight transition-all duration-300 ${isScrolled
+                                    ? "text-primary-700 hover:bg-primary-100"
                                     : "text-white hover:bg-white/20"
                                     }`}
                             >
@@ -80,17 +80,17 @@ export default function Navbar() {
                     <div className="hidden lg:flex items-center gap-4">
                         <button
                             onClick={() => setLanguage(language === "ID" ? "EN" : "ID")}
-                            className={`flex items-center gap-2 px-3 py-2 rounded-full font-bold text-sm transition-all ${isScrolled ? "text-primary-800 hover:bg-primary-50" : "text-white hover:bg-white/20"
+                            className={`flex items-center gap-2 px-3 py-2 rounded-full font-black text-xs uppercase tracking-widest transition-all ${isScrolled ? "text-primary-800 hover:bg-primary-50" : "text-white hover:bg-white/20"
                                 }`}
                         >
-                            <Languages size={18} />
+                            <Languages size={16} />
                             {language}
-                            <ChevronDown size={14} className="opacity-50" />
+                            <ChevronDown size={12} className="opacity-50" />
                         </button>
 
                         <button
                             onClick={() => scrollToSection("contact")}
-                            className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${isScrolled
+                            className={`px-6 py-2.5 rounded-full font-black text-sm uppercase tracking-wider transition-all duration-300 transform hover:scale-105 ${isScrolled
                                 ? "bg-primary-600 text-white hover:bg-primary-700 shadow-lg hover:shadow-xl"
                                 : "bg-white text-primary-700 hover:bg-primary-50"
                                 }`}
@@ -105,56 +105,53 @@ export default function Navbar() {
                         className="lg:hidden p-2 rounded-lg transition-colors"
                         aria-label="Toggle menu"
                     >
-                        <div className="w-6 h-5 flex flex-col justify-between">
+                        <div className="w-5 h-4 flex flex-col justify-between">
                             <span
-                                className={`h-0.5 w-full transition-all duration-300 ${isScrolled ? "bg-primary-700" : "bg-white"
-                                    } ${isMobileMenuOpen ? "rotate-45 translate-y-2" : ""}`}
+                                className={`h-0.5 w-full transition-all duration-300 ${isScrolled || isMobileMenuOpen ? "bg-primary-700" : "bg-white"
+                                    } ${isMobileMenuOpen ? "rotate-45 translate-y-1.5" : ""}`}
                             ></span>
                             <span
-                                className={`h-0.5 w-full transition-all duration-300 ${isScrolled ? "bg-primary-700" : "bg-white"
+                                className={`h-0.5 w-full transition-all duration-300 ${isScrolled || isMobileMenuOpen ? "bg-primary-700" : "bg-white"
                                     } ${isMobileMenuOpen ? "opacity-0" : ""}`}
                             ></span>
                             <span
-                                className={`h-0.5 w-full transition-all duration-300 ${isScrolled ? "bg-primary-700" : "bg-white"
-                                    } ${isMobileMenuOpen ? "-rotate-45 -translate-y-2" : ""}`}
+                                className={`h-0.5 w-full transition-all duration-300 ${isScrolled || isMobileMenuOpen ? "bg-primary-700" : "bg-white"
+                                    } ${isMobileMenuOpen ? "-rotate-45 -translate-y-1.5" : ""}`}
                             ></span>
                         </div>
                     </button>
                 </div>
 
-                {/* Mobile Menu */}
+                {/* Mobile Menu Overlay */}
                 <div
-                    className={`lg:hidden overflow-hidden transition-all duration-300 ${isMobileMenuOpen ? "max-h-96 pb-6" : "max-h-0"
+                    className={`lg:hidden overflow-hidden transition-all duration-500 ease-in-out ${isMobileMenuOpen ? "max-h-[80vh] opacity-100 pb-8" : "max-h-0 opacity-0"
                         }`}
                 >
-                    <div className="flex flex-col gap-2 pt-4">
+                    <div className="flex flex-col gap-1.5 pt-2">
                         {navLinks.map((link) => (
                             <button
                                 key={link.id}
                                 onClick={() => scrollToSection(link.id)}
-                                className={`px-4 py-3 rounded-xl font-medium text-left transition-all duration-300 ${isScrolled
-                                    ? "text-primary-700 hover:bg-primary-100"
-                                    : "text-white hover:bg-white/20"
-                                    }`}
+                                className="px-4 py-3 rounded-xl font-black text-xs uppercase tracking-widest text-primary-700 hover:bg-primary-50 transition-all duration-300 text-left border-b border-primary-50/50 last:border-0"
                             >
                                 {link.label}
                             </button>
                         ))}
-                        <div className="px-4 py-3 flex items-center justify-between border-t border-gray-100 mt-2">
-                            <span className="text-sm font-medium text-gray-500 flex items-center gap-2">
-                                <Languages size={18} />
-                                Bahasa
+                        <div className="px-4 py-4 flex items-center justify-between border-t border-primary-50 mt-2">
+                            <span className="text-[10px] font-black uppercase tracking-widest text-primary-400 flex items-center gap-2">
+                                <Languages size={14} />
+                                Bahasa / Language
                             </span>
                             <button
                                 onClick={() => setLanguage(language === "ID" ? "EN" : "ID")}
-                                className="px-4 py-2 bg-primary-50 text-primary-700 rounded-full font-bold text-sm"
+                                className="px-4 py-1.5 bg-primary-600 text-white rounded-full font-black text-[10px] uppercase tracking-widest"
                             >
                                 {language}
                             </button>
                         </div>
                         <button
                             onClick={() => scrollToSection("contact")}
-                            className="mt-2 px-4 py-4 rounded-xl font-bold bg-primary-600 text-white hover:bg-primary-700 transition-all duration-300"
+                            className="mt-2 px-4 py-3.5 rounded-xl font-black text-xs uppercase tracking-widest bg-primary-600 text-white shadow-lg shadow-primary-200 active:scale-95 transition-all"
                         >
                             Hubungi Kami
                         </button>
