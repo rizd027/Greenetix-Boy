@@ -26,6 +26,8 @@ jobs:
 
       - name: Build 🏗️
         run: npm run build
+        env:
+          NEXT_PUBLIC_IS_GH_PAGES: true
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
