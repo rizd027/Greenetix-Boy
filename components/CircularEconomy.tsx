@@ -152,7 +152,7 @@ export default function CircularEconomy() {
                             {/* Central Core */}
                             <div className="relative w-24 h-24 md:w-64 md:h-64 rounded-full bg-white shadow-2xl flex flex-col items-center justify-center text-center p-3 md:p-10 border-[3px] md:border-8 border-primary-50">
                                 {/* Floating Active Label */}
-                                <div className="absolute -top-32 md:-top-36 animate-bounce-slow z-30">
+                                <div className="absolute -top-32 md:-top-44 animate-bounce-slow z-30">
                                     <span className="text-[12px] md:text-xs font-black text-primary-600 tracking-[0.1em] md:tracking-[0.3em] uppercase bg-white px-2.5 py-1 md:px-5 md:py-2.5 rounded-full shadow-lg border border-primary-100 whitespace-nowrap">
                                         {displayStep.name}
                                     </span>
