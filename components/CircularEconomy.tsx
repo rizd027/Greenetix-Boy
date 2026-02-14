@@ -132,15 +132,14 @@ export default function CircularEconomy() {
                                         onMouseEnter={() => setHoveredStep(step)}
                                         onMouseLeave={() => setHoveredStep(null)}
                                         onClick={() => setActiveStep(step)}
-                                        className="absolute z-20 transition-all duration-500 group"
+                                        className="absolute z-20 transition-all duration-500 group [--radius:100px] md:[--radius:220px]"
                                         style={{
-                                            transform: `rotate(${step.angle - 90}deg) translate(var(--radius, 220px)) rotate(${-(step.angle - 90)}deg)`,
-                                            left: 'calc(50% - 32px)',
-                                            top: 'calc(50% - 32px)',
-                                            '--radius': '100px'
+                                            transform: `rotate(${step.angle - 90}deg) translate(var(--radius)) rotate(${-(step.angle - 90)}deg)`,
+                                            left: 'calc(50% - var(--icon-offset))',
+                                            top: 'calc(50% - var(--icon-offset))',
                                         } as any}
                                     >
-                                        <div className={`w-14 h-14 md:w-20 md:h-20 rounded-[1.2rem] md:rounded-[2rem] flex items-center justify-center text-3xl md:text-4xl transition-all duration-500 shadow-xl md:[--radius:220px] ${isActive || isHovered
+                                        <div className={`w-14 h-14 md:w-20 md:h-20 rounded-[1.2rem] md:rounded-[2rem] flex items-center justify-center text-3xl md:text-4xl transition-all duration-500 shadow-xl [--icon-offset:28px] md:[--icon-offset:40px] ${isActive || isHovered
                                             ? 'bg-primary-600 text-white scale-110 -translate-y-1'
                                             : 'bg-white text-primary-600 hover:bg-primary-50 ring-1 ring-primary-100'
                                             }`}>
