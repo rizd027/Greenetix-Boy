@@ -62,6 +62,7 @@ export default function Hero() {
               fill
               className="object-cover"
               priority={index === 0}
+              sizes="100vw"
             />
             {/* Dark/Gradient Overlay for Readability */}
             <div className="absolute inset-0 bg-black/40 bg-gradient-to-b from-black/20 via-transparent to-black/60"></div>

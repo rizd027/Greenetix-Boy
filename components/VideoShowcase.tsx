@@ -22,6 +22,7 @@ export default function VideoShowcase() {
                                         alt="Documentary Preview"
                                         fill
                                         className="object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-75"
+                                        sizes="(max-width: 1024px) 100vw, 60vw"
                                     />
 
                                     {/* Play Button */}

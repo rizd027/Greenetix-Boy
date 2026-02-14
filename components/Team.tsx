@@ -47,6 +47,7 @@ export default function Team() {
                             fill
                             className="object-contain md:object-cover bg-white"
                             priority
+                            sizes="(max-width: 1024px) 100vw, 896px"
                         />
                     </div>
                 </div>
@@ -84,6 +85,7 @@ export default function Team() {
                                         alt={member.name}
                                         fill
                                         className="object-contain"
+                                        sizes="(max-width: 768px) 100vw, 33vw"
                                     />
                                 </div>
                                 <h3 className="text-xl md:text-2xl font-black text-primary-800 text-center mb-1 md:mb-2 uppercase">
