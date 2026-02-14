@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { getAssetPath } from '@/lib/utils';
 import { Check, ChevronDown } from "lucide-react";
 
 interface Product {
@@ -27,7 +28,7 @@ const products: Product[] = [
             "Bebas patogen berbahaya"
         ],
         color: "from-green-500 to-emerald-700",
-        image: "/product-display.jpg"
+        image: getAssetPath("/product-display.jpg")
     },
     {
         id: "lipobay",
@@ -41,7 +42,7 @@ const products: Product[] = [
             "Mendukung ekonomi sirkular"
         ],
         color: "from-emerald-500 to-teal-700",
-        image: "products-1.jpg"
+        image: getAssetPath("/products-1.jpg")
     },
     {
         id: "lf-oil",
@@ -55,7 +56,7 @@ const products: Product[] = [
             "Emisi terkontrol"
         ],
         color: "from-teal-500 to-cyan-700",
-        image: "products-2.jpg"
+        image: getAssetPath("/products-2.jpg")
     },
 ];
 

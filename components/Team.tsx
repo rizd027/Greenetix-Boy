@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { getAssetPath } from "@/lib/utils";
 import { Star, Trophy } from "lucide-react";
 
 interface TeamMember {
@@ -13,17 +14,17 @@ const teamMembers: TeamMember[] = [
     {
         name: "Yafet",
         role: "Co-Founder",
-        image: "/yafet.png"
+        image: getAssetPath("/yafet.png")
     },
     {
         name: "Rohman",
         role: "Co-Founder",
-        image: "/rohman.png"
+        image: getAssetPath("/rohman.png")
     },
     {
         name: "Arief F",
         role: "Co-Founder",
-        image: "/arief.png"
+        image: getAssetPath("/arief.png")
     }
 ];
 
@@ -42,7 +43,7 @@ export default function Team() {
                 <div className="max-w-4xl mx-auto mb-16 rounded-3xl overflow-hidden shadow-2xl">
                     <div className="relative w-full aspect-[4/3] md:h-[600px]">
                         <Image
-                            src="/team-bersama.png"
+                            src={getAssetPath("/team-bersama.png")}
                             alt="Tim Greenetix Boy"
                             fill
                             className="object-contain md:object-cover bg-white"

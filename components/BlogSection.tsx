@@ -2,6 +2,7 @@
 
 import { ArrowRight, Calendar, User, Tag, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import { getAssetPath } from "@/lib/utils";
 
 const posts = [
     {
@@ -11,7 +12,7 @@ const posts = [
         category: "Inovasi",
         date: "12 Feb 2025",
         author: "Tim Riset",
-        image: "/products-1.jpg"
+        image: getAssetPath("/products-1.jpg")
     },
     {
         id: 2,
@@ -20,7 +21,7 @@ const posts = [
         category: "Update",
         date: "10 Feb 2025",
         author: "Arief F",
-        image: "/team-bersama.png"
+        image: getAssetPath("/team-bersama.png")
     },
     {
         id: 3,
@@ -29,7 +30,7 @@ const posts = [
         category: "Edukasi",
         date: "08 Feb 2025",
         author: "Rohman",
-        image: "/product-display.jpg"
+        image: getAssetPath("/product-display.jpg")
     }
 ];
 

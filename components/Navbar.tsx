@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Languages, ChevronDown } from "lucide-react";
+import { getAssetPath } from "@/lib/utils";
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -51,7 +52,7 @@ export default function Navbar() {
                     >
                         <div className="relative w-24 md:w-40 transform group-hover:scale-110 transition-transform duration-300">
                             <Image
-                                src="/logo.png"
+                                src={getAssetPath("/logo.png")}
                                 alt="Greenetix Boy Logo"
                                 width={140}
                                 height={50}

@@ -3,15 +3,16 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { ArrowRight, Recycle, RefreshCw } from "lucide-react";
+import { getAssetPath } from "@/lib/utils";
 
 export default function Hero() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const images = [
-    "/product-display.jpg",
-    "/products-1.jpg",
-    "/products-2.jpg",
-    "/team-bersama.png"
+    getAssetPath("/product-display.jpg"),
+    getAssetPath("/products-1.jpg"),
+    getAssetPath("/products-2.jpg"),
+    getAssetPath("/team-bersama.png")
   ];
 
   const scrollToSection = (id: string) => {

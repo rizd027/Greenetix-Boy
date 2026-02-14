@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { getAssetPath } from "@/lib/utils";
 
 export default function Gallery() {
     return (
@@ -20,7 +21,7 @@ export default function Gallery() {
                     <div className="group relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
                         <div className="relative w-full h-48 md:h-80">
                             <Image
-                                src="/product-display.jpg"
+                                src={getAssetPath("/product-display.jpg")}
                                 alt="Greenetix Boy Product Display"
                                 fill
                                 className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -35,7 +36,7 @@ export default function Gallery() {
                     <div className="group relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
                         <div className="relative w-full h-48 md:h-80">
                             <Image
-                                src="/products-1.jpg"
+                                src={getAssetPath("/products-1.jpg")}
                                 alt="Transformasi Limbah Popok"
                                 fill
                                 className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -50,7 +51,7 @@ export default function Gallery() {
                     <div className="group relative rounded-2xl md:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
                         <div className="relative w-full h-48 md:h-80">
                             <Image
-                                src="/products-2.jpg"
+                                src={getAssetPath("/products-2.jpg")}
                                 alt="Hasil Produk Greenetix"
                                 fill
                                 className="object-cover group-hover:scale-110 transition-transform duration-500"
