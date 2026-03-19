@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { MapPin, Phone, Mail, Send, CheckCircle2, Loader2 } from "lucide-react";
+import { motion } from "framer-motion";
+import { MapPin, Phone, Mail, Send, CheckCircle2, Loader2, MessageSquare } from "lucide-react";
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -45,24 +46,53 @@ export default function Contact() {
     ];
 
     return (
-        <section id="contact" className="py-10 md:py-16 bg-cream-50 relative overflow-hidden">
-            {/* Background decoration */}
-            <div className="absolute top-0 right-0 w-1/3 h-full bg-primary-100/50 skew-x-12 translate-x-1/2 -z-10"></div>
+        <section id="contact" className="min-h-screen flex flex-col justify-center py-12 md:py-24 bg-cream-50 relative overflow-hidden">
+            {/* Background Decorations - Optimized for mobile */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                {/* Animated Gradient Blobs - Lower blur for mobile performance */}
+                <motion.div
+                    animate={{
+                        scale: [1, 1.05, 1],
+                        opacity: [0.15, 0.25, 0.15],
+                    }}
+                    transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute -top-40 -right-20 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-primary-100/40 rounded-full blur-[60px] md:blur-[120px]"
+                />
+                
+                {/* Large Background Text - static with whileInView opacity */}
+                <div className="absolute top-[10%] md:top-[12%] left-1/2 -translate-x-1/2 w-full text-center">
+                    <motion.span 
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 0.1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1 }}
+                        className="text-[120px] md:text-[240px] font-black text-primary-900/5 tracking-[-0.05em] leading-none uppercase select-none"
+                    >
+                        CONNECT
+                    </motion.span>
+                </div>
+            </div>
 
             <div className="container mx-auto px-4 relative z-10">
                 <div className="max-w-6xl mx-auto">
-                    <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-start">
+                    <div className="flex flex-col items-center text-center mb-12 md:mb-20">
+                        <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white shadow-sm border border-primary-100 rounded-full text-primary-700 text-[10px] md:text-sm font-black mb-5 uppercase tracking-[0.2em]">
+                            <MessageSquare size={14} className="text-primary-500" />
+                            Get In Touch
+                        </div>
+                        <h2 className="text-3xl md:text-6xl font-black text-primary-900 mb-3 uppercase tracking-tight leading-tight">
+                            Hubungi Kami
+                        </h2>
+                        <div className="w-16 h-1.5 bg-primary-600 rounded-full mb-5"></div>
+                        <p className="text-[11px] md:text-xl text-primary-600/80 font-bold uppercase tracking-[0.15em] max-w-2xl leading-relaxed">
+                            Punya pertanyaan tentang produk kami atau ingin berkolaborasi?<br className="md:hidden" /> Kami siap membantu Anda.
+                        </p>
+                    </div>
+
+                    <div className="grid lg:grid-cols-2 gap-10 md:gap-20 items-stretch">
 
                         {/* Left Side: Info & Map Placeholder */}
                         <div>
-                            <h2 className="text-2xl md:text-4xl font-black text-primary-800 mb-2 md:mb-4 uppercase tracking-tight">
-                                Hubungi Kami
-                            </h2>
-                            <p className="text-xs md:text-lg text-primary-600 mb-4 md:mb-8 font-medium leading-relaxed max-w-xl">
-                                Punya pertanyaan tentang produk kami atau ingin berkolaborasi?
-                                Kami siap membantu Anda mewujudkan lingkungan yang lebih hijau.
-                            </p>
-
                             <div className="grid gap-4 md:gap-5 mb-6 md:mb-8">
                                 {contactInfo.map((info, index) => (
                                     <div key={index} className="flex gap-4 md:gap-6 group">

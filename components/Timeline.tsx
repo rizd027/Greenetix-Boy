@@ -43,162 +43,55 @@ const milestones = [
 
 export default function Timeline() {
     return (
-        <section id="journey" className="pt-0 pb-12 md:pb-24 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white overflow-hidden relative">
-            {/* Floating Background Icons */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-[0.05] md:opacity-[0.08]">
+        <section id="journey" className="min-h-screen flex flex-col justify-center py-12 md:py-24 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white overflow-hidden relative">
+            {/* Background Decorations */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                {/* Animated Gradient Blobs - Optimized for mobile */}
                 <motion.div
-                    animate={{ y: [0, -30, 0], rotate: [0, 5, 0] }}
-                    transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-40 left-[5%]"
-                >
-                    <History size={120} />
-                </motion.div>
+                    animate={{
+                        scale: [1, 1.1, 1],
+                        opacity: [0.08, 0.15, 0.08],
+                    }}
+                    transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute -top-40 -left-20 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-primary-400/20 rounded-full blur-[60px] md:blur-[120px]"
+                />
+                
+                {/* Large Background Text - static with whileInView opacity */}
+                <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-full text-center">
+                    <motion.span 
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 0.05 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1 }}
+                        className="text-[120px] md:text-[240px] font-black text-white/5 tracking-[-0.05em] leading-none uppercase select-none"
+                    >
+                        JOURNEY
+                    </motion.span>
+                </div>
 
-                <motion.div
-                    animate={{ y: [0, -40, 0], rotate: [0, -8, 0] }}
-                    transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                    className="absolute top-20 right-[15%]"
-                >
-                    <Route size={100} />
-                </motion.div>
-
-                <motion.div
-                    animate={{ y: [0, -25, 0], rotate: [0, 10, 0] }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                    className="absolute middle left-[20%]"
-                >
-                    <Milestone size={80} />
-                </motion.div>
-
-                <motion.div
-                    animate={{ y: [0, -15, 0], rotate: [0, 15, 0] }}
-                    transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-                    className="absolute top-[15%] left-[45%]"
-                >
-                    <Award size={90} />
-                </motion.div>
-
-                <motion.div
-                    animate={{ y: [0, -35, 0], rotate: [0, -5, 0] }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute bottom-40 right-[10%]"
-                >
-                    <Map size={110} />
-                </motion.div>
-
-                <motion.div
-                    animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-                    className="absolute top-[60%] right-[30%]"
-                >
-                    <LineChart size={100} />
-                </motion.div>
-
-                <motion.div
-                    animate={{ y: [0, -20, 0], rotate: [0, 15, 0] }}
-                    transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 4 }}
-                    className="absolute bottom-20 left-[10%]"
-                >
-                    <Compass size={90} />
-                </motion.div>
-
-                <motion.div
-                    animate={{ y: [0, -30, 0], x: [0, 15, 0] }}
-                    transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                    className="absolute top-1/2 right-[5%]"
-                >
-                    <Timer size={100} />
-                </motion.div>
-
-                <motion.div
-                    animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-[10%] left-[40%]"
-                >
-                    <MapPin size={60} />
-                </motion.div>
-
-                <motion.div
-                    animate={{ y: [0, -25, 0], rotate: [0, -10, 0] }}
-                    transition={{ duration: 13, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                    className="absolute bottom-[30%] left-[25%]"
-                >
-                    <Globe size={110} />
-                </motion.div>
-
-                <motion.div
-                    animate={{ y: [0, -20, 0], scale: [1, 1.05, 1] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-[45%] left-[10%]"
-                >
-                    <Zap size={80} />
-                </motion.div>
-
-                <motion.div
-                    animate={{ y: [0, -30, 0], rotate: [0, 5, 0] }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                    className="absolute bottom-[10%] right-[25%]"
-                >
-                    <Leaf size={120} />
-                </motion.div>
-
-                <motion.div
-                    animate={{ y: [0, -20, 0], rotate: [0, -15, 0] }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-                    className="absolute top-[30%] right-[40%]"
-                >
-                    <Sprout size={70} />
-                </motion.div>
-
-                <motion.div
-                    animate={{ x: [0, 30, 0], opacity: [0.4, 0.8, 0.4] }}
-                    transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-                    className="absolute bottom-[15%] left-[5%]"
-                >
-                    <Wind size={130} />
-                </motion.div>
-
-                <motion.div
-                    animate={{ y: [0, -40, 0], rotate: [0, 3, 0] }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute bottom-[5%] right-[45%]"
-                >
-                    <Mountain size={150} />
-                </motion.div>
-
-                <motion.div
-                    animate={{ y: [0, -15, 0], rotate: [0, 8, 0] }}
-                    transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 5 }}
-                    className="absolute top-[75%] left-[15%]"
-                >
-                    <Footprints size={80} />
-                </motion.div>
-
-                <motion.div
-                    animate={{ rotate: [0, 180, 360] }}
-                    transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-[5%] right-[5%]"
-                >
-                    <Hourglass size={60} />
-                </motion.div>
+                {/* Floating Icons (Hidden on mobile for performance) */}
+                <div className="hidden md:block absolute inset-0 opacity-[0.06]">
+                    <motion.div animate={{ y: [0, -20, 0] }} transition={{ duration: 10, repeat: Infinity }} className="absolute top-[10%] left-[10%]"><History size={120} /></motion.div>
+                    <motion.div animate={{ y: [0, -30, 0] }} transition={{ duration: 12, repeat: Infinity }} className="absolute top-[40%] right-[5%]"><Route size={100} /></motion.div>
+                    <motion.div animate={{ y: [0, -25, 0] }} transition={{ duration: 14, repeat: Infinity }} className="absolute bottom-[20%] left-[15%]"><Globe size={110} /></motion.div>
+                    <motion.div animate={{ y: [0, -15, 0] }} transition={{ duration: 8, repeat: Infinity }} className="absolute bottom-[10%] right-[10%]"><Milestone size={90} /></motion.div>
+                </div>
             </div>
 
             {/* Header */}
-            <div className="relative z-10 pt-4 pb-8 md:pt-8 md:pb-12 text-center">
-                <div className="container mx-auto px-4">
-                    <h2 className="text-3xl md:text-5xl font-black text-white mb-2 tracking-tight uppercase">
+            <div className="relative z-10 pt-4 pb-12 md:pt-12 md:pb-20 text-center">
+                <div className="container mx-auto px-4 flex flex-col items-center">
+                    <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-primary-100 text-[10px] md:text-sm font-black mb-6 uppercase tracking-[0.2em] shadow-xl">
+                        <Route size={14} className="text-primary-300" />
+                        Our Roadmap
+                    </div>
+                    <h2 className="text-3xl md:text-6xl font-black text-white mb-4 uppercase tracking-tight leading-tight">
                         Perjalanan Kami
                     </h2>
-                    <p className="text-sm md:text-xl text-primary-100/80 max-w-2xl mx-auto font-medium leading-relaxed">
-                        Dari keresahan menjadi solusi nyata untuk bumi yang lebih hijau.
+                    <div className="w-16 h-1.5 bg-primary-400 rounded-full mb-6"></div>
+                    <p className="text-[11px] md:text-xl text-primary-100/80 max-w-2xl mx-auto font-bold uppercase tracking-[0.15em] leading-relaxed">
+                        Dari keresahan menjadi solusi nyata<br className="md:hidden" /> untuk bumi yang lebih hijau.
                     </p>
-                    
-                    {/* Divider Line */}
-                    <div className="mt-8 md:mt-12 flex items-center justify-center">
-                        <div className="h-px w-32 md:w-64 bg-gradient-to-r from-transparent via-primary-400/50 to-transparent relative">
-                            <div className="absolute inset-0 bg-primary-400/20 blur-sm"></div>
-                        </div>
-                    </div>
                 </div>
             </div>
 

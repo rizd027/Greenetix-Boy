@@ -24,12 +24,12 @@ export default function ImpactCalculator() {
 
     return (
         <section id="impact" className="min-h-[auto] md:min-h-screen flex items-center py-20 md:py-24 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white overflow-hidden relative">
-            {/* Background Decorations */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-600/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
-            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary-400/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2"></div>
+            {/* Background Decorations - Optimized for mobile */}
+            <div className="absolute top-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-primary-600/10 rounded-full blur-[60px] md:blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
+            <div className="absolute bottom-0 left-0 w-[250px] md:w-[400px] h-[250px] md:h-[400px] bg-primary-400/10 rounded-full blur-[50px] md:blur-[100px] translate-y-1/2 -translate-x-1/2"></div>
 
-            {/* Floating Background Icons */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-5">
+            {/* Floating Background Icons - Hidden on mobile for performance */}
+            <div className="hidden md:block absolute inset-0 overflow-hidden pointer-events-none opacity-5">
                 <motion.div
                     animate={{ y: [0, -35, 0], rotate: [0, -5, 0] }}
                     transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}

@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Calendar, User, Tag, ChevronRight, X, Clock, Share2, ChevronLeft, Images } from "lucide-react";
+import { Calendar, User, ArrowRight, Tag, ChevronLeft, ChevronRight, X, Maximize2, Newspaper, Megaphone, Globe, Search, Clock, Share2, Images } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -100,19 +100,86 @@ export default function BlogSection() {
 
     return (
         <>
-            <section id="blog" className="py-14 bg-white">
-                <div className="container mx-auto px-4">
-                    <div className="flex flex-col md:flex-row items-center justify-between mb-4 md:mb-6 gap-6">
-                        <div className="max-w-2xl px-2 md:px-0">
-                            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary-50 rounded-full text-primary-700 text-[10px] md:text-xs font-bold mb-0 uppercase tracking-widest">
-                                <Tag size={12} />
-                                {beritaData.sectionTag}
-                            </div>
+            <section id="blog" className="min-h-screen flex flex-col justify-center py-12 md:py-24 bg-cream-50/30 relative overflow-hidden">
+                {/* Background Decorations - Optimized for performance */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    {/* Animated Gradient Blobs - Reduced blur on mobile */}
+                    <motion.div
+                        animate={{
+                            scale: [1, 1.1, 1],
+                            opacity: [0.1, 0.2, 0.1],
+                        }}
+                        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute -top-40 -left-20 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-primary-100/20 rounded-full blur-[60px] md:blur-[120px]"
+                    />
+                    <motion.div
+                        animate={{
+                            scale: [1, 1.1, 1],
+                            opacity: [0.1, 0.15, 0.1],
+                        }}
+                        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                        className="absolute -bottom-40 -right-40 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-primary-50/40 rounded-full blur-[80px] md:blur-[150px]"
+                    />
+
+                    {/* Decorative Background Text - static on mobile, animated whileInView */}
+                    <div className="absolute top-[15%] left-1/2 -translate-x-1/2 w-full text-center select-none pointer-events-none z-0">
+                        <motion.span 
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 0.1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1 }}
+                            className="text-[100px] md:text-[180px] font-black text-primary-900/10 tracking-[-0.05em] leading-none uppercase"
+                        >
+                            BERITA
+                        </motion.span>
+                    </div>
+
+                    {/* Floating Icons - Hidden on mobile for performance */}
+                    <div className="hidden md:block absolute inset-0 opacity-[0.05]">
+                        <motion.div
+                            animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
+                            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute top-[12%] left-[8%]"
+                        >
+                            <Newspaper size={80} />
+                        </motion.div>
+                        <motion.div
+                            animate={{ y: [0, 15, 0], rotate: [0, -8, 0] }}
+                            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                            className="absolute top-[20%] right-[10%]"
+                        >
+                            <Megaphone size={70} />
+                        </motion.div>
+                        <motion.div
+                            animate={{ y: [0, -10, 0], scale: [1, 1.05, 1] }}
+                            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+                            className="absolute bottom-[15%] left-[12%]"
+                        >
+                            <Globe size={110} />
+                        </motion.div>
+                        <motion.div
+                            animate={{ x: [0, 15, 0], rotate: [0, 3, 0] }}
+                            transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                            className="absolute bottom-[25%] right-[8%]"
+                        >
+                            <Search size={90} />
+                        </motion.div>
+                    </div>
+                </div>
+
+                <div className="container mx-auto px-4 relative z-10">
+                    <div className="flex flex-col items-center text-center mb-10 md:mb-16">
+                        <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white shadow-sm border border-primary-100 rounded-full text-primary-700 text-[10px] md:text-sm font-black mb-4 uppercase tracking-[0.2em]">
+                            <Tag size={14} className="text-primary-500" />
+                            {beritaData.sectionTag}
                         </div>
-                        <Link href={beritaData.viewAllLink} className="flex items-center gap-2 text-primary-600 font-bold hover:text-primary-800 transition-all border-b-2 border-primary-200 pb-1 text-sm md:text-base cursor-pointer">
-                            {beritaData.viewAllText}
-                            <ChevronRight size={18} />
-                        </Link>
+                        <h2 className="text-3xl md:text-5xl font-black text-primary-900 mb-3 uppercase tracking-tight leading-tight">
+                            {beritaData.pageTitle}
+                        </h2>
+                        <div className="w-16 h-1.5 bg-primary-600 rounded-full mb-4"></div>
+                        <p className="text-[11px] md:text-lg text-primary-600 font-bold uppercase tracking-[0.25em] max-w-2xl">
+                            Menelusuri Jejak Inovasi Berkelanjutan
+                        </p>
                     </div>
 
                     <div className="relative overflow-hidden md:overflow-visible group/carousel">
@@ -128,24 +195,24 @@ export default function BlogSection() {
                                     onClick={() => setSelectedPost(post)}
                                 >
                                     {/* Image Container */}
-                                    <div className="relative h-56 md:h-64 rounded-[2rem] md:rounded-[2.2rem] overflow-hidden shadow-lg mb-4 md:mb-6">
+                                    <div className="relative h-60 md:h-72 rounded-[2.5rem] md:rounded-[3rem] overflow-hidden shadow-2xl shadow-primary-900/10 mb-6 md:mb-8 group/img bg-slate-100">
                                         <Image
                                             src={post.image}
                                             alt={post.title}
                                             fill
-                                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                            className="object-cover transition-transform duration-1000 group-hover/img:scale-110"
                                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-primary-900/40 to-transparent"></div>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-primary-900/40 via-transparent to-transparent opacity-60"></div>
                                         <div className="absolute top-6 left-6">
-                                            <span className="px-4 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold text-primary-700 shadow-md">
+                                            <span className="px-5 py-2 bg-white/95 backdrop-blur-sm rounded-full text-[10px] md:text-xs font-black text-primary-700 shadow-xl uppercase tracking-wider border border-white/20">
                                                 {post.category}
                                             </span>
                                         </div>
                                     </div>
 
                                     {/* Meta */}
-                                    <div className="flex items-center gap-6 text-xs text-gray-500 mb-3 font-medium">
+                                    <div className="flex items-center gap-6 text-[10px] md:text-xs text-primary-400 mb-4 font-black uppercase tracking-widest">
                                         <div className="flex items-center gap-2">
                                             <Calendar size={14} className="text-primary-500" />
                                             {post.date}
@@ -157,34 +224,61 @@ export default function BlogSection() {
                                     </div>
 
                                     {/* Content */}
-                                    <h3 className="text-xl md:text-2xl font-bold text-primary-900 mb-3 group-hover:text-primary-600 transition-colors line-clamp-2 leading-tight uppercase tracking-tight">
+                                    <h3 className="text-lg md:text-2xl font-black text-primary-900 mb-3 group-hover:text-primary-600 transition-colors line-clamp-2 leading-tight uppercase tracking-tight">
                                         {post.title}
                                     </h3>
-                                    <p className="text-gray-600 leading-relaxed mb-5 line-clamp-3 text-sm md:text-base font-medium">
+                                    <p className="text-gray-600 leading-relaxed mb-6 line-clamp-3 text-[11px] md:text-base font-medium opacity-80">
                                         {post.excerpt}
                                     </p>
 
-                                    <div className="flex items-center gap-3 text-primary-700 font-extrabold text-sm uppercase tracking-wider group-hover:gap-5 transition-all">
+                                    <div className="flex items-center gap-4 text-primary-700 font-black text-xs md:text-base uppercase tracking-wider group-hover:gap-6 transition-all">
                                         BACA SELENGKAPNYA
-                                        <ArrowRight size={18} />
+                                        <div className="w-8 h-8 rounded-full bg-primary-600 flex items-center justify-center text-white scale-90 group-hover:scale-100 transition-transform shadow-lg">
+                                            <ArrowRight size={18} />
+                                        </div>
                                     </div>
                                 </div>
                             ))}
                         </motion.div>
 
                         {/* Navigation Dots (Mobile only) */}
-                        <div className="flex md:hidden justify-center items-center gap-2 mt-8">
+                        <div className="flex md:hidden justify-center items-center gap-4 mt-12 mb-10">
                             {posts.map((_, idx) => (
                                 <button
                                     key={idx}
                                     onClick={() => setActiveMobileIndex(idx)}
-                                    className={`h-1.5 transition-all rounded-full ${idx === activeMobileIndex
-                                        ? "w-8 bg-primary-600"
-                                        : "w-2 bg-primary-200"
+                                    className={`transition-all duration-700 rounded-full ${idx === activeMobileIndex
+                                        ? "w-12 h-2.5 bg-primary-600 shadow-xl shadow-primary-600/30"
+                                        : "w-2.5 h-2.5 bg-primary-200 hover:bg-primary-300"
                                         }`}
                                     aria-label={`Go to slide ${idx + 1}`}
                                 />
                             ))}
+                        </div>
+
+                        {/* Desktop & Mobile View All Link */}
+                        <div className="flex flex-col items-center gap-8 mt-12 md:mt-20">
+                            <Link
+                                href="/berita"
+                                className="group flex items-center gap-4 px-8 py-3.5 bg-primary-600 text-white rounded-full font-black text-xs md:text-base transition-all hover:bg-primary-700 shadow-2xl shadow-primary-600/20 active:scale-95 uppercase tracking-[0.15em]"
+                            >
+                                Lihat Semua Artikel
+                                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:translate-x-1.5" />
+                            </Link>
+
+                            {/* Mobile Impact Footer (Fills bottom space) */}
+                            <div className="flex md:hidden flex-col items-center mt-4 text-center">
+                                <p className="text-[10px] text-primary-600/50 font-black uppercase tracking-[0.3em] leading-relaxed max-w-[300px]">
+                                    Setiap artikel adalah langkah nyata<br />menuju masa depan berkelanjutan.
+                                </p>
+                                <motion.div
+                                    animate={{ y: [0, 8, 0] }}
+                                    transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                                    className="mt-6 text-primary-200"
+                                >
+                                    <div className="w-1 h-12 bg-gradient-to-b from-primary-200 to-transparent rounded-full"></div>
+                                </motion.div>
+                            </div>
                         </div>
                     </div>
                 </div>

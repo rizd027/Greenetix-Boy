@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Recycle, Droplets, Zap, Truck, BookOpen, Target, Globe } from "lucide-react";
 
 interface Step {
@@ -62,153 +63,187 @@ export default function CircularEconomy() {
     const displayStep = hoveredStep || activeStep;
 
     return (
-        <section id="circular-economy" className="pb-12 bg-white relative overflow-hidden">
-            {/* Full-width Header Banner */}
-            <div className="bg-primary-700 py-6 md:py-6 mb-16 shadow-lg border-b border-primary-600 relative z-10">
-                <div className="container mx-auto px-4 text-center">
-                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-1 tracking-tight">
-                        Ekonomi Sirkular
-                    </h2>
-                    <p className="text-lg md:text-xl text-primary-50 max-w-3xl mx-auto font-medium">
-                        Siklus tertutup yang mengubah masalah limbah menjadi solusi keberlanjutan
-                    </p>
+        <section id="circular-economy" className="min-h-screen flex flex-col justify-center py-12 md:py-24 bg-slate-50/50 relative overflow-hidden">
+            {/* Background Decorations */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                {/* Animated Gradient Blobs - Optimized blur for mobile */}
+                <motion.div
+                    animate={{
+                        scale: [1, 1.1, 1],
+                        opacity: [0.15, 0.25, 0.15],
+                    }}
+                    transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute -top-40 -right-20 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-primary-100/30 rounded-full blur-[60px] md:blur-[120px]"
+                />
+                <motion.div
+                    animate={{
+                        scale: [1, 1.1, 1],
+                        opacity: [0.1, 0.15, 0.1],
+                    }}
+                    transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                    className="absolute -bottom-40 -left-20 w-[400px] md:w-[500px] h-[400px] md:h-[500px] bg-primary-50/40 rounded-full blur-[60px] md:blur-[100px]"
+                />
+
+                {/* Large Background Text - static with whileInView opacity */}
+                <div className="absolute top-[15%] md:top-[20%] left-1/2 -translate-x-1/2 w-full text-center">
+                    <motion.span 
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 0.08 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1 }}
+                        className="text-[100px] md:text-[220px] font-black text-primary-900/10 tracking-[-0.05em] leading-none uppercase select-none"
+                    >
+                        CIRCULAR
+                    </motion.span>
                 </div>
             </div>
 
             <div className="container mx-auto px-4 relative z-10">
-
-                <div className="max-w-6xl mx-auto">
-                    <div className="flex flex-col lg:flex-row items-center gap-10">
-
-                        {/* Interactive Diagram Side */}
-                        <div className="relative w-full max-w-[500px] md:max-w-[420px] aspect-square flex items-center justify-center">
-                            {/* Central Rotating Border */}
-                            <div
-                                className="absolute inset-4 md:inset-10 rounded-full border-[3px] border-dashed border-primary-200 animate-spin-slow pointer-events-none"
-                                style={{ animationDuration: '30s' }}
-                            ></div>
-
-                            {/* Active Segment Arc */}
-                            {/* Background Circle Arc */}
-                            <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none opacity-20" viewBox="0 0 100 100">
-                                <circle
-                                    cx="50"
-                                    cy="50"
-                                    r="46"
-                                    fill="none"
-                                    stroke="#339966"
-                                    strokeWidth="1"
-                                    strokeDasharray="289"
-                                    strokeDashoffset="0"
-                                />
-                            </svg>
-
-                            {/* Active Segment Arc */}
-                            <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none" viewBox="0 0 100 100">
-                                <circle
-                                    cx="50"
-                                    cy="50"
-                                    r="46"
-                                    fill="none"
-                                    stroke="#339966"
-                                    strokeWidth="3"
-                                    strokeDasharray="57.8 231.2"
-                                    strokeLinecap="round"
-                                    className="transition-all duration-1000 ease-in-out"
-                                    style={{
-                                        transform: `rotate(${activeStep.angle}deg)`,
-                                        transformOrigin: 'center'
-                                    }}
-                                />
-                            </svg>
-
-                            {/* Steps Icons */}
-                            {steps.map((step) => {
-                                const isActive = activeStep.id === step.id;
-                                const isHovered = hoveredStep?.id === step.id;
-
-                                return (
-                                    <button
-                                        key={step.id}
-                                        onMouseEnter={() => setHoveredStep(step)}
-                                        onMouseLeave={() => setHoveredStep(null)}
-                                        onClick={() => setActiveStep(step)}
-                                        className="absolute z-20 transition-all duration-500 group [--radius:100px] md:[--radius:172px]"
-                                        style={{
-                                            transform: `rotate(${step.angle - 90}deg) translate(var(--radius)) rotate(${-(step.angle - 90)}deg)`,
-                                            left: 'calc(50% - var(--icon-offset))',
-                                            top: 'calc(50% - var(--icon-offset))',
-                                        } as any}
-                                    >
-                                        <div className={`w-14 h-14 md:w-16 md:h-16 rounded-[1.2rem] md:rounded-[1.8rem] flex items-center justify-center text-3xl md:text-4xl transition-all duration-500 shadow-xl [--icon-offset:28px] md:[--icon-offset:32px] ${isActive || isHovered
-                                            ? 'bg-primary-600 text-white scale-110 -translate-y-1'
-                                            : 'bg-white text-primary-600 hover:bg-primary-50 ring-1 ring-primary-100'
-                                            }`}>
-                                            <step.icon className={`w-7 h-7 md:w-10 md:h-10 transition-all duration-500 ${isActive || isHovered ? 'text-white' : 'text-primary-600'}`} />
-                                        </div>
-                                    </button>
-                                );
-                            })}
-
-                            {/* Central Core */}
-                            <div className="relative w-24 h-24 md:w-52 md:h-52 rounded-full bg-white shadow-2xl flex flex-col items-center justify-center text-center p-3 md:p-8 border-[3px] md:border-[6px] border-primary-50">
-                                {/* Floating Active Label */}
-                                <div className="absolute -top-32 md:-top-40 animate-bounce-slow z-30">
-                                    <span className="text-[12px] md:text-[10px] font-black text-primary-600 tracking-[0.1em] md:tracking-[0.2em] uppercase bg-white px-2.5 py-1 md:px-4 md:py-2 rounded-full shadow-lg border border-primary-100 whitespace-nowrap">
-                                        {displayStep.name}
-                                    </span>
-                                </div>
-
-                                <div className="absolute inset-0 rounded-full bg-primary-500/5 animate-ping"></div>
-
-                                <div className={`w-12 h-12 md:w-28 md:h-28 rounded-full bg-primary-700 flex items-center justify-center text-white mb-1 md:mb-3 shadow-2xl transform transition-all duration-500 ${hoveredStep ? 'scale-110' : 'scale-100'}`}>
-                                    <displayStep.icon className="w-6 h-6 md:w-14 md:h-14" />
-                                </div>
-
-                                <h4 className="text-primary-800 font-black text-[9px] md:text-xl leading-tight tracking-[0.05em] md:tracking-widest">
-                                    SIRKULAR
-                                </h4>
-                                <p className="text-[5px] md:text-[10px] text-primary-500 font-bold tracking-[0.1em] md:tracking-[0.2em] uppercase">EKONOMI</p>
-                            </div>
-                        </div>
-
-                        <div className="flex-1 w-full">
-                            <div className="bg-gradient-to-br from-white to-primary-50 p-5 md:p-10 rounded-[1.5rem] md:rounded-[2.5rem] shadow-2xl border border-primary-100 relative min-h-[250px] md:min-h-[320px] flex flex-col transition-all duration-500">
-                                <div className="absolute -top-3 -left-3 md:-top-6 md:-left-6 w-10 h-10 md:w-16 md:h-16 bg-primary-600 rounded-lg md:rounded-2xl flex items-center justify-center text-white shadow-xl animate-bounce-slow">
-                                    <displayStep.icon size={20} className="md:w-8 md:h-8" />
-                                </div>
-
-                                <div className="mb-3 md:mb-6">
-                                    <span className="text-[9px] md:text-sm font-black text-primary-500 tracking-[0.15em] uppercase mb-1 md:mb-3 block">
-                                        Tahap {displayStep.id} dari 5
-                                    </span>
-                                    <h3 className="text-xl md:text-5xl font-black text-primary-800 mb-1.5 md:mb-4 drop-shadow-sm transition-all duration-300 uppercase">
-                                        {displayStep.name}
-                                    </h3>
-                                    <div className="w-10 md:w-24 h-1 md:h-2 bg-primary-600 rounded-full mb-3 md:mb-6 shadow-sm"></div>
-                                </div>
-
-                                <p className="text-xs md:text-xl text-gray-700 leading-relaxed font-medium transition-all duration-500 opacity-90">
-                                    {displayStep.description}
-                                </p>
-
-                                <div className="mt-auto pt-5 md:pt-10 flex flex-wrap gap-1.5 md:gap-4">
-                                    <div className="px-2.5 py-1 md:px-4 md:py-2 bg-white rounded-full text-[9px] md:text-xs font-bold text-primary-700 shadow-sm border border-primary-100">
-                                        Sustainable
-                                    </div>
-                                    <div className="px-2.5 py-1 md:px-4 md:py-2 bg-white rounded-full text-[9px] md:text-xs font-bold text-primary-700 shadow-sm border border-primary-100">
-                                        Eco-Friendly
-                                    </div>
-                                    <div className="px-2.5 py-1 md:px-4 md:py-2 bg-white rounded-full text-[9px] md:text-xs font-bold text-primary-700 shadow-sm border border-primary-100">
-                                        Closed Loop
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                <div className="flex flex-col items-center text-center mb-12 md:mb-20">
+                    <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white shadow-sm border border-primary-100 rounded-full text-primary-700 text-[10px] md:text-sm font-black mb-5 uppercase tracking-[0.2em]">
+                        <Recycle size={14} className="text-primary-500" />
+                        Economic Model
                     </div>
+                    <h2 className="text-3xl md:text-6xl font-black text-primary-900 mb-3 uppercase tracking-tight leading-tight">
+                        Ekonomi Sirkular
+                    </h2>
+                    <div className="w-16 h-1.5 bg-primary-600 rounded-full mb-5"></div>
+                    <p className="text-[11px] md:text-xl text-primary-600/80 font-bold uppercase tracking-[0.15em] max-w-2xl leading-relaxed">
+                        Siklus tertutup yang mengubah masalah<br className="md:hidden" /> limbah menjadi solusi keberlanjutan
+                    </p>
+                </div>
 
+                <div className="flex-1 flex items-center">
+                    <div className="max-w-6xl mx-auto w-full">
+                        <div className="flex flex-col lg:flex-row items-center gap-10">
+                            {/* Interactive Diagram Side */}
+                            <div className="relative w-full max-w-[500px] md:max-w-[420px] aspect-square flex items-center justify-center">
+                                {/* ... (rest of the diagram code) */}
+                                {/* Central Rotating Border */}
+                                <div
+                                    className="absolute inset-4 md:inset-10 rounded-full border-[3px] border-dashed border-primary-200 animate-spin-slow pointer-events-none"
+                                    style={{ animationDuration: '30s' }}
+                                ></div>
 
+                                {/* Active Segment Arc */}
+                                {/* Background Circle Arc */}
+                                <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none opacity-20" viewBox="0 0 100 100">
+                                    <circle
+                                        cx="50"
+                                        cy="50"
+                                        r="46"
+                                        fill="none"
+                                        stroke="#339966"
+                                        strokeWidth="1"
+                                        strokeDasharray="289"
+                                        strokeDashoffset="0"
+                                    />
+                                </svg>
+
+                                {/* Active Segment Arc */}
+                                <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none" viewBox="0 0 100 100">
+                                    <circle
+                                        cx="50"
+                                        cy="50"
+                                        r="46"
+                                        fill="none"
+                                        stroke="#339966"
+                                        strokeWidth="3"
+                                        strokeDasharray="57.8 231.2"
+                                        strokeLinecap="round"
+                                        className="transition-all duration-1000 ease-in-out"
+                                        style={{
+                                            transform: `rotate(${activeStep.angle}deg)`,
+                                            transformOrigin: 'center'
+                                        }}
+                                    />
+                                </svg>
+
+                                {/* Steps Icons */}
+                                {steps.map((step) => {
+                                    const isActive = activeStep.id === step.id;
+                                    const isHovered = hoveredStep?.id === step.id;
+
+                                    return (
+                                        <button
+                                            key={step.id}
+                                            onMouseEnter={() => setHoveredStep(step)}
+                                            onMouseLeave={() => setHoveredStep(null)}
+                                            onClick={() => setActiveStep(step)}
+                                            className="absolute z-20 transition-all duration-500 group [--radius:120px] md:[--radius:172px]"
+                                            style={{
+                                                transform: `rotate(${step.angle - 90}deg) translate(var(--radius)) rotate(${-(step.angle - 90)}deg)`,
+                                                left: 'calc(50% - var(--icon-offset))',
+                                                top: 'calc(50% - var(--icon-offset))',
+                                            } as any}
+                                        >
+                                            <div className={`w-14 h-14 md:w-16 md:h-16 rounded-[1.4rem] md:rounded-[1.8rem] flex items-center justify-center text-3xl md:text-4xl transition-all duration-500 shadow-2xl shadow-primary-900/5 [--icon-offset:28px] md:[--icon-offset:32px] ${isActive || isHovered
+                                                ? 'bg-primary-600 text-white scale-110 -translate-y-1'
+                                                : 'bg-white/80 backdrop-blur-md text-primary-600 hover:bg-white ring-1 ring-primary-100 hover:scale-105'
+                                                }`}>
+                                                <step.icon className={`w-7 h-7 md:w-10 md:h-10 transition-all duration-500 ${isActive || isHovered ? 'text-white' : 'text-primary-600'}`} />
+                                            </div>
+                                        </button>
+                                    );
+                                })}
+
+                                {/* Central Core */}
+                                <div className="relative w-24 h-24 md:w-52 md:h-52 rounded-full bg-white shadow-2xl flex flex-col items-center justify-center text-center p-3 md:p-8 border-[3px] md:border-[6px] border-primary-50">
+                                    {/* Floating Active Label */}
+                                    <div className="absolute -top-32 md:-top-40 animate-bounce-slow z-30">
+                                        <span className="text-[12px] md:text-[10px] font-black text-primary-600 tracking-[0.1em] md:tracking-[0.2em] uppercase bg-white px-2.5 py-1 md:px-4 md:py-2 rounded-full shadow-lg border border-primary-100 whitespace-nowrap">
+                                            {displayStep.name}
+                                        </span>
+                                    </div>
+
+                                    <div className="absolute inset-0 rounded-full bg-primary-500/5 animate-ping"></div>
+
+                                    <div className={`w-12 h-12 md:w-28 md:h-28 rounded-full bg-primary-700 flex items-center justify-center text-white mb-1 md:mb-3 shadow-2xl transform transition-all duration-500 ${hoveredStep ? 'scale-110' : 'scale-100'}`}>
+                                        <displayStep.icon className="w-6 h-6 md:w-14 md:h-14" />
+                                    </div>
+
+                                    <h4 className="text-primary-800 font-black text-[9px] md:text-xl leading-tight tracking-[0.05em] md:tracking-widest">
+                                        SIRKULAR
+                                    </h4>
+                                    <p className="text-[5px] md:text-[10px] text-primary-500 font-bold tracking-[0.1em] md:tracking-[0.2em] uppercase">EKONOMI</p>
+                                </div>
+                            </div>
+
+                             <div className="flex-1 w-full mt-4 md:mt-0">
+                                <div className="bg-white/70 backdrop-blur-xl p-6 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-2xl shadow-primary-900/5 border border-white/50 relative min-h-[280px] md:min-h-[360px] flex flex-col transition-all duration-500">
+                                    <div className="absolute -top-4 -left-4 md:-top-8 md:-left-8 w-12 h-12 md:w-20 md:h-20 bg-primary-600 rounded-2xl md:rounded-[2rem] flex items-center justify-center text-white shadow-2xl shadow-primary-600/30 animate-bounce-slow">
+                                        <displayStep.icon size={24} className="md:w-10 md:h-10" />
+                                    </div>
+
+                                    <div className="mb-4 md:mb-8">
+                                        <span className="text-[10px] md:text-sm font-black text-primary-400 tracking-[0.2em] uppercase mb-1 md:mb-4 block">
+                                            Tahap {displayStep.id} dari 5
+                                        </span>
+                                        <h3 className="text-2xl md:text-5xl font-black text-primary-900 mb-2 md:mb-5 drop-shadow-sm transition-all duration-300 uppercase tracking-tight">
+                                            {displayStep.name}
+                                        </h3>
+                                        <div className="w-12 md:w-28 h-1.5 md:h-2.5 bg-primary-600 rounded-full mb-4 md:mb-8 shadow-sm"></div>
+                                    </div>
+
+                                    <p className="text-sm md:text-xl text-gray-700 leading-relaxed font-medium transition-all duration-500 opacity-90 max-w-2xl">
+                                        {displayStep.description}
+                                    </p>
+
+                                    <div className="mt-auto pt-8 md:pt-12 flex flex-wrap gap-2 md:gap-4">
+                                        <div className="px-4 py-1.5 md:px-6 md:py-2.5 bg-primary-50 rounded-full text-[10px] md:text-xs font-black text-primary-700 shadow-sm border border-primary-100 uppercase tracking-widest">
+                                            Sustainable
+                                        </div>
+                                        <div className="px-4 py-1.5 md:px-6 md:py-2.5 bg-primary-50 rounded-full text-[10px] md:text-xs font-black text-primary-700 shadow-sm border border-primary-100 uppercase tracking-widest">
+                                            Eco-Friendly
+                                        </div>
+                                        <div className="px-4 py-1.5 md:px-6 md:py-2.5 bg-primary-50 rounded-full text-[10px] md:text-xs font-black text-primary-700 shadow-sm border border-primary-100 uppercase tracking-widest text-nowrap">
+                                            Closed Loop
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

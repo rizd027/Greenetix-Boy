@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { ChevronDown, ChevronUp, HelpCircle } from "lucide-react";
 
 interface FAQItem {
@@ -35,16 +36,47 @@ export default function FAQ() {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
     return (
-        <section id="faq" className="py-8 md:py-16 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white relative overflow-hidden">
+        <section id="faq" className="min-h-screen flex flex-col justify-center py-12 md:py-24 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white relative overflow-hidden">
+            {/* Background Decorations - Optimized for mobile */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                {/* Animated Gradient Blobs - Lower blur for mobile performance */}
+                <motion.div
+                    animate={{
+                        scale: [1, 1.1, 1],
+                        opacity: [0.08, 0.15, 0.08],
+                    }}
+                    transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute -top-40 -right-20 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-primary-400/20 rounded-full blur-[60px] md:blur-[120px]"
+                />
+                
+                {/* Large Background Text - static with whileInView opacity */}
+                <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-full text-center">
+                    <motion.span 
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 0.05 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1 }}
+                        className="text-[120px] md:text-[240px] font-black text-white/5 tracking-[-0.05em] leading-none uppercase select-none"
+                    >
+                        ANSWERS
+                    </motion.span>
+                </div>
+            </div>
+
             <div className="container mx-auto px-4 relative z-10">
                 <div className="max-w-3xl mx-auto">
-                    <div className="text-center mb-8 md:mb-12">
-                        <div className="inline-flex items-center gap-2 px-2.5 py-1 md:px-3 md:py-1.5 bg-primary-500/10 border border-primary-500/20 rounded-full text-primary-400 text-[9px] md:text-xs font-black uppercase tracking-widest mb-2 md:mb-3">
-                            <HelpCircle className="w-3 h-3 md:w-3.5 md:h-3.5 text-primary-500" />
-                            FAQ
+                    <div className="flex flex-col items-center text-center mb-12 md:mb-20">
+                        <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-primary-100 text-[10px] md:text-sm font-black mb-6 uppercase tracking-[0.2em] shadow-xl">
+                            <HelpCircle size={14} className="text-primary-300" />
+                            General Information
                         </div>
-                        <h2 className="text-xl md:text-3xl font-black text-white mb-1.5 md:mb-3 uppercase tracking-tight">Informasi Penting</h2>
-                        <p className="text-[10px] md:text-base text-primary-100/60 px-2 md:px-4 font-medium leading-relaxed">Punya pertanyaan seputar proses dan produk kami? Temukan jawabannya di sini.</p>
+                        <h2 className="text-3xl md:text-6xl font-black text-white mb-4 uppercase tracking-tight leading-tight">
+                            Informasi Penting
+                        </h2>
+                        <div className="w-16 h-1.5 bg-primary-400 rounded-full mb-6"></div>
+                        <p className="text-[11px] md:text-xl text-primary-100/80 max-w-2xl mx-auto font-bold uppercase tracking-[0.15em] leading-relaxed">
+                            Punya pertanyaan seputar proses dan produk kami?<br className="md:hidden" /> Temukan jawabannya di sini.
+                        </p>
                     </div>
 
                     <div className="space-y-2">
