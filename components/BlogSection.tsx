@@ -94,53 +94,55 @@ export default function BlogSection() {
                         </Link>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                         {posts.map((post, index) => (
                             <div
                                 key={index}
-                                className="group cursor-pointer"
+                                className={`group cursor-pointer ${index === 2 ? 'hidden lg:block' : ''}`}
                                 onClick={() => setSelectedPost(post)}
                             >
                                 {/* Image Container */}
-                                <div className="relative h-64 rounded-[2.2rem] overflow-hidden shadow-lg mb-4">
+                                <div className="relative h-40 md:h-64 rounded-[1.5rem] md:rounded-[2.2rem] overflow-hidden shadow-lg mb-3 md:mb-4">
                                     <Image
                                         src={post.image}
                                         alt={post.title}
                                         fill
                                         className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                        sizes="(max-width: 768px) 50vw, 33vw"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-primary-900/40 to-transparent"></div>
-                                    <div className="absolute top-6 left-6">
-                                        <span className="px-4 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold text-primary-700 shadow-md">
+                                    <div className="absolute top-3 left-3 md:top-6 md:left-6">
+                                        <span className="px-3 py-0.5 md:px-4 md:py-1 bg-white/90 backdrop-blur-sm rounded-full text-[10px] md:text-xs font-bold text-primary-700 shadow-md">
                                             {post.category}
                                         </span>
                                     </div>
                                 </div>
 
                                 {/* Meta */}
-                                <div className="flex items-center gap-6 text-xs text-gray-500 mb-2 font-medium">
-                                    <div className="flex items-center gap-2">
-                                        <Calendar size={14} className="text-primary-500" />
+                                <div className="flex flex-wrap items-center gap-2 md:gap-6 text-[10px] md:text-xs text-gray-500 mb-1.5 md:mb-2 font-medium">
+                                    <div className="flex items-center gap-1.5 md:gap-2">
+                                        <Calendar size={12} className="md:w-[14px] md:h-[14px] text-primary-500" />
                                         {post.date}
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <User size={14} className="text-primary-500" />
+                                    <div className="flex items-center gap-1.5 md:gap-2">
+                                        <User size={12} className="md:w-[14px] md:h-[14px] text-primary-500" />
                                         {post.author}
                                     </div>
                                 </div>
 
                                 {/* Content */}
-                                <h3 className="text-xl md:text-2xl font-bold text-primary-900 mb-2 group-hover:text-primary-600 transition-colors line-clamp-2 leading-tight">
+                                <h3 className="text-sm md:text-2xl font-bold text-primary-900 mb-1.5 md:mb-2 group-hover:text-primary-600 transition-colors line-clamp-2 leading-tight">
                                     {post.title}
                                 </h3>
-                                <p className="text-gray-600 leading-relaxed mb-4 line-clamp-3 text-sm md:text-base">
+                                <p className="hidden md:block text-gray-600 leading-relaxed mb-4 line-clamp-3 text-sm md:text-base">
                                     {post.excerpt}
                                 </p>
 
-                                <div className="flex items-center gap-3 text-primary-700 font-extrabold text-sm uppercase tracking-wider group-hover:gap-5 transition-all">
-                                    Baca Selengkapnya
-                                    <ArrowRight size={18} />
+                                <div className="flex items-center gap-2 md:gap-3 text-primary-700 font-extrabold text-[10px] md:text-sm uppercase tracking-wider group-hover:gap-5 transition-all">
+                                    {/* Baca Selengkapnya text is hidden on mobile to avoid overlap */}
+                                    <span className="hidden md:inline">Baca Selengkapnya</span>
+                                    <span className="md:hidden">Detail</span>
+                                    <ArrowRight size={14} className="md:w-[18px] md:h-[18px]" />
                                 </div>
                             </div>
                         ))}
