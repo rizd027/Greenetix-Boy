@@ -3,17 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { ArrowRight, Recycle, RefreshCw } from "lucide-react";
-import { getAssetPath } from "@/lib/utils";
 
-export default function Hero() {
+export default function Hero({ images }: { images: string[] }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const images = [
-    getAssetPath("/product-display.jpg"),
-    getAssetPath("/products-1.jpg"),
-    getAssetPath("/products-2.jpg"),
-    getAssetPath("/team-bersama.png")
-  ];
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -70,6 +62,9 @@ export default function Hero() {
           </div>
         ))}
       </div>
+
+      {/* Extra Dark Overlay for Text Readability */}
+      <div className="absolute inset-0 bg-black/70 z-[5] pointer-events-none"></div>
 
       {/* Decorative Pattern Overlay (Moved on top of images) */}
       <div className="absolute inset-0 opacity-20 z-10 pointer-events-none">

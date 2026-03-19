@@ -5,9 +5,9 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "Greenetix Boy - Transformasi Limbah Popok",
-    description: "Transformasi limbah popok menjadi produk bernilai tinggi: Media Tanam Inklusif (PUPO), Bahan Bakar Padat Briket (LIPOBAY), dan Bahan Bakar Cair (LF OIL)",
-    keywords: ["greenetix", "limbah popok", "recycling", "circular economy", "eco-friendly", "sustainability"],
+    title: "Greenetix Indonesia - Transformasi Limbah Popok",
+    description: "Greenetix Indonesia mengolah limbah popok menjadi produk bernilai tinggi melalui ekonomi sirkular.",
+    keywords: ["Greenetix Indonesia", "pengolahan limbah popok", "ekonomi sirkular", "produk ramah lingkungan"],
 };
 
 export default function RootLayout({

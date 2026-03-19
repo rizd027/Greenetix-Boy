@@ -44,7 +44,7 @@ export default function Team() {
                     <div className="relative w-full aspect-[4/3] md:h-[600px]">
                         <Image
                             src={getAssetPath("/team-bersama.png")}
-                            alt="Tim Greenetix Boy"
+                            alt="Tim Greenetix Indonesia"
                             fill
                             className="object-contain md:object-cover bg-white"
                             priority

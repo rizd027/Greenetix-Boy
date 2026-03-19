@@ -62,22 +62,23 @@ export default function CircularEconomy() {
     const displayStep = hoveredStep || activeStep;
 
     return (
-        <section id="circular-economy" className="py-24 bg-white relative overflow-hidden">
-            {/* Background patterns */}
-            <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-cream-50 to-transparent"></div>
-
-            <div className="container mx-auto px-4 relative z-10">
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold text-primary-800 mb-4">
+        <section id="circular-economy" className="pb-12 bg-white relative overflow-hidden">
+            {/* Full-width Header Banner */}
+            <div className="bg-primary-700 py-6 md:py-6 mb-16 shadow-lg border-b border-primary-600 relative z-10">
+                <div className="container mx-auto px-4 text-center">
+                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-1 tracking-tight">
                         Ekonomi Sirkular
                     </h2>
-                    <p className="text-xl text-primary-600 max-w-2xl mx-auto">
+                    <p className="text-lg md:text-xl text-primary-50 max-w-3xl mx-auto font-medium">
                         Siklus tertutup yang mengubah masalah limbah menjadi solusi keberlanjutan
                     </p>
                 </div>
+            </div>
+
+            <div className="container mx-auto px-4 relative z-10">
 
                 <div className="max-w-6xl mx-auto">
-                    <div className="flex flex-col lg:flex-row items-center gap-16">
+                    <div className="flex flex-col lg:flex-row items-center gap-10">
 
                         {/* Interactive Diagram Side */}
                         <div className="relative w-full max-w-[500px] md:max-w-[420px] aspect-square flex items-center justify-center">
@@ -172,19 +173,19 @@ export default function CircularEconomy() {
                         </div>
 
                         <div className="flex-1 w-full">
-                            <div className="bg-gradient-to-br from-white to-primary-50 p-6 md:p-12 rounded-[1.5rem] md:rounded-[2.5rem] shadow-2xl border border-primary-100 relative min-h-[250px] md:min-h-[350px] flex flex-col transition-all duration-500">
+                            <div className="bg-gradient-to-br from-white to-primary-50 p-5 md:p-10 rounded-[1.5rem] md:rounded-[2.5rem] shadow-2xl border border-primary-100 relative min-h-[250px] md:min-h-[320px] flex flex-col transition-all duration-500">
                                 <div className="absolute -top-3 -left-3 md:-top-6 md:-left-6 w-10 h-10 md:w-16 md:h-16 bg-primary-600 rounded-lg md:rounded-2xl flex items-center justify-center text-white shadow-xl animate-bounce-slow">
                                     <displayStep.icon size={20} className="md:w-8 md:h-8" />
                                 </div>
 
-                                <div className="mb-3 md:mb-8">
-                                    <span className="text-[9px] md:text-sm font-black text-primary-500 tracking-[0.15em] uppercase mb-1.5 md:mb-4 block">
+                                <div className="mb-3 md:mb-6">
+                                    <span className="text-[9px] md:text-sm font-black text-primary-500 tracking-[0.15em] uppercase mb-1 md:mb-3 block">
                                         Tahap {displayStep.id} dari 5
                                     </span>
-                                    <h3 className="text-xl md:text-5xl font-black text-primary-800 mb-2 md:mb-6 drop-shadow-sm transition-all duration-300 uppercase">
+                                    <h3 className="text-xl md:text-5xl font-black text-primary-800 mb-1.5 md:mb-4 drop-shadow-sm transition-all duration-300 uppercase">
                                         {displayStep.name}
                                     </h3>
-                                    <div className="w-10 md:w-24 h-1 md:h-2 bg-primary-600 rounded-full mb-3 md:mb-8 shadow-sm"></div>
+                                    <div className="w-10 md:w-24 h-1 md:h-2 bg-primary-600 rounded-full mb-3 md:mb-6 shadow-sm"></div>
                                 </div>
 
                                 <p className="text-xs md:text-xl text-gray-700 leading-relaxed font-medium transition-all duration-500 opacity-90">
@@ -207,32 +208,7 @@ export default function CircularEconomy() {
 
                     </div>
 
-                    {/* Bottom Impact Cards */}
-                    <div className="grid grid-cols-2 gap-3 md:gap-10 mt-12 md:mt-20">
-                        <div className="group bg-gradient-to-br from-primary-50 to-primary-100 p-5 md:p-10 rounded-2xl md:rounded-3xl shadow-lg border-2 border-primary-200 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-                            <div className="w-10 h-10 md:w-14 md:h-14 bg-white rounded-xl md:rounded-2xl flex items-center justify-center text-primary-600 mb-4 md:mb-6 shadow-md group-hover:rotate-12 transition-transform">
-                                <Target className="w-5 h-5 md:w-7 md:h-7" />
-                            </div>
-                            <h3 className="text-sm md:text-2xl font-bold text-primary-800 mb-2 md:mb-4 uppercase tracking-tight">
-                                Misi Kami
-                            </h3>
-                            <p className="text-primary-700 text-[10px] md:text-lg leading-relaxed font-medium">
-                                Mengubah limbah popok menjadi produk bernilai ekonomi tinggi.
-                            </p>
-                        </div>
 
-                        <div className="group bg-gradient-to-br from-cream-50 to-cream-100 p-5 md:p-10 rounded-2xl md:rounded-3xl shadow-lg border-2 border-cream-300 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-                            <div className="w-10 h-10 md:w-14 md:h-14 bg-white rounded-xl md:rounded-2xl flex items-center justify-center text-primary-600 mb-4 md:mb-6 shadow-md group-hover:-rotate-12 transition-transform">
-                                <Globe className="w-5 h-5 md:w-7 md:h-7" />
-                            </div>
-                            <h3 className="text-sm md:text-2xl font-bold text-primary-800 mb-2 md:mb-4 uppercase tracking-tight">
-                                Dampak
-                            </h3>
-                            <p className="text-primary-700 text-[10px] md:text-lg leading-relaxed font-medium">
-                                Mengurangi pencemaran lingkungan & edukasi gaya hidup sirkular.
-                            </p>
-                        </div>
-                    </div>
                 </div>
             </div>
 

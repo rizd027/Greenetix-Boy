@@ -45,7 +45,7 @@ export default function Contact() {
     ];
 
     return (
-        <section id="contact" className="py-12 md:py-24 bg-cream-50 relative overflow-hidden">
+        <section id="contact" className="py-10 md:py-16 bg-cream-50 relative overflow-hidden">
             {/* Background decoration */}
             <div className="absolute top-0 right-0 w-1/3 h-full bg-primary-100/50 skew-x-12 translate-x-1/2 -z-10"></div>
 
@@ -55,24 +55,24 @@ export default function Contact() {
 
                         {/* Left Side: Info & Map Placeholder */}
                         <div>
-                            <h2 className="text-2xl md:text-5xl font-black text-primary-800 mb-3 md:mb-6 uppercase tracking-tight">
+                            <h2 className="text-2xl md:text-4xl font-black text-primary-800 mb-2 md:mb-4 uppercase tracking-tight">
                                 Hubungi Kami
                             </h2>
-                            <p className="text-sm md:text-xl text-primary-600 mb-6 md:mb-12 font-medium leading-relaxed">
+                            <p className="text-xs md:text-lg text-primary-600 mb-4 md:mb-8 font-medium leading-relaxed max-w-xl">
                                 Punya pertanyaan tentang produk kami atau ingin berkolaborasi?
                                 Kami siap membantu Anda mewujudkan lingkungan yang lebih hijau.
                             </p>
 
-                            <div className="grid gap-5 md:gap-8 mb-8 md:mb-12">
+                            <div className="grid gap-4 md:gap-5 mb-6 md:mb-8">
                                 {contactInfo.map((info, index) => (
                                     <div key={index} className="flex gap-4 md:gap-6 group">
-                                        <div className="w-10 h-10 md:w-14 md:h-14 bg-white rounded-xl md:rounded-2xl shadow-md flex items-center justify-center text-primary-600 group-hover:scale-110 transition-transform duration-300 transform group-hover:rotate-6">
-                                            <info.icon className="w-5 h-5 md:w-7 md:h-7" />
+                                        <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl md:rounded-2xl shadow-md flex items-center justify-center text-primary-600 group-hover:scale-110 transition-transform duration-300 transform group-hover:rotate-6">
+                                            <info.icon className="w-5 h-5 md:w-6 md:h-6" />
                                         </div>
                                         <div>
-                                            <h4 className="font-black text-gray-800 text-sm md:text-lg mb-0.5 md:mb-1 uppercase tracking-tight">{info.title}</h4>
+                                            <h4 className="font-black text-gray-800 text-sm md:text-base mb-0 md:mb-0.5 uppercase tracking-tight">{info.title}</h4>
                                             {info.details.map((detail, i) => (
-                                                <p key={i} className="text-[11px] md:text-base text-gray-600 font-medium">{detail}</p>
+                                                <p key={i} className="text-[10px] md:text-sm text-gray-600 font-medium">{detail}</p>
                                             ))}
                                         </div>
                                     </div>
@@ -80,7 +80,7 @@ export default function Contact() {
                             </div>
 
                             {/* Map Placeholder */}
-                            <div className="rounded-2xl md:rounded-3xl overflow-hidden shadow-xl h-48 md:h-64 bg-gray-200 relative group border-2 md:border-4 border-white">
+                            <div className="rounded-2xl md:rounded-3xl overflow-hidden shadow-xl h-40 md:h-48 bg-gray-200 relative group border-2 md:border-4 border-white">
                                 <div className="absolute inset-0 bg-primary-800/20 group-hover:bg-primary-800/10 transition-colors duration-300"></div>
                                 <div className="absolute inset-0 flex items-center justify-center flex-col text-primary-900 z-10 pointer-events-none">
                                     <MapPin className="w-8 h-8 md:w-10 md:h-10 mb-2" />
@@ -100,13 +100,13 @@ export default function Contact() {
                         </div>
 
                         {/* Right Side: Contact Form */}
-                        <div className="bg-white p-5 sm:p-10 md:p-12 rounded-2xl md:rounded-[2.5rem] shadow-2xl relative">
+                        <div className="bg-white p-5 sm:p-8 md:p-10 rounded-2xl md:rounded-[2rem] shadow-2xl relative">
                             <div className="absolute -top-3 -right-3 sm:-top-6 sm:-right-6 w-12 h-12 sm:w-24 sm:h-24 bg-primary-600 rounded-full flex items-center justify-center text-white shadow-xl transform rotate-12">
                                 <Mail className="w-6 h-6 sm:w-10 sm:h-10" />
                             </div>
 
-                            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
-                                <div className="grid md:grid-cols-2 gap-4 md:gap-6">
+                            <form onSubmit={handleSubmit} className="space-y-3 md:space-y-4">
+                                <div className="grid md:grid-cols-2 gap-3 md:gap-4 font-bold">
                                     <div className="space-y-1.5 md:space-y-2">
                                         <label className="text-[10px] md:text-sm font-black text-gray-700 ml-1 uppercase tracking-wider">Nama Lengkap</label>
                                         <input
@@ -115,48 +115,48 @@ export default function Contact() {
                                             value={formData.name}
                                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                             placeholder="John Doe"
-                                            className="w-full px-5 py-3 md:px-6 md:py-4 rounded-xl md:rounded-2xl bg-gray-50 border border-gray-100 text-sm md:text-base focus:outline-none focus:ring-4 focus:ring-primary-100 transition-all font-medium"
+                                            className="w-full px-4 py-2.5 md:px-5 md:py-3 rounded-xl md:rounded-2xl bg-gray-50 border border-gray-100 text-xs md:text-sm focus:outline-none focus:ring-4 focus:ring-primary-100 transition-all font-medium"
                                         />
                                     </div>
-                                    <div className="space-y-1.5 md:space-y-2">
-                                        <label className="text-[10px] md:text-sm font-black text-gray-700 ml-1 uppercase tracking-wider">Email</label>
+                                    <div className="space-y-1 md:space-y-1.5">
+                                        <label className="text-[10px] md:text-xs font-black text-gray-700 ml-1 uppercase tracking-wider">Email</label>
                                         <input
                                             required
                                             type="email"
                                             value={formData.email}
                                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                             placeholder="john@example.com"
-                                            className="w-full px-5 py-3 md:px-6 md:py-4 rounded-xl md:rounded-2xl bg-gray-50 border border-gray-100 text-sm md:text-base focus:outline-none focus:ring-4 focus:ring-primary-100 transition-all font-medium"
+                                            className="w-full px-4 py-2.5 md:px-5 md:py-3 rounded-xl md:rounded-2xl bg-gray-50 border border-gray-100 text-xs md:text-sm focus:outline-none focus:ring-4 focus:ring-primary-100 transition-all font-medium"
                                         />
                                     </div>
                                 </div>
-                                <div className="space-y-1.5 md:space-y-2">
-                                    <label className="text-[10px] md:text-sm font-black text-gray-700 ml-1 uppercase tracking-wider">Subjek</label>
+                                <div className="space-y-1 md:space-y-1.5">
+                                    <label className="text-[10px] md:text-xs font-black text-gray-700 ml-1 uppercase tracking-wider">Subjek</label>
                                     <input
                                         required
                                         type="text"
                                         value={formData.subject}
                                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                                         placeholder="Kerja Sama / Pertanyaan Produk"
-                                        className="w-full px-5 py-3 md:px-6 md:py-4 rounded-xl md:rounded-2xl bg-gray-50 border border-gray-100 text-sm md:text-base focus:outline-none focus:ring-4 focus:ring-primary-100 transition-all font-medium"
+                                        className="w-full px-4 py-2.5 md:px-5 md:py-3 rounded-xl md:rounded-2xl bg-gray-50 border border-gray-100 text-xs md:text-sm focus:outline-none focus:ring-4 focus:ring-primary-100 transition-all font-medium"
                                     />
                                 </div>
-                                <div className="space-y-1.5 md:space-y-2">
-                                    <label className="text-[10px] md:text-sm font-black text-gray-700 ml-1 uppercase tracking-wider">Pesan</label>
+                                <div className="space-y-1 md:space-y-1.5">
+                                    <label className="text-[10px] md:text-xs font-black text-gray-700 ml-1 uppercase tracking-wider">Pesan</label>
                                     <textarea
                                         required
-                                        rows={4}
+                                        rows={3}
                                         value={formData.message}
                                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                         placeholder="Tuliskan pesan Anda di sini..."
-                                        className="w-full px-5 py-3 md:px-6 md:py-4 rounded-xl md:rounded-2xl bg-gray-50 border border-gray-100 text-sm md:text-base focus:outline-none focus:ring-4 focus:ring-primary-100 transition-all resize-none font-medium"
+                                        className="w-full px-4 py-2.5 md:px-5 md:py-3 rounded-xl md:rounded-2xl bg-gray-50 border border-gray-100 text-xs md:text-sm focus:outline-none focus:ring-4 focus:ring-primary-100 transition-all resize-none font-medium"
                                     ></textarea>
                                 </div>
 
                                 <button
                                     type="submit"
                                     disabled={isSubmitting || submitStatus === "success"}
-                                    className={`w-full py-4 md:py-5 rounded-xl md:rounded-2xl font-black text-sm md:text-lg transition-all transform hover:scale-[1.02] shadow-xl flex items-center justify-center gap-3 uppercase tracking-wider ${submitStatus === "success"
+                                    className={`w-full py-3 md:py-4 rounded-xl md:rounded-2xl font-black text-sm md:text-base transition-all transform hover:scale-[1.02] shadow-xl flex items-center justify-center gap-3 uppercase tracking-wider ${submitStatus === "success"
                                         ? "bg-green-500 text-white"
                                         : "bg-primary-600 text-white hover:bg-primary-700"
                                         } disabled:opacity-70 disabled:transform-none`}

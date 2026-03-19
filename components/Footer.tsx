@@ -6,7 +6,7 @@ export default function Footer() {
             <div className="container mx-auto px-4">
                 <div className="grid md:grid-cols-4 gap-6 md:gap-8 mb-6 md:mb-8">
                     <div className="md:col-span-2">
-                        <h3 className="text-xl md:text-3xl font-black mb-3 md:mb-4 uppercase tracking-tight">GREENETIX BOY</h3>
+                        <h3 className="text-xl md:text-3xl font-black mb-3 md:mb-4 uppercase tracking-tight">GREENETIX INDONESIA</h3>
                         <p className="text-[11px] md:text-base text-primary-100 mb-4 md:mb-6 leading-relaxed font-medium">
                             Transformasi limbah popok menjadi produk bernilai ekonomi tinggi untuk masa depan yang lebih berkelanjutan.
                         </p>
@@ -44,7 +44,7 @@ export default function Footer() {
 
                 <div className="border-t border-primary-700 pt-6 md:pt-8 text-center">
                     <p className="text-[10px] md:text-sm text-primary-200 font-bold uppercase tracking-widest">
-                        &copy; {new Date().getFullYear()} Greenetix Boy. All rights reserved.
+                        &copy; {new Date().getFullYear()} Greenetix Indonesia. All rights reserved.
                     </p>
                 </div>
             </div>

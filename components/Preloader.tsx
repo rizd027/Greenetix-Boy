@@ -63,29 +63,46 @@ export default function Preloader({ onComplete }: PreloaderProps) {
 
             <div className="relative z-10 flex flex-col items-center text-center px-4">
                 {/* Logo Animation */}
-                <div className="mb-8 relative w-32 md:w-48 overflow-hidden group">
-                    <div className="animate-reveal-up">
+                <div className="mb-8 relative w-44 md:w-60 h-16 md:h-24 animate-reveal-up">
+                    {/* Base Logo (Dimmed) */}
+                    <div className="absolute inset-0 opacity-20 brightness-0 invert">
                         <Image
                             src={getAssetPath("/logo.png")}
-                            alt="Greenetix Boy Logo"
-                            width={200}
-                            height={80}
-                            className="brightness-0 invert opacity-40"
+                            alt="Greenetix Indonesia Logo"
+                            fill
+                            className="object-contain"
+                            priority
                         />
                     </div>
-                    {/* Progress Fill Logo */}
+                    {/* Progress Fill Logo (Bright) - Clip Path Progress */}
                     <div
-                        className="absolute top-0 left-0 w-full h-full overflow-hidden transition-all duration-300"
-                        style={{ height: `${progress}%`, top: `${100 - progress}%` }}
+                        className="absolute inset-0 brightness-0 invert transition-all duration-300 ease-out"
+                        style={{ clipPath: `inset(${100 - progress}% 0 0 0)` }}
                     >
                         <Image
                             src={getAssetPath("/logo.png")}
-                            alt="Greenetix Boy Logo"
-                            width={200}
-                            height={80}
-                            className="brightness-0 invert absolute bottom-0"
-                            style={{ height: '80px', objectFit: 'contain' }}
+                            alt="Greenetix Indonesia Logo"
+                            fill
+                            className="object-contain"
+                            priority
                         />
+                    </div>
+                    {/* Shimmer/Glint Light Effect */}
+                    <div
+                        className="absolute inset-0 transition-all duration-300 pointer-events-none"
+                        style={{ 
+                            clipPath: `inset(${100 - progress}% 0 0 0)`,
+                            WebkitMaskImage: `url(${getAssetPath("/logo.png")})`,
+                            maskImage: `url(${getAssetPath("/logo.png")})`,
+                            WebkitMaskSize: "contain",
+                            maskSize: "contain",
+                            WebkitMaskRepeat: "no-repeat",
+                            maskRepeat: "no-repeat",
+                            WebkitMaskPosition: "center",
+                            maskPosition: "center"
+                        }}
+                    >
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent -translate-x-full animate-glint" />
                     </div>
                 </div>
 
@@ -122,8 +139,16 @@ export default function Preloader({ onComplete }: PreloaderProps) {
                     from { transform: translateY(20px); opacity: 0; }
                     to { transform: translateY(0); opacity: 1; }
                 }
+                @keyframes glint {
+                    0% { transform: translateX(-150%) skewX(-20deg); }
+                    50% { transform: translateX(150%) skewX(-20deg); }
+                    100% { transform: translateX(150%) skewX(-20deg); }
+                }
                 .animate-reveal-up {
                     animation: reveal-up 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+                }
+                .animate-glint {
+                    animation: glint 3s infinite cubic-bezier(0.19, 1, 0.22, 1);
                 }
             `}</style>
         </div>

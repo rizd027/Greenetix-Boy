@@ -10,7 +10,7 @@ interface FAQItem {
 
 const faqs: FAQItem[] = [
     {
-        question: "Apakah produk Greenetix Boy benar-benar steril?",
+        question: "Apakah produk Greenetix Indonesia benar-benar steril?",
         answer: "Ya, sterilitas adalah prioritas utama kami. Limbah popok melalui proses sterilisasi multi-tahap menggunakan pemanasan suhu tinggi dan bahan penukar ion khusus yang memastikan produk akhir bebas dari kuman, bakteri, dan bau."
     },
     {
@@ -27,7 +27,7 @@ const faqs: FAQItem[] = [
     },
     {
         question: "Bagaimana kerjasama dengan Shell LiveWire berdampak pada tim?",
-        answer: "Shell LiveWire membantu kami mengembangkan skala bisnis dan validasi teknologi. Ini memberikan akses ke mentor ahli dan jaringan industri global untuk mempercepat dampak lingkungan Greenetix Boy."
+        answer: "Shell LiveWire membantu kami mengembangkan skala bisnis dan validasi teknologi. Ini memberikan akses ke mentor ahli dan jaringan industri global untuk mempercepat dampak lingkungan Greenetix Indonesia."
     }
 ];
 
@@ -35,36 +35,38 @@ export default function FAQ() {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
     return (
-        <section id="faq" className="py-12 md:py-24 bg-cream-50">
-            <div className="container mx-auto px-4">
+        <section id="faq" className="py-8 md:py-16 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white relative overflow-hidden">
+            <div className="container mx-auto px-4 relative z-10">
                 <div className="max-w-3xl mx-auto">
-                    <div className="text-center mb-10 md:mb-16">
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-primary-100 rounded-full text-primary-700 text-[10px] md:text-xs font-black uppercase tracking-wider mb-3 md:mb-4">
-                            <HelpCircle className="w-3.5 h-3.5 md:w-4 md:h-4" />
+                    <div className="text-center mb-8 md:mb-12">
+                        <div className="inline-flex items-center gap-2 px-2.5 py-1 md:px-3 md:py-1.5 bg-primary-500/10 border border-primary-500/20 rounded-full text-primary-400 text-[9px] md:text-xs font-black uppercase tracking-widest mb-2 md:mb-3">
+                            <HelpCircle className="w-3 h-3 md:w-3.5 md:h-3.5 text-primary-500" />
                             FAQ
                         </div>
-                        <h2 className="text-2xl md:text-5xl font-black text-primary-900 mb-2 md:mb-6 uppercase tracking-tight">Informasi Penting</h2>
-                        <p className="text-xs md:text-lg text-primary-700 px-2 md:px-4 font-medium leading-relaxed">Punya pertanyaan seputar proses dan produk kami? Temukan jawabannya di sini.</p>
+                        <h2 className="text-xl md:text-3xl font-black text-white mb-1.5 md:mb-3 uppercase tracking-tight">Informasi Penting</h2>
+                        <p className="text-[10px] md:text-base text-primary-100/60 px-2 md:px-4 font-medium leading-relaxed">Punya pertanyaan seputar proses dan produk kami? Temukan jawabannya di sini.</p>
                     </div>
 
-                    <div className="space-y-3 md:space-y-4">
+                    <div className="space-y-2">
                         {faqs.map((faq, index) => (
                             <div
                                 key={index}
-                                className={`bg-white rounded-2xl md:rounded-3xl transition-all duration-300 border-2 ${openIndex === index ? 'border-primary-500 shadow-xl' : 'border-transparent shadow-sm'
+                                className={`rounded-xl md:rounded-2xl transition-all duration-300 border backdrop-blur-xl ${openIndex === index 
+                                    ? 'bg-white/10 border-primary-500/50 shadow-lg' 
+                                    : 'bg-white/5 border-white/5 hover:bg-white/[0.08]'
                                     }`}
                             >
                                 <button
                                     onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                                    className="w-full text-left p-5 md:p-8 flex items-center justify-between"
+                                    className="w-full text-left p-4 md:p-6 flex items-center justify-between"
                                 >
-                                    <span className={`text-sm md:text-xl font-black uppercase tracking-tight transition-colors leading-tight pr-4 ${openIndex === index ? 'text-primary-700' : 'text-gray-800'
+                                    <span className={`text-[13px] md:text-lg font-bold uppercase tracking-tight transition-colors leading-tight pr-4 ${openIndex === index ? 'text-primary-300' : 'text-white'
                                         }`}>
                                         {faq.question}
                                     </span>
-                                    <div className={`p-1.5 md:p-2 rounded-full transition-all duration-300 flex-shrink-0 ${openIndex === index ? 'bg-primary-600 text-white rotate-180' : 'bg-primary-50 text-primary-600'
+                                    <div className={`p-1 md:p-1.5 rounded-full transition-all duration-300 flex-shrink-0 ${openIndex === index ? 'bg-primary-500 text-white rotate-180' : 'bg-white/5 text-white/50'
                                         }`}>
-                                        <ChevronDown className="w-4 h-4 md:w-5 md:h-5" />
+                                        <ChevronDown className="w-3.5 h-3.5 md:w-4 md:h-4" />
                                     </div>
                                 </button>
 
@@ -72,7 +74,7 @@ export default function FAQ() {
                                     className={`overflow-hidden transition-all duration-500 ${openIndex === index ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'
                                         }`}
                                 >
-                                    <div className="p-5 md:p-8 pt-0 border-t border-gray-50 text-gray-600 leading-relaxed text-[11px] md:text-lg font-medium">
+                                    <div className="p-4 md:p-6 pt-0 border-t border-white/5 text-primary-100/90 leading-relaxed text-[11px] md:text-base font-medium">
                                         {faq.answer}
                                     </div>
                                 </div>
@@ -80,14 +82,14 @@ export default function FAQ() {
                         ))}
                     </div>
 
-                    <div className="mt-8 md:mt-16 bg-gradient-to-r from-primary-600 to-primary-800 p-6 md:p-10 rounded-2xl md:rounded-[2.5rem] shadow-2xl relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 w-24 md:w-32 h-24 md:h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-125 transition-transform"></div>
-                        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-5 md:gap-8">
+                    <div className="mt-8 md:mt-12 bg-gradient-to-r from-primary-800/50 to-primary-950/50 p-5 md:p-8 rounded-2xl md:rounded-3xl shadow-xl relative overflow-hidden group border border-white/5">
+                        <div className="absolute top-0 right-0 w-20 h-20 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-125 transition-transform"></div>
+                        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6">
                             <div className="text-center md:text-left">
-                                <h3 className="text-lg md:text-2xl font-black text-white mb-1 md:mb-2 uppercase tracking-tight">Punya pertanyaan lain?</h3>
-                                <p className="text-white/80 text-[10px] md:text-base font-medium">Tim kami siap membantu menjelaskan secara mendalam.</p>
+                                <h3 className="text-base md:text-xl font-black text-white mb-0.5 uppercase tracking-tight">Punya pertanyaan lain?</h3>
+                                <p className="text-white/50 text-[9px] md:text-sm font-medium">Tim kami siap membantu menjelaskan secara mendalam.</p>
                             </div>
-                            <button className="w-full md:w-auto px-6 py-2.5 md:px-8 md:py-3.5 bg-white text-primary-700 font-black text-xs md:text-base rounded-full hover:bg-cream-50 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95 uppercase tracking-wider">
+                            <button className="w-full md:w-auto px-5 py-2 md:px-6 md:py-2.5 bg-white text-primary-800 font-black text-[10px] md:text-sm rounded-full hover:bg-cream-50 transition-all shadow-md active:scale-95 uppercase tracking-wider">
                                 Tanya Admin
                             </button>
                         </div>

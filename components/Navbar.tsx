@@ -1,23 +1,74 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { Languages, ChevronDown } from "lucide-react";
 import { getAssetPath } from "@/lib/utils";
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [language, setLanguage] = useState<"ID" | "EN">("ID");
+    const lastScrollY = useRef(0);
 
     useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
+        let timeoutId: NodeJS.Timeout;
+
+        const handleActivity = (e?: any) => {
+            if (e && e.type === "mousemove") {
+                if (e.clientY < 80) {
+                    setIsVisible(true);
+                } else {
+                    return; // Ignore mouse movements outside header
+                }
+            }
+            // For scroll events, handleScroll already set the visibility.
+            // This function primarily resets the inactivity timer.
+
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
+
+            // Update isScrolled
+            const currentScrollY = window.scrollY;
+            setIsScrolled(currentScrollY > 50);
+
+            // Hide after 2 seconds of inactivity if scrolled down
+            if (currentScrollY > 100 && !isMobileMenuOpen) {
+                timeoutId = setTimeout(() => {
+                    setIsVisible(false);
+                }, 1000);
+            }
         };
 
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY < lastScrollY.current) {
+                // Scroll Up -> Show
+                setIsVisible(true);
+            } else if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+                // Scroll Down -> Hide Immediately
+                setIsVisible(false);
+            }
+
+            lastScrollY.current = currentScrollY;
+            handleActivity({ type: "scroll" });
+        };
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        window.addEventListener("mousemove", handleActivity);
+
+        // Initial check
+        handleActivity();
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("mousemove", handleActivity);
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
+        };
+    }, [isMobileMenuOpen]);
 
     const scrollToSection = (id: string) => {
         const element = document.getElementById(id);
@@ -29,18 +80,18 @@ export default function Navbar() {
 
     const navLinks = [
         { id: "home", label: "Beranda" },
+        { id: "blog", label: "Berita", badge: "NEW" },
         { id: "circular-economy", label: "Ekonomi Sirkular" },
+        { id: "impact", label: "KALKULATOR DAMPAK" },
         { id: "products", label: "Produk" },
-        { id: "impact", label: "Dampak" },
-        { id: "team", label: "Tim" },
-        { id: "contact", label: "Kontak" },
     ];
 
     return (
         <nav
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || isMobileMenuOpen
-                ? "bg-white shadow-lg"
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${isScrolled || isMobileMenuOpen
+                ? "bg-white/80 backdrop-blur-md shadow-lg"
                 : "bg-transparent"
+                } ${isVisible ? "translate-y-0" : "-translate-y-full"
                 }`}
         >
             <div className="container mx-auto px-4">
@@ -53,7 +104,7 @@ export default function Navbar() {
                         <div className="relative w-24 md:w-40 transform group-hover:scale-110 transition-transform duration-300">
                             <Image
                                 src={getAssetPath("/logo.png")}
-                                alt="Greenetix Boy Logo"
+                                alt="Greenetix Indonesia Logo"
                                 width={140}
                                 height={50}
                                 className="object-contain w-full h-auto"
@@ -67,27 +118,23 @@ export default function Navbar() {
                             <button
                                 key={link.id}
                                 onClick={() => scrollToSection(link.id)}
-                                className={`px-4 py-2 rounded-full font-black text-sm uppercase tracking-tight transition-all duration-300 ${isScrolled
+                                className={`relative px-4 py-2 rounded-full font-black text-sm uppercase tracking-tight transition-all duration-300 ${isScrolled
                                     ? "text-primary-700 hover:bg-primary-100"
                                     : "text-white hover:bg-white/20"
                                     }`}
                             >
                                 {link.label}
+                                {link.badge && (
+                                    <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-[8px] px-1.5 py-0.5 rounded-full animate-pulse shadow-sm">
+                                        {link.badge}
+                                    </span>
+                                )}
                             </button>
                         ))}
                     </div>
 
-                    {/* CTA & Language */}
+                    {/* CTA */}
                     <div className="hidden lg:flex items-center gap-4">
-                        <button
-                            onClick={() => setLanguage(language === "ID" ? "EN" : "ID")}
-                            className={`flex items-center gap-2 px-3 py-2 rounded-full font-black text-xs uppercase tracking-widest transition-all ${isScrolled ? "text-primary-800 hover:bg-primary-50" : "text-white hover:bg-white/20"
-                                }`}
-                        >
-                            <Languages size={16} />
-                            {language}
-                            <ChevronDown size={12} className="opacity-50" />
-                        </button>
 
                         <button
                             onClick={() => scrollToSection("contact")}
@@ -133,23 +180,18 @@ export default function Navbar() {
                             <button
                                 key={link.id}
                                 onClick={() => scrollToSection(link.id)}
-                                className="px-4 py-3 rounded-xl font-black text-xs uppercase tracking-widest text-primary-700 hover:bg-primary-50 transition-all duration-300 text-left border-b border-primary-50/50 last:border-0"
+                                className="relative px-4 py-3 rounded-xl font-black text-xs uppercase tracking-widest text-primary-700 hover:bg-primary-50 transition-all duration-300 text-left border-b border-primary-50/50 last:border-0"
                             >
-                                {link.label}
+                                <span className="flex items-center justify-between w-full">
+                                    {link.label}
+                                    {link.badge && (
+                                        <span className="bg-orange-500 text-white text-[8px] px-2 py-0.5 rounded-full animate-pulse">
+                                            {link.badge}
+                                        </span>
+                                    )}
+                                </span>
                             </button>
                         ))}
-                        <div className="px-4 py-4 flex items-center justify-between border-t border-primary-50 mt-2">
-                            <span className="text-[10px] font-black uppercase tracking-widest text-primary-400 flex items-center gap-2">
-                                <Languages size={14} />
-                                Bahasa / Language
-                            </span>
-                            <button
-                                onClick={() => setLanguage(language === "ID" ? "EN" : "ID")}
-                                className="px-4 py-1.5 bg-primary-600 text-white rounded-full font-black text-[10px] uppercase tracking-widest"
-                            >
-                                {language}
-                            </button>
-                        </div>
                         <button
                             onClick={() => scrollToSection("contact")}
                             className="mt-2 px-4 py-3.5 rounded-xl font-black text-xs uppercase tracking-widest bg-primary-600 text-white shadow-lg shadow-primary-200 active:scale-95 transition-all"

@@ -18,7 +18,7 @@ const testimonials: Testimonial[] = [
         name: "Dr. Budi Santoso",
         role: "Kepala Dinas Lingkungan Hidup",
         company: "Pemerintah Kota",
-        content: "Greenetix Boy memberikan solusi inovatif untuk masalah limbah popok yang selama ini menjadi tantangan besar. Program ini sangat inspiring dan memberikan dampak positif nyata.",
+        content: "Greenetix Indonesia memberikan solusi inovatif untuk masalah limbah popok yang selama ini menjadi tantangan besar. Program ini sangat inspiring dan memberikan dampak positif nyata.",
         rating: 5,
     },
     {
@@ -26,7 +26,7 @@ const testimonials: Testimonial[] = [
         name: "Siti Nurhaliza",
         role: "Founder",
         company: "Green Community",
-        content: "Kolaborasi dengan Greenetix Boy membuka mata kami tentang potensi ekonomi sirkular. Produk-produk mereka berkualitas tinggi dan ramah lingkungan.",
+        content: "Kolaborasi dengan Greenetix Indonesia membuka mata kami tentang potensi ekonomi sirkular. Produk-produk mereka berkualitas tinggi dan ramah lingkungan.",
         rating: 5,
     },
     {
@@ -34,7 +34,7 @@ const testimonials: Testimonial[] = [
         name: "Ahmad Hidayat",
         role: "Petani Organik",
         company: "Tani Sejahtera",
-        content: "PUPO dari Greenetix Boy sangat membantu meningkatkan hasil panen kami. Media tanam ini kaya nutrisi dan memang terbukti efektif untuk tanaman organik.",
+        content: "PUPO dari Greenetix Indonesia sangat membantu meningkatkan hasil panen kami. Media tanam ini kaya nutrisi dan memang terbukti efektif untuk tanaman organik.",
         rating: 5,
     },
 ];
@@ -43,27 +43,27 @@ export default function Testimonials() {
     const [activeIndex, setActiveIndex] = useState(0);
 
     return (
-        <section className="py-10 md:py-20 bg-gradient-to-b from-white to-cream-50">
+        <section className="py-12 md:py-14 bg-gradient-to-b from-white to-cream-50">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-8 md:mb-16">
+                <div className="text-center mb-4 md:mb-8">
                     <h2 className="text-2xl md:text-5xl font-black text-primary-800 mb-2 md:mb-4 uppercase tracking-tight">
                         Kata Mereka
                     </h2>
                     <p className="text-sm md:text-xl text-primary-600 max-w-2xl mx-auto font-medium">
-                        Testimoni dari mitra dan pengguna produk Greenetix Boy
+                        Testimoni dari mitra dan pengguna produk Greenetix Indonesia
                     </p>
                 </div>
 
                 <div className="max-w-4xl mx-auto">
                     {/* Main Testimonial Card */}
-                    <div className="bg-white rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl p-6 md:p-12 mb-6 md:mb-8 relative overflow-hidden">
+                    <div className="bg-white rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl p-5 md:p-8 mb-4 md:mb-6 relative overflow-hidden">
                         <div className="absolute top-0 right-0 text-7xl md:text-9xl text-primary-100 font-serif leading-none opacity-50">
                             "
                         </div>
 
                         <div className="relative z-10">
                             {/* Stars */}
-                            <div className="flex gap-1 mb-4 md:mb-6">
+                            <div className="flex gap-1 mb-3 md:mb-4">
                                 {[...Array(testimonials[activeIndex].rating)].map((_, i) => (
                                     <Star
                                         key={i}
@@ -73,7 +73,7 @@ export default function Testimonials() {
                             </div>
 
                             {/* Content */}
-                            <p className="text-sm md:text-xl text-gray-700 leading-relaxed mb-6 md:mb-8 italic font-medium">
+                            <p className="text-sm md:text-xl text-gray-700 leading-relaxed mb-4 md:mb-6 italic font-medium">
                                 "{testimonials[activeIndex].content}"
                             </p>
 
@@ -113,7 +113,7 @@ export default function Testimonials() {
                     </div>
 
                     {/* Navigation Arrows */}
-                    <div className="flex justify-center gap-3 md:gap-4 mt-6 md:mt-8">
+                    <div className="flex justify-center gap-3 md:gap-4 mt-4 md:mt-6">
                         <button
                             onClick={() =>
                                 setActiveIndex((prev) =>

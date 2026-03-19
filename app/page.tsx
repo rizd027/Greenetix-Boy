@@ -1,6 +1,5 @@
-"use client";
-
-import { useState } from "react";
+import fs from "fs";
+import path from "path";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import CircularEconomy from "@/components/CircularEconomy";
@@ -14,39 +13,40 @@ import Testimonials from "@/components/Testimonials";
 import Team from "@/components/Team";
 import BlogSection from "@/components/BlogSection";
 import FAQ from "@/components/FAQ";
-import Newsletter from "@/components/Newsletter";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import ScrollToTop from "@/components/ScrollToTop";
-import Preloader from "@/components/Preloader";
+import ClientWrapper from "@/components/ClientWrapper";
 
 export default function Home() {
-    const [isLoading, setIsLoading] = useState(true);
+    let heroImages: string[] = [];
+    try {
+        const heroDir = path.join(process.cwd(), "public", "hero");
+        const imageExtensions = [".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif"];
+        const files = fs.readdirSync(heroDir);
+        heroImages = files
+            .filter((file) => imageExtensions.includes(path.extname(file).toLowerCase()))
+            .map((file) => `/hero/${file}`);
+    } catch {
+        heroImages = [];
+    }
 
     return (
-        <>
-            {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
-
-            <div className={isLoading ? "h-screen overflow-hidden opacity-0" : "opacity-100 transition-opacity duration-1000"}>
-                <Navbar />
-                <main className="min-h-screen bg-gradient-to-b from-cream-50 via-white to-cream-100">
-                    <Hero />
-                    <CircularEconomy />
-                    <ImpactCalculator />
-                    <Products />
-                    <Gallery />
-                    <Timeline />
-                    <VideoShowcase />
-                    <Stats />
-                    <Testimonials />
-                    <BlogSection />
-                    <FAQ />
-                    <Newsletter />
-                    <Contact />
-                    <Footer />
-                </main>
-                <ScrollToTop />
-            </div>
-        </>
+        <ClientWrapper>
+            <Navbar />
+            <main className="min-h-screen bg-gradient-to-b from-cream-50 via-white to-cream-100">
+                <Hero images={heroImages} />
+                <BlogSection />
+                <CircularEconomy />
+                <ImpactCalculator />
+                <Products />
+                <Timeline />
+                <VideoShowcase />
+                <Stats />
+                <Testimonials />
+                <FAQ />
+                <Contact />
+                <Footer />
+            </main>
+        </ClientWrapper>
     );
 }
