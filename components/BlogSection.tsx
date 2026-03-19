@@ -13,6 +13,27 @@ export default function BlogSection() {
     const [selectedPost, setSelectedPost] = useState<typeof posts[0] | null>(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [fullscreenImageIndex, setFullscreenImageIndex] = useState<number | null>(null);
+    const [activeMobileIndex, setActiveMobileIndex] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
+
+    // Check for mobile viewport
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    // Auto slide for mobile carousel
+    useEffect(() => {
+        if (!isMobile || selectedPost) return;
+        const interval = setInterval(() => {
+            setActiveMobileIndex((prev) => (prev + 1) % posts.length);
+        }, 5000);
+        return () => clearInterval(interval);
+    }, [isMobile, selectedPost]);
 
     const handleNext = (e: React.MouseEvent) => {
         e.stopPropagation();
@@ -94,58 +115,77 @@ export default function BlogSection() {
                         </Link>
                     </div>
 
-                    <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                        {posts.map((post, index) => (
-                            <div
-                                key={index}
-                                className={`group cursor-pointer ${index === 2 ? 'hidden lg:block' : ''}`}
-                                onClick={() => setSelectedPost(post)}
-                            >
-                                {/* Image Container */}
-                                <div className="relative h-40 md:h-64 rounded-[1.5rem] md:rounded-[2.2rem] overflow-hidden shadow-lg mb-3 md:mb-4">
-                                    <Image
-                                        src={post.image}
-                                        alt={post.title}
-                                        fill
-                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                        sizes="(max-width: 768px) 50vw, 33vw"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-primary-900/40 to-transparent"></div>
-                                    <div className="absolute top-3 left-3 md:top-6 md:left-6">
-                                        <span className="px-3 py-0.5 md:px-4 md:py-1 bg-white/90 backdrop-blur-sm rounded-full text-[10px] md:text-xs font-bold text-primary-700 shadow-md">
-                                            {post.category}
-                                        </span>
+                    <div className="relative overflow-hidden md:overflow-visible group/carousel">
+                        <motion.div
+                            animate={{ x: isMobile ? `-${activeMobileIndex * 100}%` : 0 }}
+                            transition={{ type: "spring", damping: 25, stiffness: 120 }}
+                            className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+                        >
+                            {posts.map((post, index) => (
+                                <div
+                                    key={index}
+                                    className="w-full flex-shrink-0 md:w-auto md:flex-shrink-1 group cursor-pointer"
+                                    onClick={() => setSelectedPost(post)}
+                                >
+                                    {/* Image Container */}
+                                    <div className="relative h-56 md:h-64 rounded-[2rem] md:rounded-[2.2rem] overflow-hidden shadow-lg mb-4 md:mb-6">
+                                        <Image
+                                            src={post.image}
+                                            alt={post.title}
+                                            fill
+                                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-primary-900/40 to-transparent"></div>
+                                        <div className="absolute top-6 left-6">
+                                            <span className="px-4 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold text-primary-700 shadow-md">
+                                                {post.category}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    {/* Meta */}
+                                    <div className="flex items-center gap-6 text-xs text-gray-500 mb-3 font-medium">
+                                        <div className="flex items-center gap-2">
+                                            <Calendar size={14} className="text-primary-500" />
+                                            {post.date}
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <User size={14} className="text-primary-500" />
+                                            {post.author}
+                                        </div>
+                                    </div>
+
+                                    {/* Content */}
+                                    <h3 className="text-xl md:text-2xl font-bold text-primary-900 mb-3 group-hover:text-primary-600 transition-colors line-clamp-2 leading-tight uppercase tracking-tight">
+                                        {post.title}
+                                    </h3>
+                                    <p className="text-gray-600 leading-relaxed mb-5 line-clamp-3 text-sm md:text-base font-medium">
+                                        {post.excerpt}
+                                    </p>
+
+                                    <div className="flex items-center gap-3 text-primary-700 font-extrabold text-sm uppercase tracking-wider group-hover:gap-5 transition-all">
+                                        BACA SELENGKAPNYA
+                                        <ArrowRight size={18} />
                                     </div>
                                 </div>
+                            ))}
+                        </motion.div>
 
-                                {/* Meta */}
-                                <div className="flex flex-wrap items-center gap-2 md:gap-6 text-[10px] md:text-xs text-gray-500 mb-1.5 md:mb-2 font-medium">
-                                    <div className="flex items-center gap-1.5 md:gap-2">
-                                        <Calendar size={12} className="md:w-[14px] md:h-[14px] text-primary-500" />
-                                        {post.date}
-                                    </div>
-                                    <div className="flex items-center gap-1.5 md:gap-2">
-                                        <User size={12} className="md:w-[14px] md:h-[14px] text-primary-500" />
-                                        {post.author}
-                                    </div>
-                                </div>
-
-                                {/* Content */}
-                                <h3 className="text-sm md:text-2xl font-bold text-primary-900 mb-1.5 md:mb-2 group-hover:text-primary-600 transition-colors line-clamp-2 leading-tight">
-                                    {post.title}
-                                </h3>
-                                <p className="hidden md:block text-gray-600 leading-relaxed mb-4 line-clamp-3 text-sm md:text-base">
-                                    {post.excerpt}
-                                </p>
-
-                                <div className="flex items-center gap-2 md:gap-3 text-primary-700 font-extrabold text-[10px] md:text-sm uppercase tracking-wider group-hover:gap-5 transition-all">
-                                    {/* Baca Selengkapnya text is hidden on mobile to avoid overlap */}
-                                    <span className="hidden md:inline">Baca Selengkapnya</span>
-                                    <span className="md:hidden">Detail</span>
-                                    <ArrowRight size={14} className="md:w-[18px] md:h-[18px]" />
-                                </div>
-                            </div>
-                        ))}
+                        {/* Navigation Dots (Mobile only) */}
+                        <div className="flex md:hidden justify-center items-center gap-2 mt-8">
+                            {posts.map((_, idx) => (
+                                <button
+                                    key={idx}
+                                    onClick={() => setActiveMobileIndex(idx)}
+                                    className={`h-1.5 transition-all rounded-full ${idx === activeMobileIndex
+                                        ? "w-8 bg-primary-600"
+                                        : "w-2 bg-primary-200"
+                                        }`}
+                                    aria-label={`Go to slide ${idx + 1}`}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </div>
 
