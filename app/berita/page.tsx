@@ -36,14 +36,6 @@ export default function BeritaPage() {
         };
     }, [selectedPost, fullscreenImageIndex]);
 
-    // Auto slider for hero image
-    useEffect(() => {
-        if (!selectedPost || !selectedPost.images || selectedPost.images.length <= 1 || fullscreenImageIndex !== null) return;
-        const interval = setInterval(() => {
-            setCurrentImageIndex((prev) => (prev + 1) % selectedPost.images!.length);
-        }, 3000);
-        return () => clearInterval(interval);
-    }, [selectedPost, fullscreenImageIndex]);
 
     // Article Navigation Handlers
     const handleNext = (e: React.MouseEvent) => {
@@ -225,11 +217,11 @@ export default function BeritaPage() {
                                         </div>
                                     </div>
 
-                                    <h3 className={`font-black text-primary-950 group-hover:text-primary-600 transition-colors line-clamp-2 leading-snug ${viewMode === "grid" ? "text-xl mb-1.5" : "text-2xl md:text-3xl mb-3"}`}>
+                                    <h3 className={`font-black text-primary-950 group-hover:text-primary-600 transition-colors leading-snug ${viewMode === "grid" ? "text-xl mb-1.5" : "text-2xl md:text-3xl mb-3"}`}>
                                         {post.title}
                                     </h3>
 
-                                    <p className={`text-gray-500 leading-relaxed font-medium flex-grow ${viewMode === "grid" ? "text-sm mb-3 line-clamp-3" : "text-base mb-6 line-clamp-2 md:line-clamp-4"}`}>
+                                    <p className={`text-gray-500 leading-relaxed font-medium flex-grow ${viewMode === "grid" ? "text-sm mb-3" : "text-base mb-6"}`}>
                                         {post.excerpt}
                                     </p>
 

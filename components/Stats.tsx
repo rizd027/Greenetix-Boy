@@ -67,31 +67,20 @@ export default function Stats() {
 
     const animateCounters = () => {
         const duration = 2000;
-        const steps = 60;
-        const interval = duration / steps;
+        const startTime = performance.now();
 
-        stats.forEach((stat, index) => {
-            let current = 0;
-            const increment = stat.value / steps;
+        const update = (currentTime: number) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
 
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= stat.value) {
-                    setCounts((prev) => {
-                        const newCounts = [...prev];
-                        newCounts[index] = stat.value;
-                        return newCounts;
-                    });
-                    clearInterval(timer);
-                } else {
-                    setCounts((prev) => {
-                        const newCounts = [...prev];
-                        newCounts[index] = Math.floor(current);
-                        return newCounts;
-                    });
-                }
-            }, interval);
-        });
+            setCounts(stats.map((stat) => Math.floor(progress * stat.value)));
+
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            }
+        };
+
+        requestAnimationFrame(update);
     };
 
     return (
@@ -101,7 +90,7 @@ export default function Stats() {
             className="py-10 md:py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white relative overflow-hidden"
         >
             {/* Decorative background */}
-            <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0 opacity-10 hidden md:block">
                 <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
                 <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
             </div>

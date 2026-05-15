@@ -14,10 +14,10 @@ export default function Preloader({ onComplete }: PreloaderProps) {
 
     const assets = [
         "/logo.png",
-        "/product-display.jpg",
-        "/products-1.jpg",
-        "/products-2.jpg",
-        "/team-bersama.png",
+        "/galeri/display-produk.jpg",
+        "/produk/Briket.png",
+        "/produk/Pupo.jpeg",
+        "/dokumentasi/team-bersama.png",
         "/yafet.png",
         "/rohman.png",
         "/arief.png"

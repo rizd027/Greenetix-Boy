@@ -26,14 +26,6 @@ export default function BlogSection() {
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    // Auto slide for mobile carousel
-    useEffect(() => {
-        if (!isMobile || selectedPost) return;
-        const interval = setInterval(() => {
-            setActiveMobileIndex((prev) => (prev + 1) % posts.length);
-        }, 5000);
-        return () => clearInterval(interval);
-    }, [isMobile, selectedPost]);
 
     const handleNext = (e: React.MouseEvent) => {
         e.stopPropagation();
@@ -77,14 +69,6 @@ export default function BlogSection() {
         };
     }, [selectedPost, fullscreenImageIndex]);
 
-    // Auto slider for hero image
-    useEffect(() => {
-        if (!selectedPost || !selectedPost.images || selectedPost.images.length <= 1 || fullscreenImageIndex !== null) return;
-        const interval = setInterval(() => {
-            setCurrentImageIndex((prev) => (prev + 1) % selectedPost.images!.length);
-        }, 3000);
-        return () => clearInterval(interval);
-    }, [selectedPost, fullscreenImageIndex]);
 
     const handleNextFullscreenImage = (e: React.MouseEvent) => {
         e.stopPropagation();
@@ -110,7 +94,7 @@ export default function BlogSection() {
                             opacity: [0.1, 0.2, 0.1],
                         }}
                         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute -top-40 -left-20 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-primary-100/20 rounded-full blur-[60px] md:blur-[120px]"
+                        className="absolute -top-40 -left-20 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-primary-100/20 rounded-full blur-[60px] md:blur-[120px] will-change-transform hidden md:block"
                     />
                     <motion.div
                         animate={{
@@ -118,7 +102,7 @@ export default function BlogSection() {
                             opacity: [0.1, 0.15, 0.1],
                         }}
                         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                        className="absolute -bottom-40 -right-40 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-primary-50/40 rounded-full blur-[80px] md:blur-[150px]"
+                        className="absolute -bottom-40 -right-40 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-primary-50/40 rounded-full blur-[80px] md:blur-[150px] will-change-transform hidden md:block"
                     />
 
                     {/* Decorative Background Text - static on mobile, animated whileInView */}
@@ -184,7 +168,7 @@ export default function BlogSection() {
 
                     <div className="relative overflow-hidden md:overflow-visible group/carousel">
                         <motion.div
-                            animate={{ x: isMobile ? `-${activeMobileIndex * 100}%` : 0 }}
+                            animate={{ x: isMobile ? `calc(-${activeMobileIndex * 100}% - ${activeMobileIndex * 24}px)` : 0 }}
                             transition={{ type: "spring", damping: 25, stiffness: 120 }}
                             className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6"
                         >
@@ -224,10 +208,10 @@ export default function BlogSection() {
                                     </div>
 
                                     {/* Content */}
-                                    <h3 className="text-lg md:text-2xl font-black text-primary-900 mb-3 group-hover:text-primary-600 transition-colors line-clamp-2 leading-tight uppercase tracking-tight">
+                                    <h3 className="text-lg md:text-2xl font-black text-primary-900 mb-3 group-hover:text-primary-600 transition-colors leading-tight uppercase tracking-tight">
                                         {post.title}
                                     </h3>
-                                    <p className="text-gray-600 leading-relaxed mb-6 line-clamp-3 text-[11px] md:text-base font-medium opacity-80">
+                                    <p className="text-gray-600 leading-relaxed mb-6 text-[11px] md:text-base font-medium opacity-80">
                                         {post.excerpt}
                                     </p>
 
@@ -242,18 +226,36 @@ export default function BlogSection() {
                         </motion.div>
 
                         {/* Navigation Dots (Mobile only) */}
-                        <div className="flex md:hidden justify-center items-center gap-4 mt-12 mb-10">
-                            {posts.map((_, idx) => (
-                                <button
-                                    key={idx}
-                                    onClick={() => setActiveMobileIndex(idx)}
-                                    className={`transition-all duration-700 rounded-full ${idx === activeMobileIndex
-                                        ? "w-12 h-2.5 bg-primary-600 shadow-xl shadow-primary-600/30"
-                                        : "w-2.5 h-2.5 bg-primary-200 hover:bg-primary-300"
-                                        }`}
-                                    aria-label={`Go to slide ${idx + 1}`}
-                                />
-                            ))}
+                        <div className="flex md:hidden justify-center items-center gap-6 mt-12 mb-10">
+                            <button
+                                onClick={() => setActiveMobileIndex((prev) => Math.max(0, prev - 1))}
+                                className={`p-3 bg-white shadow-xl rounded-full text-primary-600 border border-primary-100 transition-all active:scale-90 ${activeMobileIndex === 0 ? "opacity-20 cursor-not-allowed" : "opacity-100"}`}
+                                disabled={activeMobileIndex === 0}
+                            >
+                                <ChevronLeft size={24} />
+                            </button>
+
+                            <div className="flex items-center gap-4">
+                                {posts.map((_, idx) => (
+                                    <button
+                                        key={idx}
+                                        onClick={() => setActiveMobileIndex(idx)}
+                                        className={`transition-all duration-700 rounded-full ${idx === activeMobileIndex
+                                            ? "w-12 h-2.5 bg-primary-600 shadow-xl shadow-primary-600/30"
+                                            : "w-2.5 h-2.5 bg-primary-200 hover:bg-primary-300"
+                                            }`}
+                                        aria-label={`Go to slide ${idx + 1}`}
+                                    />
+                                ))}
+                            </div>
+
+                            <button
+                                onClick={() => setActiveMobileIndex((prev) => Math.min(posts.length - 1, prev + 1))}
+                                className={`p-3 bg-white shadow-xl rounded-full text-primary-600 border border-primary-100 transition-all active:scale-90 ${activeMobileIndex === posts.length - 1 ? "opacity-20 cursor-not-allowed" : "opacity-100"}`}
+                                disabled={activeMobileIndex === posts.length - 1}
+                            >
+                                <ChevronRight size={24} />
+                            </button>
                         </div>
 
                         {/* Desktop & Mobile View All Link */}

@@ -55,6 +55,7 @@ export default function Hero({ images }: { images: string[] }) {
               fill
               className="object-cover"
               priority={index === 0}
+              loading={index === 0 ? undefined : "lazy"}
               sizes="100vw"
             />
             {/* Dark/Gradient Overlay for Readability */}
@@ -79,9 +80,9 @@ export default function Hero({ images }: { images: string[] }) {
 
       {/* Animated background elements (Moved on top) */}
       <div className="absolute inset-0 overflow-hidden z-10 pointer-events-none">
-        <div className="absolute top-20 left-10 w-64 h-64 bg-primary-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-        <div className="absolute top-40 right-20 w-72 h-72 bg-cream-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-primary-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+        <div className="absolute top-20 left-10 w-64 h-64 bg-primary-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob will-change-transform hidden md:block"></div>
+        <div className="absolute top-40 right-20 w-72 h-72 bg-cream-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000 will-change-transform hidden md:block"></div>
+        <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-primary-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000 will-change-transform hidden md:block"></div>
 
         {/* Circular Economy Symbols */}
         <div className="absolute top-1/4 right-1/4 opacity-10">
@@ -139,6 +140,9 @@ export default function Hero({ images }: { images: string[] }) {
         }
         .animate-blob {
           animation: blob 7s infinite;
+        }
+        .will-change-transform {
+          will-change: transform;
         }
         .animation-delay-2000 {
           animation-delay: 2s;
