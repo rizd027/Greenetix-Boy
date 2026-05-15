@@ -68,8 +68,12 @@ export default function ChatBot() {
         <div className="relative">
             <AnimatePresence>
                 {isOpen && (
-                    <div
-                        className="fixed sm:absolute inset-0 sm:inset-auto sm:right-0 sm:bottom-16 md:sm:bottom-20 w-full sm:w-[380px] h-full sm:h-[500px] bg-white rounded-none sm:rounded-[2rem] shadow-2xl border-0 sm:border sm:border-primary-100 flex flex-col overflow-hidden z-[9999] sm:z-auto"
+                    <motion.div
+                        initial={{ x: "100%" }}
+                        animate={{ x: 0 }}
+                        exit={{ x: "100%" }}
+                        transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                        className="fixed inset-y-0 right-0 w-full sm:w-[400px] h-screen bg-white shadow-2xl flex flex-col overflow-hidden z-[9999] sm:rounded-l-lg border-l border-primary-100"
                     >
                         {/* Header */}
                         <div className="bg-gradient-to-r from-primary-600 to-primary-800 p-6 flex items-center justify-between">
@@ -111,7 +115,7 @@ export default function ChatBot() {
                                     key={idx}
                                     className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                                 >
-                                    <div className={`max-w-[85%] p-4 rounded-2xl text-sm font-medium leading-relaxed ${
+                                    <div className={`max-w-[85%] p-4 rounded-md text-sm font-medium leading-relaxed ${
                                         msg.role === "user" 
                                             ? "bg-primary-600 text-white rounded-tr-none shadow-lg shadow-primary-600/20" 
                                             : "bg-white text-gray-800 rounded-tl-none shadow-md border border-slate-100"
@@ -122,7 +126,7 @@ export default function ChatBot() {
                             ))}
                             {isLoading && (
                                 <div className="flex justify-start">
-                                    <div className="bg-white p-4 rounded-2xl rounded-tl-none border border-slate-100 shadow-md">
+                                    <div className="bg-white p-4 rounded-md rounded-tl-none border border-slate-100 shadow-md">
                                         <Loader2 className="w-5 h-5 text-primary-500 animate-spin" />
                                     </div>
                                 </div>
@@ -137,17 +141,17 @@ export default function ChatBot() {
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
                                 placeholder="Tulis pertanyaan..."
-                                className="flex-1 bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all font-medium"
+                                className="flex-1 bg-slate-50 border border-slate-100 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all font-medium"
                             />
                             <button
                                 type="submit"
                                 disabled={!input.trim() || isLoading}
-                                className="bg-primary-600 text-white p-3 rounded-xl shadow-lg hover:bg-primary-700 transition-all disabled:opacity-50 disabled:scale-95 active:scale-90"
+                                className="bg-primary-600 text-white p-3 rounded-lg shadow-lg hover:bg-primary-700 transition-all disabled:opacity-50 disabled:scale-95 active:scale-90"
                             >
                                 <Send size={20} />
                             </button>
                         </form>
-                    </div>
+                    </motion.div>
                 )}
             </AnimatePresence>
 
@@ -160,7 +164,7 @@ export default function ChatBot() {
                     isOpen ? "bg-red-500 text-white rotate-90" : "bg-primary-600 text-white"
                 }`}
             >
-                {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
+                {isOpen ? <X size={24} /> : <Sparkles size={24} />}
                 
                 {/* Notification Badge */}
                 {!isOpen && messages.length === 0 && (

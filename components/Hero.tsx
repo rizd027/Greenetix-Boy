@@ -43,25 +43,35 @@ export default function Hero({ images }: { images: string[] }) {
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Slideshow Background */}
       <div className="absolute inset-0 z-0">
-        {images.map((src, index) => (
-          <div
-            key={src}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentImageIndex ? "opacity-100" : "opacity-0"
+        {images.map((src, index) => {
+          // Only render current, next, and previous images to save memory and bandwidth
+          const isCurrent = index === currentImageIndex;
+          const isNext = index === (currentImageIndex + 1) % images.length;
+          const isPrev = index === (currentImageIndex - 1 + images.length) % images.length;
+          
+          if (!isCurrent && !isNext && !isPrev) return null;
+
+          return (
+            <div
+              key={src}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                isCurrent ? "opacity-100" : "opacity-0"
               }`}
-          >
-            <Image
-              src={src}
-              alt={`Slide ${index + 1}`}
-              fill
-              className="object-cover"
-              priority={index === 0}
-              loading={index === 0 ? undefined : "lazy"}
-              sizes="100vw"
-            />
-            {/* Dark/Gradient Overlay for Readability */}
-            <div className="absolute inset-0 bg-black/40 bg-gradient-to-b from-black/20 via-transparent to-black/60"></div>
-          </div>
-        ))}
+            >
+              <Image
+                src={src}
+                alt={`Slide ${index + 1}`}
+                fill
+                className="object-cover"
+                priority={index === 0}
+                loading={index === 0 ? undefined : "lazy"}
+                sizes="100vw"
+              />
+              {/* Dark/Gradient Overlay for Readability */}
+              <div className="absolute inset-0 bg-black/40 bg-gradient-to-b from-black/20 via-transparent to-black/60"></div>
+            </div>
+          );
+        })}
       </div>
 
       {/* Extra Dark Overlay for Text Readability */}

@@ -73,7 +73,7 @@ export default function CircularEconomy() {
                         opacity: [0.15, 0.25, 0.15],
                     }}
                     transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute -top-40 -right-20 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-primary-100/30 rounded-full blur-[60px] md:blur-[120px] will-change-transform hidden md:block"
+                    className="absolute -top-40 -right-20 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-primary-100/30 rounded-full blur-[40px] md:blur-[80px] will-change-transform hidden md:block"
                 />
                 <motion.div
                     animate={{
@@ -81,7 +81,7 @@ export default function CircularEconomy() {
                         opacity: [0.1, 0.15, 0.1],
                     }}
                     transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                    className="absolute -bottom-40 -left-20 w-[400px] md:w-[500px] h-[400px] md:h-[500px] bg-primary-50/40 rounded-full blur-[60px] md:blur-[100px] will-change-transform hidden md:block"
+                    className="absolute -bottom-40 -left-20 w-[400px] md:w-[500px] h-[400px] md:h-[500px] bg-primary-50/40 rounded-full blur-[40px] md:blur-[70px] will-change-transform hidden md:block"
                 />
 
                 {/* Large Background Text - static with whileInView opacity */}

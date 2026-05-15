@@ -14,10 +14,6 @@ export default function Preloader({ onComplete }: PreloaderProps) {
 
     const assets = [
         "/logo.png",
-        "/galeri/display-produk.jpg",
-        "/produk/Briket.png",
-        "/produk/Pupo.jpeg",
-        "/dokumentasi/team-bersama.png",
         "/yafet.png",
         "/rohman.png",
         "/arief.png"

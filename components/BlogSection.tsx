@@ -94,7 +94,7 @@ export default function BlogSection() {
                             opacity: [0.1, 0.2, 0.1],
                         }}
                         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute -top-40 -left-20 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-primary-100/20 rounded-full blur-[60px] md:blur-[120px] will-change-transform hidden md:block"
+                        className="absolute -top-40 -left-20 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-primary-100/20 rounded-full blur-[40px] md:blur-[80px] will-change-transform hidden md:block"
                     />
                     <motion.div
                         animate={{
@@ -102,7 +102,7 @@ export default function BlogSection() {
                             opacity: [0.1, 0.15, 0.1],
                         }}
                         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                        className="absolute -bottom-40 -right-40 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-primary-50/40 rounded-full blur-[80px] md:blur-[150px] will-change-transform hidden md:block"
+                        className="absolute -bottom-40 -right-40 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-primary-50/40 rounded-full blur-[50px] md:blur-[90px] will-change-transform hidden md:block"
                     />
 
                     {/* Decorative Background Text - static on mobile, animated whileInView */}

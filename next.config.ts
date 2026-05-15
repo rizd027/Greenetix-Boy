@@ -4,7 +4,7 @@ const isGitHubPages = process.env.GITHUB_ACTIONS === 'true';
 const repo = 'Greenetix-Boy';
 
 const nextConfig: NextConfig = {
-    output: 'export',
+    ...(isGitHubPages ? { output: 'export' as const } : {}),
     basePath: isGitHubPages ? `/${repo}` : '',
     trailingSlash: true,
     images: {
