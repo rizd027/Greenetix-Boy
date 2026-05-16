@@ -56,7 +56,7 @@ export const productsData = {
                 "Aman untuk digunakan"
             ],
             color: "from-stone-600 to-stone-800",
-            image: "/produk/Briket.png"
+            image: "/produk/Briket.jpg"
         }
     ],
     technicalInfo: {
