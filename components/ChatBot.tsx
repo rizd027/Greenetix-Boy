@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, Loader2, Bot, User, Sparkles } from "lucide-react";
 
@@ -15,7 +16,12 @@ export default function ChatBot() {
     const [input, setInput] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [viewportHeight, setViewportHeight] = useState("100dvh");
+    const [mounted, setMounted] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -38,16 +44,26 @@ export default function ChatBot() {
 
     useEffect(() => {
         const updateHeight = () => {
-            setViewportHeight(`${window.innerHeight}px`);
+            if (window.visualViewport) {
+                setViewportHeight(`${window.visualViewport.height}px`);
+            } else {
+                setViewportHeight(`${window.innerHeight}px`);
+            }
         };
         
         if (isOpen) {
             updateHeight();
             window.addEventListener("resize", updateHeight);
+            if (window.visualViewport) {
+                window.visualViewport.addEventListener("resize", updateHeight);
+            }
         }
         
         return () => {
             window.removeEventListener("resize", updateHeight);
+            if (window.visualViewport) {
+                window.visualViewport.removeEventListener("resize", updateHeight);
+            }
         };
     }, [isOpen]);
 
@@ -81,95 +97,100 @@ export default function ChatBot() {
     };
 
     return (
-        <div className="relative">
-            <AnimatePresence>
-                {isOpen && (
-                    <motion.div
-                        initial={{ x: "100%" }}
-                        animate={{ x: 0 }}
-                        exit={{ x: "100%" }}
-                        transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                        style={{ height: viewportHeight }}
-                        className="fixed top-0 right-0 w-full sm:w-[400px] bg-white shadow-2xl flex flex-col overflow-hidden z-[9999] sm:rounded-l-lg border-l border-primary-100"
-                    >
-                        {/* Header */}
-                        <div className="bg-gradient-to-r from-primary-600 to-primary-800 p-6 flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center">
-                                    <Bot className="text-white w-6 h-6" />
-                                </div>
-                                <div>
-                                    <h3 className="text-white font-black text-lg leading-none mb-1 uppercase tracking-wider">Greeny AI</h3>
-                                    <div className="flex items-center gap-1.5">
-                                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                                        <span className="text-white/70 text-[10px] font-bold uppercase tracking-widest">Online Now</span>
-                                    </div>
+    const chatWindow = (
+        <AnimatePresence>
+            {isOpen && (
+                <motion.div
+                    initial={{ x: "100%" }}
+                    animate={{ x: 0 }}
+                    exit={{ x: "100%" }}
+                    transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                    style={{ height: viewportHeight }}
+                    className="fixed top-0 right-0 w-full sm:w-[400px] bg-white shadow-2xl flex flex-col overflow-hidden z-[99999] sm:rounded-l-lg border-l border-primary-100"
+                >
+                    {/* Header */}
+                    <div className="bg-gradient-to-r from-primary-600 to-primary-800 p-6 flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center">
+                                <Bot className="text-white w-6 h-6" />
+                            </div>
+                            <div>
+                                <h3 className="text-white font-black text-lg leading-none mb-1 uppercase tracking-wider">Greeny AI</h3>
+                                <div className="flex items-center gap-1.5">
+                                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                                    <span className="text-white/70 text-[10px] font-bold uppercase tracking-widest">Online Now</span>
                                 </div>
                             </div>
-                            <button
-                                onClick={() => setIsOpen(false)}
-                                className="text-white/80 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-full"
-                            >
-                                <X size={20} />
-                            </button>
                         </div>
+                        <button
+                            onClick={() => setIsOpen(false)}
+                            className="text-white/80 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-full"
+                        >
+                            <X size={20} />
+                        </button>
+                    </div>
 
-                        {/* Messages Area */}
-                        <div className="flex-1 overflow-y-auto overscroll-contain p-6 space-y-4 bg-slate-50/50 custom-scrollbar">
-                            {messages.length === 0 && (
-                                <div className="text-center py-10">
-                                    <div className="w-16 h-16 bg-primary-50 rounded-3xl flex items-center justify-center mx-auto mb-4">
-                                        <Sparkles className="text-primary-500 w-8 h-8" />
-                                    </div>
-                                    <h4 className="font-black text-primary-900 uppercase mb-2">Halo! Saya Greeny</h4>
-                                    <p className="text-gray-500 text-xs font-medium leading-relaxed px-10">
-                                        Ada yang bisa saya bantu terkait pengolahan limbah popok atau Greenetix Indonesia?
-                                    </p>
+                    {/* Messages Area */}
+                    <div className="flex-1 overflow-y-auto overscroll-contain p-6 space-y-4 bg-slate-50/50 custom-scrollbar">
+                        {messages.length === 0 && (
+                            <div className="text-center py-10">
+                                <div className="w-16 h-16 bg-primary-50 rounded-3xl flex items-center justify-center mx-auto mb-4">
+                                    <Sparkles className="text-primary-500 w-8 h-8" />
                                 </div>
-                            )}
-                            {messages.map((msg, idx) => (
-                                <div
-                                    key={idx}
-                                    className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-                                >
-                                    <div className={`max-w-[85%] p-4 rounded-md text-sm font-medium leading-relaxed ${msg.role === "user"
-                                            ? "bg-primary-600 text-white rounded-tr-none shadow-lg shadow-primary-600/20"
-                                            : "bg-white text-gray-800 rounded-tl-none shadow-md border border-slate-100"
-                                        }`}>
-                                        {msg.content}
-                                    </div>
-                                </div>
-                            ))}
-                            {isLoading && (
-                                <div className="flex justify-start">
-                                    <div className="bg-white p-4 rounded-md rounded-tl-none border border-slate-100 shadow-md">
-                                        <Loader2 className="w-5 h-5 text-primary-500 animate-spin" />
-                                    </div>
-                                </div>
-                            )}
-                            <div ref={messagesEndRef} />
-                        </div>
-
-                        {/* Input Area */}
-                        <form onSubmit={handleSendMessage} className="p-4 bg-white border-t border-slate-100 flex gap-3">
-                            <input
-                                type="text"
-                                value={input}
-                                onChange={(e) => setInput(e.target.value)}
-                                placeholder="Tulis pertanyaan..."
-                                className="flex-1 bg-slate-50 border border-slate-100 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all font-medium"
-                            />
-                            <button
-                                type="submit"
-                                disabled={!input.trim() || isLoading}
-                                className="bg-primary-600 text-white p-3 rounded-lg shadow-lg hover:bg-primary-700 transition-all disabled:opacity-50 disabled:scale-95 active:scale-90"
+                                <h4 className="font-black text-primary-900 uppercase mb-2">Halo! Saya Greeny</h4>
+                                <p className="text-gray-500 text-xs font-medium leading-relaxed px-10">
+                                    Ada yang bisa saya bantu terkait pengolahan limbah popok atau Greenetix Indonesia?
+                                </p>
+                            </div>
+                        )}
+                        {messages.map((msg, idx) => (
+                            <div
+                                key={idx}
+                                className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                             >
-                                <Send size={20} />
-                            </button>
-                        </form>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                                <div className={`max-w-[85%] p-4 rounded-md text-sm font-medium leading-relaxed ${msg.role === "user"
+                                        ? "bg-primary-600 text-white rounded-tr-none shadow-lg shadow-primary-600/20"
+                                        : "bg-white text-gray-800 rounded-tl-none shadow-md border border-slate-100"
+                                    }`}>
+                                    {msg.content}
+                                </div>
+                            </div>
+                        ))}
+                        {isLoading && (
+                            <div className="flex justify-start">
+                                <div className="bg-white p-4 rounded-md rounded-tl-none border border-slate-100 shadow-md">
+                                    <Loader2 className="w-5 h-5 text-primary-500 animate-spin" />
+                                </div>
+                            </div>
+                        )}
+                        <div ref={messagesEndRef} />
+                    </div>
+
+                    {/* Input Area */}
+                    <form onSubmit={handleSendMessage} className="p-4 bg-white border-t border-slate-100 flex gap-3">
+                        <input
+                            type="text"
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}
+                            placeholder="Tulis pertanyaan..."
+                            className="flex-1 bg-slate-50 border border-slate-100 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all font-medium"
+                        />
+                        <button
+                            type="submit"
+                            disabled={!input.trim() || isLoading}
+                            className="bg-primary-600 text-white p-3 rounded-lg shadow-lg hover:bg-primary-700 transition-all disabled:opacity-50 disabled:scale-95 active:scale-90"
+                        >
+                            <Send size={20} />
+                        </button>
+                    </form>
+                </motion.div>
+            )}
+        </AnimatePresence>
+    );
+
+    return (
+        <div className="relative">
+            {mounted && typeof document !== "undefined" ? createPortal(chatWindow, document.body) : null}
 
             {/* Trigger Button */}
             <motion.button
