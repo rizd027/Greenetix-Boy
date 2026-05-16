@@ -14,6 +14,7 @@ export default function ChatBot() {
     const [messages, setMessages] = useState<Message[]>([]);
     const [input, setInput] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [viewportHeight, setViewportHeight] = useState("100dvh");
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
     const scrollToBottom = () => {
@@ -34,6 +35,21 @@ export default function ChatBot() {
             document.body.style.overflow = "unset";
         };
     }, [messages, isOpen]);
+
+    useEffect(() => {
+        const updateHeight = () => {
+            setViewportHeight(`${window.innerHeight}px`);
+        };
+        
+        if (isOpen) {
+            updateHeight();
+            window.addEventListener("resize", updateHeight);
+        }
+        
+        return () => {
+            window.removeEventListener("resize", updateHeight);
+        };
+    }, [isOpen]);
 
     const handleSendMessage = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -73,7 +89,8 @@ export default function ChatBot() {
                         animate={{ x: 0 }}
                         exit={{ x: "100%" }}
                         transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                        className="fixed inset-y-0 right-0 w-full sm:w-[400px] h-dvh bg-white shadow-2xl flex flex-col overflow-hidden z-[9999] sm:rounded-l-lg border-l border-primary-100"
+                        style={{ height: viewportHeight }}
+                        className="fixed top-0 right-0 w-full sm:w-[400px] bg-white shadow-2xl flex flex-col overflow-hidden z-[9999] sm:rounded-l-lg border-l border-primary-100"
                     >
                         {/* Header */}
                         <div className="bg-gradient-to-r from-primary-600 to-primary-800 p-6 flex items-center justify-between">
