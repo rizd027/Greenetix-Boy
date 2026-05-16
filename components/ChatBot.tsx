@@ -2,214 +2,241 @@
 
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send, Loader2, Bot, User, Sparkles } from "lucide-react";
+import { Send, Bot, Sparkles, Zap, DollarSign, HelpCircle, X } from "lucide-react";
 
 interface Message {
     role: "user" | "assistant";
     content: string;
 }
 
+const QUICK_ACTIONS = [
+    { icon: <HelpCircle size={15} />, text: "Apa itu Greenetix?" },
+    { icon: <Zap size={15} />, text: "Cara olah limbah popok" },
+    { icon: <DollarSign size={15} />, text: "Harga layanan?" },
+];
+
 export default function ChatBot() {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<Message[]>([]);
     const [input, setInput] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [viewportHeight, setViewportHeight] = useState("100dvh");
     const [mounted, setMounted] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    // Parse markdown sederhana jadi JSX bersih (hapus #, **, *, dll.)
+    const formatMessage = (text: string): React.ReactNode[] => {
+        const lines = text.split("\n");
+        return lines.map((line, i) => {
+            // Hapus heading markdown (#, ##, ###)
+            let clean = line.replace(/^#{1,6}\s+/, "");
+            // Ubah **bold** → <strong>
+            const parts = clean.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g);
+            const rendered = parts.map((part, j) => {
+                if (/^\*\*(.+)\*\*$/.test(part)) return <strong key={j}>{part.slice(2, -2)}</strong>;
+                if (/^\*(.+)\*$/.test(part)) return <em key={j}>{part.slice(1, -1)}</em>;
+                // Hapus sisa simbol * tunggal
+                return part.replace(/\*/g, "");
+            });
+            return (
+                <span key={i} className={i > 0 ? "block mt-1" : ""}>{rendered}</span>
+            );
+        });
     };
 
-    useEffect(() => {
-        if (isOpen) {
-            scrollToBottom();
-            // Lock body scroll on mobile when chat is open
-            if (window.innerWidth < 640) {
-                document.body.style.overflow = "hidden";
-            }
-        } else {
-            document.body.style.overflow = "unset";
-        }
-        return () => {
-            document.body.style.overflow = "unset";
-        };
-    }, [messages, isOpen]);
+    useEffect(() => { setMounted(true); }, []);
 
     useEffect(() => {
-        const updateHeight = () => {
-            if (window.visualViewport) {
-                setViewportHeight(`${window.visualViewport.height}px`);
-            } else {
-                setViewportHeight(`${window.innerHeight}px`);
-            }
-        };
-        
         if (isOpen) {
-            updateHeight();
-            window.addEventListener("resize", updateHeight);
-            if (window.visualViewport) {
-                window.visualViewport.addEventListener("resize", updateHeight);
-            }
+            setTimeout(() => {
+                messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+                // Tidak auto-focus agar keyboard mobile tidak langsung muncul
+            }, 50);
         }
-        
-        return () => {
-            window.removeEventListener("resize", updateHeight);
-            if (window.visualViewport) {
-                window.visualViewport.removeEventListener("resize", updateHeight);
-            }
-        };
-    }, [isOpen]);
+    }, [messages, isLoading, isOpen]);
 
-    const handleSendMessage = async (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!input.trim() || isLoading) return;
-
-        const userMessage: Message = { role: "user", content: input };
+    const handleSendMessage = async (text: string) => {
+        if (!text.trim() || isLoading) return;
+        const userMessage: Message = { role: "user", content: text };
         setMessages((prev) => [...prev, userMessage]);
         setInput("");
         setIsLoading(true);
-
         try {
             const response = await fetch("/api/chat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ messages: [...messages, userMessage] }),
             });
-
             const data = await response.json();
             if (data.choices?.[0]?.message) {
                 setMessages((prev) => [...prev, { role: "assistant", content: data.choices[0].message.content }]);
-            } else {
-                throw new Error("Invalid response");
-            }
-        } catch (error) {
+            } else throw new Error("Invalid response");
+        } catch {
             setMessages((prev) => [...prev, { role: "assistant", content: "Maaf, sedang ada gangguan teknis. Silakan coba lagi nanti." }]);
         } finally {
             setIsLoading(false);
         }
     };
 
-    return (
+    const onSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        handleSendMessage(input);
+    };
+
+    // ─── Chat Window (Portal ke document.body) ────────────────────────────────
     const chatWindow = (
-        <AnimatePresence>
+        <>
             {isOpen && (
-                <motion.div
-                    initial={{ x: "100%" }}
-                    animate={{ x: 0 }}
-                    exit={{ x: "100%" }}
-                    transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                    style={{ height: viewportHeight }}
-                    className="fixed top-0 right-0 w-full sm:w-[400px] bg-white shadow-2xl flex flex-col overflow-hidden z-[99999] sm:rounded-l-lg border-l border-primary-100"
+                /*
+                 * MOBILE: full-screen menggunakan style inline agar tunduk pada
+                 * window.innerHeight yang akurat (bukan 100dvh / 100vh CSS).
+                 * DESKTOP (sm+): panel samping kanan bawah 420×600 px.
+                 */
+                <div
+                    className="fixed z-[99999] flex flex-col bg-slate-50
+                               inset-0 sm:inset-y-0 sm:right-0 sm:left-auto sm:w-[400px] sm:shadow-2xl sm:border-l sm:border-slate-200"
                 >
-                    {/* Header */}
-                    <div className="bg-gradient-to-r from-primary-600 to-primary-800 p-6 flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center">
-                                <Bot className="text-white w-6 h-6" />
+                    {/* ── Header ─────────────────────────────────────── */}
+                    <div className="shrink-0 flex items-center justify-between px-5 py-4 bg-white border-b border-slate-100 shadow-sm relative overflow-hidden">
+                        {/* Decorative Blur */}
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-primary-100 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none opacity-60" />
+
+                        <div className="flex items-center gap-3 relative z-10">
+                            <div className="relative shrink-0">
+                                <div className="w-11 h-11 bg-gradient-to-tr from-primary-600 to-primary-500 rounded-xl flex items-center justify-center shadow-md shadow-primary-500/20">
+                                    <Bot className="text-white w-6 h-6" />
+                                </div>
+                                <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-green-400 rounded-full border-2 border-white block shadow-sm" />
                             </div>
                             <div>
-                                <h3 className="text-white font-black text-lg leading-none mb-1 uppercase tracking-wider">Greeny AI</h3>
-                                <div className="flex items-center gap-1.5">
-                                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                                    <span className="text-white/70 text-[10px] font-bold uppercase tracking-widest">Online Now</span>
+                                <h3 className="text-slate-800 font-extrabold text-[17px] leading-tight tracking-tight">Greeny AI</h3>
+                                <div className="flex items-center gap-1.5 mt-1">
+                                    <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-green-500/10 border border-green-500/20">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_5px_rgba(34,197,94,0.5)]" />
+                                        <span className="text-green-600 text-[10px] font-black tracking-widest uppercase">Online</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                        {/* Tombol tutup */}
                         <button
                             onClick={() => setIsOpen(false)}
-                            className="text-white/80 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-full"
+                            className="relative z-10 flex items-center justify-center w-9 h-9 rounded-full bg-slate-50 hover:bg-slate-100 border border-slate-200 active:bg-slate-200 text-slate-500 transition-colors"
                         >
-                            <X size={20} />
+                            <X size={18} strokeWidth={2.5} />
                         </button>
                     </div>
 
-                    {/* Messages Area */}
-                    <div className="flex-1 overflow-y-auto overscroll-contain p-6 space-y-4 bg-slate-50/50 custom-scrollbar">
+                    {/* ── Area Pesan ─────────────────────────────────── */}
+                    <div className="flex-1 overflow-y-auto overscroll-contain px-4 py-6 space-y-4">
+                        {/* State kosong */}
                         {messages.length === 0 && (
-                            <div className="text-center py-10">
-                                <div className="w-16 h-16 bg-primary-50 rounded-3xl flex items-center justify-center mx-auto mb-4">
-                                    <Sparkles className="text-primary-500 w-8 h-8" />
+                            <div className="flex flex-col items-center text-center pt-6 pb-4">
+                                <div className="w-20 h-20 bg-primary-50 rounded-3xl flex items-center justify-center mb-5 border border-primary-100">
+                                    <Sparkles className="text-primary-500 w-10 h-10" />
                                 </div>
-                                <h4 className="font-black text-primary-900 uppercase mb-2">Halo! Saya Greeny</h4>
-                                <p className="text-gray-500 text-xs font-medium leading-relaxed px-10">
-                                    Ada yang bisa saya bantu terkait pengolahan limbah popok atau Greenetix Indonesia?
+                                <h4 className="font-black text-slate-800 text-xl mb-2">Halo! Saya Greeny 👋</h4>
+                                <p className="text-slate-500 text-sm leading-relaxed px-2 mb-8">
+                                    Saya siap membantu Anda terkait pengolahan limbah popok dan layanan Greenetix Indonesia.
                                 </p>
+
+                                {/* Quick actions */}
+                                <div className="w-full space-y-2">
+                                    {QUICK_ACTIONS.map((action, idx) => (
+                                        <button
+                                            key={idx}
+                                            onClick={() => handleSendMessage(action.text)}
+                                            className="w-full flex items-center gap-3 bg-white px-4 py-3 rounded-xl border border-slate-200 shadow-sm hover:border-primary-300 hover:bg-primary-50 active:scale-[0.98] transition-all text-left"
+                                        >
+                                            <span className="w-8 h-8 rounded-lg bg-primary-50 flex items-center justify-center text-primary-600 shrink-0">
+                                                {action.icon}
+                                            </span>
+                                            <span className="text-sm font-semibold text-slate-700">{action.text}</span>
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
                         )}
+
+                        {/* Bubble pesan */}
                         {messages.map((msg, idx) => (
-                            <div
-                                key={idx}
-                                className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-                            >
-                                <div className={`max-w-[85%] p-4 rounded-md text-sm font-medium leading-relaxed ${msg.role === "user"
-                                        ? "bg-primary-600 text-white rounded-tr-none shadow-lg shadow-primary-600/20"
-                                        : "bg-white text-gray-800 rounded-tl-none shadow-md border border-slate-100"
+                            <div key={idx} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+                                <div className={`max-w-[82%] px-4 py-3 text-[15px] leading-relaxed rounded-2xl ${msg.role === "user"
+                                        ? "bg-primary-600 text-white rounded-tr-sm font-medium shadow-sm"
+                                        : "bg-white text-slate-800 rounded-tl-sm border border-slate-100 shadow-sm"
                                     }`}>
-                                    {msg.content}
+                                    {msg.role === "assistant" ? formatMessage(msg.content) : msg.content}
                                 </div>
                             </div>
                         ))}
+
+                        {/* Indikator mengetik */}
                         {isLoading && (
                             <div className="flex justify-start">
-                                <div className="bg-white p-4 rounded-md rounded-tl-none border border-slate-100 shadow-md">
-                                    <Loader2 className="w-5 h-5 text-primary-500 animate-spin" />
+                                <div className="bg-white border border-slate-100 shadow-sm px-4 py-3 rounded-2xl rounded-tl-sm flex gap-1.5 items-center">
+                                    {[0, 0.2, 0.4].map((delay, i) => (
+                                        <span
+                                            key={i}
+                                            className="w-2 h-2 bg-primary-400 rounded-full animate-bounce"
+                                            style={{ animationDelay: `${delay}s` }}
+                                        />
+                                    ))}
                                 </div>
                             </div>
                         )}
+
                         <div ref={messagesEndRef} />
                     </div>
 
-                    {/* Input Area */}
-                    <form onSubmit={handleSendMessage} className="p-4 bg-white border-t border-slate-100 flex gap-3">
-                        <input
-                            type="text"
-                            value={input}
-                            onChange={(e) => setInput(e.target.value)}
-                            placeholder="Tulis pertanyaan..."
-                            className="flex-1 bg-slate-50 border border-slate-100 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all font-medium"
-                        />
-                        <button
-                            type="submit"
-                            disabled={!input.trim() || isLoading}
-                            className="bg-primary-600 text-white p-3 rounded-lg shadow-lg hover:bg-primary-700 transition-all disabled:opacity-50 disabled:scale-95 active:scale-90"
-                        >
-                            <Send size={20} />
-                        </button>
-                    </form>
-                </motion.div>
+                    {/* ── Input ──────────────────────────────────────── */}
+                    <div
+                        className="shrink-0 bg-white border-t border-slate-100 px-3 py-3"
+                        style={{ paddingBottom: "max(12px, env(safe-area-inset-bottom))" }}
+                    >
+                        <form onSubmit={onSubmit} className="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-2xl px-4 py-2">
+                            <input
+                                ref={inputRef}
+                                type="text"
+                                value={input}
+                                onChange={(e) => setInput(e.target.value)}
+                                placeholder="Ketik pesan..."
+                                className="flex-1 bg-transparent text-[15px] text-slate-800 placeholder:text-slate-400 focus:outline-none font-medium py-1"
+                            />
+                            <button
+                                type="submit"
+                                disabled={!input.trim() || isLoading}
+                                className="w-10 h-10 bg-primary-600 disabled:bg-slate-200 disabled:text-slate-400 text-white rounded-xl flex items-center justify-center shrink-0 active:scale-95 transition-all"
+                            >
+                                <Send size={16} className="translate-x-[1px]" />
+                            </button>
+                        </form>
+                    </div>
+                </div>
             )}
-        </AnimatePresence>
+        </>
     );
 
     return (
         <div className="relative">
-            {mounted && typeof document !== "undefined" ? createPortal(chatWindow, document.body) : null}
+            {mounted && createPortal(chatWindow, document.body)}
 
             {/* Trigger Button */}
-            <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+            <button
                 onClick={() => setIsOpen(!isOpen)}
-                className={`w-12 h-12 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 ${isOpen ? "bg-red-500 text-white rotate-90" : "bg-primary-600 text-white"
+                className={`w-14 h-14 rounded-2xl shadow-xl flex items-center justify-center transition-all active:scale-95 relative ${isOpen
+                        ? "bg-slate-800 text-white"
+                        : "bg-gradient-to-tr from-primary-600 to-primary-500 text-white"
                     }`}
             >
-                {isOpen ? <X size={24} /> : <Sparkles size={24} />}
-
-                {/* Notification Badge */}
+                <Bot size={26} strokeWidth={2} />
                 {!isOpen && messages.length === 0 && (
-                    <span className="absolute top-0 right-0 flex h-4 w-4">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-4 w-4 bg-primary-500"></span>
+                    <span className="absolute -top-1 -right-1 flex h-4 w-4">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                        <span className="relative inline-flex rounded-full h-4 w-4 bg-green-500 border-2 border-white" />
                     </span>
                 )}
-            </motion.button>
+            </button>
         </div>
     );
 }
