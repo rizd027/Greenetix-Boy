@@ -73,7 +73,7 @@ export default function ChatBot() {
                         animate={{ x: 0 }}
                         exit={{ x: "100%" }}
                         transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                        className="fixed inset-y-0 right-0 w-full sm:w-[400px] h-screen bg-white shadow-2xl flex flex-col overflow-hidden z-[9999] sm:rounded-l-lg border-l border-primary-100"
+                        className="fixed inset-y-0 right-0 w-full sm:w-[400px] h-dvh bg-white shadow-2xl flex flex-col overflow-hidden z-[9999] sm:rounded-l-lg border-l border-primary-100"
                     >
                         {/* Header */}
                         <div className="bg-gradient-to-r from-primary-600 to-primary-800 p-6 flex items-center justify-between">
@@ -89,7 +89,7 @@ export default function ChatBot() {
                                     </div>
                                 </div>
                             </div>
-                            <button 
+                            <button
                                 onClick={() => setIsOpen(false)}
                                 className="text-white/80 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-full"
                             >
@@ -115,11 +115,10 @@ export default function ChatBot() {
                                     key={idx}
                                     className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                                 >
-                                    <div className={`max-w-[85%] p-4 rounded-md text-sm font-medium leading-relaxed ${
-                                        msg.role === "user" 
-                                            ? "bg-primary-600 text-white rounded-tr-none shadow-lg shadow-primary-600/20" 
+                                    <div className={`max-w-[85%] p-4 rounded-md text-sm font-medium leading-relaxed ${msg.role === "user"
+                                            ? "bg-primary-600 text-white rounded-tr-none shadow-lg shadow-primary-600/20"
                                             : "bg-white text-gray-800 rounded-tl-none shadow-md border border-slate-100"
-                                    }`}>
+                                        }`}>
                                         {msg.content}
                                     </div>
                                 </div>
@@ -160,12 +159,11 @@ export default function ChatBot() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIsOpen(!isOpen)}
-                className={`w-12 h-12 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 ${
-                    isOpen ? "bg-red-500 text-white rotate-90" : "bg-primary-600 text-white"
-                }`}
+                className={`w-12 h-12 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 ${isOpen ? "bg-red-500 text-white rotate-90" : "bg-primary-600 text-white"
+                    }`}
             >
                 {isOpen ? <X size={24} /> : <Sparkles size={24} />}
-                
+
                 {/* Notification Badge */}
                 {!isOpen && messages.length === 0 && (
                     <span className="absolute top-0 right-0 flex h-4 w-4">
