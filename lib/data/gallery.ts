@@ -6,7 +6,7 @@ export const galleryData = {
             id: "display-produk",
             title: "Display Produk",
             image: "/galeri/display-produk.jpg",
-            alt: "Greenetix Boy Product Display"
+            alt: "Greenetix Indonesia Product Display"
         },
         {
             id: "proses-transformasi",

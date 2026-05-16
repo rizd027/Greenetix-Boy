@@ -6,7 +6,7 @@ export const videoShowcaseData = {
         alt: "Documentary Preview"
     },
     viewsText: "1.2k+ Terlihat",
-    videoTitle: "Misi Greenetix Boy",
+    videoTitle: "Misi Greenetix Indonesia",
     callToAction: "Tonton Sekarang",
     buttonText: "Play Showcase",
     keyPoints: [
@@ -16,7 +16,7 @@ export const videoShowcaseData = {
     ],
     modal: {
         title: "Dokumenter Video",
-        description: "Media player akan ditampilkan di sini untuk memutar video dokumenter Greenetix Boy.",
+        description: "Media player akan ditampilkan di sini untuk memutar video dokumenter Greenetix Indonesia.",
         closeButton: "Tutup"
     }
 };

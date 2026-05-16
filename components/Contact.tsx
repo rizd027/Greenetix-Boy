@@ -41,7 +41,7 @@ export default function Contact() {
         {
             icon: Mail,
             title: "Email",
-            details: ["hello@greenetixboy.com", "info@greenetixboy.com"],
+            details: ["hello@greenetixindonesia.com", "info@greenetixindonesia.com"],
         },
     ];
 
